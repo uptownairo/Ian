@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Buzdugan &amp; Dorca · Birou Notarial Cluj-Napoca | Notar Public</title>
 <meta name="description" content="Birou notarial în Cluj-Napoca — notarii publici Buzdugan Mariana și Dorca Patricia-Gilda. Succesiuni, contracte, procuri, declarații, legalizări și imobiliare. Str. Mihai Veliciu nr. 15." />
 <meta name="keywords" content="notar Cluj, notar public Cluj-Napoca, notariat Cluj, notar Buzdugan, Buzdugan Mariana notar, notar Dorca, succesiune notar Cluj, procură notar Cluj, legalizare Cluj" />
@@ -395,6 +395,76 @@ h1,h2,h3,h4,h5{font-family:var(--display);font-weight:500;line-height:1.1;letter
 .bdb__foot{background:var(--bg)}
 .bdb .field input,.bdb .field select,.bdb .field textarea{background:#fff}
 
+/* ---------- MOBILE OPTIMISATION ---------- */
+html,body{max-width:100%}
+@media (max-width:1024px){.footer__grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){
+  .footer__grid{grid-template-columns:1fr;gap:32px}
+  .footer__bottom{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:900px){
+  .nav__inner{height:68px}
+  .nav__cta{margin-left:auto}
+  .hero{padding:36px 0 120px}
+  .hero__lede{font-size:1.08rem}
+  .plate{padding:28px 24px 22px}
+  .section{padding:72px 0}
+  .btn,.acc__head,.nav__burger,.drawer__close{min-height:48px}
+  .contact-rows .v{overflow-wrap:anywhere}
+}
+@media (max-width:600px){
+  :root{--gut:18px}
+  body{font-size:16.5px}
+  .hero h1{font-size:clamp(2.1rem,9vw,2.6rem);line-height:1.08}
+  .hero__eyebrow{font-size:.72rem;margin-bottom:16px}
+  .hero__actions{flex-direction:column}
+  .hero__actions .btn{width:100%}
+  .plate__name{font-size:1.7rem}
+  .quick{margin-top:-84px}
+  .qtile{flex-direction:row;flex-wrap:wrap;align-items:center;gap:4px 14px;padding:18px 18px}
+  .qtile svg{margin:0;width:32px;height:32px;flex:none}
+  .qtile b{font-size:1.35rem;flex:1}
+  .qtile span{flex-basis:100%;padding-left:46px;margin-top:-2px}
+  .shead__num{min-width:48px;height:48px}
+  .display-l{font-size:clamp(1.9rem,8vw,2.3rem)}
+  .feature{padding:22px 20px}
+  .svc-item{grid-template-columns:36px 1fr 40px;gap:12px;padding:18px 16px}
+  .svc-item__title{font-size:1.4rem}
+  .svc-item__go{width:40px;height:40px}
+  .step{padding:22px 20px}
+  .acc__head{font-size:1.25rem;padding:16px 16px;gap:14px}
+  .acc__body{padding:2px 18px 22px 16px}
+  .facts{padding:4px 18px}
+  .contact-rows{padding:4px 18px}
+  .contact-rows .v{font-size:1.25rem}
+  .map,.map iframe{min-height:280px}
+  .pagehead{padding:36px 0 36px}
+  .pagehead h1{font-size:clamp(2rem,9vw,2.6rem)}
+  .prose h2{font-size:1.65rem}
+  .article{padding:22px}
+  .cta-band{padding:64px 0}
+  .cta-band .actions .btn{width:100%}
+  .cookiebar{left:10px;right:10px;padding:16px;gap:14px}
+  .cookiebar__actions{width:100%}
+  .cookiebar__actions .btn{flex:1}
+  .field input,.field select,.field textarea{font-size:16px}
+  .bdb__body{padding:20px 14px}
+  .bdb__slots{grid-template-columns:repeat(3,1fr)}
+  .bdb__slot{min-height:46px}
+  .bdb__day{height:44px}
+  .bdb__step{font-size:.7rem}
+  .bdb__foot .btn{min-height:50px}
+  .drawer__menu a{font-size:1.75rem;padding:12px 0}
+}
+@media (max-width:360px){
+  .brand__sub{display:none}
+  .quick__grid{gap:12px}
+}
+@supports (padding:max(0px)){
+  .mcta{padding-bottom:env(safe-area-inset-bottom)}
+}
+.shead__num{justify-self:start;width:fit-content}
+a,button{-webkit-tap-highlight-color:rgba(0,0,0,0)}
 </style>
 </head>
 <body id="top">
