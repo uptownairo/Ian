@@ -106,7 +106,7 @@ button{background:none;border:0;cursor:pointer}
 .brand-text strong{display:block;font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:-.01em}
 .brand-text span{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .menu{display:flex;align-items:center;gap:26px;list-style:none}
-.menu a{position:relative;display:block;padding:6px 0;font-size:15px;color:var(--ink-2);transition:color 180ms ease}
+.menu a{position:relative;display:block;white-space:nowrap;padding:6px 0;font-size:15px;color:var(--ink-2);transition:color 180ms ease}
 .menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--forest);transform:scaleX(0);transform-origin:left;transition:transform 260ms var(--ease-out)}
 .menu a.active{color:var(--ink)}
 .menu a.active::after{transform:scaleX(1)}
@@ -131,14 +131,13 @@ button{background:none;border:0;cursor:pointer}
 .hero{padding:clamp(40px,6vw,72px) 0 clamp(64px,8vw,104px)}
 .hero-top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:18px 0}
 .hero-name{position:relative;padding:clamp(28px,4vw,48px) 0 clamp(32px,4vw,52px)}
-.hero-name h1{font-family:var(--serif);font-weight:400;letter-spacing:-.035em;line-height:.92}
-.hero-name .pre{display:block;font-style:italic;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.01em;color:var(--forest);margin-bottom:clamp(10px,1.5vw,18px)}
-.hero-name .nm{display:block;font-size:clamp(54px,10.5vw,152px)}
-.hero-name .nm.it{font-style:italic;padding-left:clamp(0px,8vw,120px)}
-.stamp{position:absolute;right:0;top:clamp(20px,2.6vw,36px);width:clamp(120px,14vw,180px);aspect-ratio:1;opacity:0;transform:scale(1.3) rotate(-26deg);animation:stamp 560ms var(--ease-spring) forwards .9s}
+.hero-name h1{font-family:var(--serif);font-weight:400;letter-spacing:-.025em;line-height:1.04;padding-right:clamp(0px,13vw,170px)}
+.hero-name .pre{display:block;font-style:italic;font-size:clamp(18px,1.6vw,22px);letter-spacing:0;color:var(--forest);margin-bottom:10px}
+.hero-name .nm{display:block;font-size:clamp(40px,5.2vw,72px)}
+.stamp{position:absolute;right:0;top:50%;width:124px;aspect-ratio:1;margin-top:-62px;opacity:0;transform:scale(1.3) rotate(-26deg);animation:stamp 560ms var(--ease-spring) forwards .9s}
 .stamp::before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(31,61,50,.09),transparent 70%)}
 .stamp .seal{width:100%;height:100%}
-.stamp .fh{font-size:clamp(30px,3.4vw,44px)}
+.stamp .fh{font-size:30px}
 @keyframes stamp{0%{opacity:0;transform:scale(1.3) rotate(-26deg)}55%{opacity:.95;transform:scale(.96) rotate(-12deg)}100%{opacity:.9;transform:scale(1) rotate(-13deg)}}
 .hero-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(24px,3vw,40px);padding-top:clamp(28px,3.5vw,44px)}
 .hero-lede{grid-column:1/7;font-family:var(--serif);font-size:clamp(21px,1.9vw,25px);line-height:1.45;letter-spacing:-.01em;color:var(--ink)}
@@ -341,9 +340,11 @@ footer{background:var(--forest-d);color:var(--on-dark-2);padding:clamp(56px,7vw,
   .facts{grid-column:1/7}
   .hero-cta{grid-column:7/-1}
 }
-@media (max-width:960px){
+@media (max-width:1080px){
   .menu,.nav-r .btn{display:none}
   .burger{display:inline-flex}
+}
+@media (max-width:960px){
   .util .addr{display:none}
   .two-col,.contact-grid,.cta .container,.page-head .ph{grid-template-columns:1fr}
   .sticky{position:static}
@@ -363,8 +364,7 @@ footer{background:var(--forest-d);color:var(--on-dark-2);padding:clamp(56px,7vw,
   .brand-text strong{font-size:18px}
   .brand-text span{display:none}
   .hero-top .sc:last-child{display:none}
-  .hero-name .nm.it{padding-left:0}
-  .stamp{position:relative;top:auto;right:auto;margin:20px 0 0 auto;width:104px}
+  .stamp{display:none}
   .stamp .fh{font-size:26px}
   .facts,.hero-cta{grid-column:1/-1}
   .ledger{grid-template-columns:1fr}
@@ -522,7 +522,7 @@ const ROUTES = {
     </div>
     <hr class="double reveal">
     <div class="hero-name">
-      <h1 class="reveal" style="--i:1"><span class="pre">Birou Notarial</span><span class="nm">Furdui</span><span class="nm it">Horia-Augustin</span></h1>
+      <h1 class="reveal" style="--i:1"><span class="pre">Birou Notarial</span><span class="nm">Furdui <span style="white-space:nowrap">Horia-Augustin</span></span></h1>
       <div class="stamp">${seal('')}</div>
     </div>
     <hr class="hair">
