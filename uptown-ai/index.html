@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>UpTown AI · Website-uri, software și vizibilitate online</title>
+<meta name="description" content="UpTown AI este o agenție care construiește website-uri rapide, software la comandă și strategii de vizibilitate online, folosind AI acolo unde aduce rezultate reale." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="UpTown AI" />
+<meta property="og:title" content="UpTown AI · Website-uri, software și vizibilitate online" />
+<meta property="og:description" content="Construim site-uri, software și prezență online care aduc clienți." />
+<meta property="og:locale" content="ro_RO" />
+<meta name="theme-color" content="#f4f4f2" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#f4f4f2;
+  --surface:#ffffff;
+  --ink:#141416;
+  --ink-2:#3f3f46;
+  --muted:#71717a;
+  --line:rgba(20,20,22,.09);
+  --line-2:rgba(20,20,22,.16);
+  --night:#0f0f11;
+  --night-2:#18181b;
+  --night-line:rgba(255,255,255,.08);
+  --accent:#c4ec5c;          /* semnal: un singur accent, folosit doar ca umplere */
+  --accent-ink:#2b3a07;
+  --sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Geist Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-in-out:cubic-bezier(.77,0,.175,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --r-xl:2rem;
+  --r-lg:1.25rem;
+  --container:1320px;
+  --gut:clamp(16px,4vw,40px);
+  --shadow:0 24px 48px -28px rgba(20,20,22,.22);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+::selection{background:var(--accent);color:var(--ink)}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--gut)}
+.mono{font-family:var(--mono);font-feature-settings:"zero" 1}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-9999px;top:12px;z-index:100;background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px}
+.skip:focus{left:12px}
+
+/* granulație fixă, nu pe containere care se derulează */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ============ BRAND MARK ============ */
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:650;letter-spacing:-.035em;font-size:21px;line-height:1}
+.brand svg{height:24px;width:auto}
+.brand b{font-weight:650}
+
+/* ============ BUTTONS ============ */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font-weight:500;font-size:15px;letter-spacing:-.01em;white-space:nowrap;
+  transition:transform 160ms var(--ease-out),background-color 200ms ease,border-color 200ms ease,color 200ms ease;-webkit-tap-highlight-color:transparent;user-select:none}
+.btn:active{transform:scale(.97)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-primary{background:var(--ink);color:#fff;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+/* Magic UI: shiny-button — o lumină care traversează butonul */
+.btn-primary::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.22) 48%,transparent 66%);transform:translateX(-120%);animation:shine 4.2s var(--ease-in-out) infinite 1.4s;pointer-events:none}
+@keyframes shine{0%,62%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.btn-primary .arrow{transition:transform 200ms var(--ease-out)}
+.btn-ghost{border:1px solid var(--line-2);background:rgba(255,255,255,.5);backdrop-filter:blur(8px)}
+.btn-accent{background:var(--accent);color:var(--ink)}
+.btn-sm{height:42px;padding:0 18px;font-size:14px}
+@media (hover:hover) and (pointer:fine){
+  .btn-primary:hover{background:#26262a}
+  .btn-primary:hover .arrow{transform:translateX(3px)}
+  .btn-ghost:hover{border-color:var(--ink)}
+  .btn-accent:hover{background:#d2f472}
+}
+.magnetic{will-change:transform}
+
+/* ============ NAV ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;padding:14px 0;transition:padding 300ms var(--ease-out)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;height:60px;padding:0 10px 0 20px;border-radius:999px;border:1px solid transparent;
+  transition:background-color 300ms ease,border-color 300ms ease,box-shadow 300ms ease}
+.nav.scrolled .nav-inner{background:rgba(250,250,248,.78);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-color:var(--line);box-shadow:0 10px 30px -20px rgba(20,20,22,.3),inset 0 1px 0 rgba(255,255,255,.7)}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{display:block;padding:8px 14px;border-radius:999px;font-size:14.5px;color:var(--ink-2);transition:background-color 180ms ease,color 180ms ease}
+@media (hover:hover) and (pointer:fine){.nav-links a:hover{background:rgba(20,20,22,.05);color:var(--ink)}}
+.nav-cta{display:flex;align-items:center;gap:8px}
+.menu-btn{display:none;width:44px;height:44px;border-radius:999px;align-items:center;justify-content:center}
+.menu-btn span{display:block;width:18px;height:1.5px;background:var(--ink);position:relative;transition:transform 240ms var(--ease-out),opacity 200ms ease}
+.menu-btn span+span{margin-top:5px}
+.menu-btn[aria-expanded="true"] span:first-child{transform:translateY(3.25px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:55;background:rgba(244,244,242,.97);backdrop-filter:blur(10px);padding:110px var(--gut) 40px;display:flex;flex-direction:column;gap:6px;
+  opacity:0;visibility:hidden;transition:opacity 220ms var(--ease-out),visibility 0s linear 220ms}
+.mobile-menu.open{opacity:1;visibility:visible;transition:opacity 260ms var(--ease-out)}
+.mobile-menu a{font-size:34px;font-weight:550;letter-spacing:-.04em;padding:6px 0;opacity:0;transform:translateY(10px);transition:opacity 300ms var(--ease-out),transform 300ms var(--ease-out);transition-delay:calc(var(--i)*45ms)}
+.mobile-menu.open a{opacity:1;transform:none}
+.mobile-menu .btn{margin-top:28px;align-self:flex-start}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100dvh;display:flex;align-items:center;padding:132px 0 72px;overflow:hidden;isolation:isolate}
+/* Magic UI: animated-grid-pattern */
+.grid-bg{position:absolute;inset:-1px;z-index:-1;color:rgba(20,20,22,.07);
+  -webkit-mask-image:radial-gradient(ellipse 75% 70% at 70% 40%,#000 25%,transparent 75%);mask-image:radial-gradient(ellipse 75% 70% at 70% 40%,#000 25%,transparent 75%)}
+.grid-bg svg{width:100%;height:100%}
+.grid-bg rect.sq{fill:rgba(20,20,22,.06);opacity:0;animation:sq 5s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes sq{0%,100%{opacity:0}50%{opacity:1}}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:13px;color:var(--ink-2);box-shadow:0 1px 2px rgba(20,20,22,.04)}
+.eyebrow .tag{background:var(--ink);color:#fff;font-size:11px;padding:3px 8px;border-radius:999px;letter-spacing:.02em}
+.pulse{position:relative;width:8px;height:8px;border-radius:50%;background:#5fae2b;flex:none}
+.pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 2.2s var(--ease-out) infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.6}80%,100%{transform:scale(2.8);opacity:0}}
+.hero h1{margin-top:28px;font-size:clamp(40px,6.2vw,80px);line-height:.98;letter-spacing:-.055em;font-weight:600}
+.hero h1 .soft{display:block}
+.hero h1 .soft{color:#a1a1aa;font-weight:500}
+/* Magic UI: word-rotate */
+.rotator{display:grid;justify-items:start;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.rotator span{grid-area:1/1;transition:transform 520ms var(--ease-out),opacity 380ms ease,filter 380ms ease;white-space:nowrap}
+.rotator span[data-state="next"]{transform:translateY(70%);opacity:0;filter:blur(6px)}
+.rotator span[data-state="prev"]{transform:translateY(-70%);opacity:0;filter:blur(6px)}
+.rotator span .hl{background:linear-gradient(transparent 62%,var(--accent) 62%,var(--accent) 92%,transparent 92%)}
+.hero-sub{margin-top:26px;font-size:clamp(17px,1.45vw,19px);color:var(--ink-2);max-width:46ch;line-height:1.55}
+.hero-actions{margin-top:38px;display:flex;flex-wrap:wrap;gap:12px}
+.hero-meta{margin-top:56px;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:36px;padding-top:22px;border-top:1px solid var(--line)}
+.hero-meta div{font-size:13.5px;color:var(--muted);line-height:1.4}
+.hero-meta strong{display:block;color:var(--ink);font-weight:550;font-size:15px;margin-bottom:2px}
+
+/* Mockup browser cu border-beam */
+.stage{position:relative}
+.window{position:relative;border-radius:22px;background:var(--surface);border:1px solid var(--line);box-shadow:0 40px 80px -40px rgba(20,20,22,.35),0 2px 6px rgba(20,20,22,.04);overflow:hidden}
+/* Magic UI: border-beam */
+.beam{position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.beam::before{content:"";position:absolute;width:140px;aspect-ratio:1;offset-path:rect(0 auto auto 0 round 22px);offset-anchor:center;background:radial-gradient(closest-side,var(--accent),rgba(196,236,92,0) 70%);animation:beam 9s linear infinite}
+@keyframes beam{to{offset-distance:100%}}
+.chrome{display:flex;align-items:center;gap:14px;height:46px;padding:0 16px;border-bottom:1px solid var(--line);background:#fafaf9}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#e4e4e7}
+.url{flex:1;max-width:300px;height:28px;border-radius:8px;background:#f1f1ef;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:12px;color:var(--muted)}
+.url svg{width:12px;height:12px}
+.canvas{position:relative;padding:22px;display:grid;gap:12px;aspect-ratio:5/4.1}
+.blk{border-radius:12px;background:#f1f1ef;opacity:0;transform:translateY(10px) scale(.98);animation:build 8s var(--ease-out) infinite;animation-delay:var(--d)}
+@keyframes build{0%{opacity:0;transform:translateY(10px) scale(.98)}6%,86%{opacity:1;transform:none}94%,100%{opacity:0;transform:translateY(-6px)}}
+.c-nav{display:flex;justify-content:space-between;align-items:center;background:none;height:22px}
+.c-nav b{width:74px;height:10px;border-radius:5px;background:var(--ink)}
+.c-nav span{display:flex;gap:8px}.c-nav span i{width:34px;height:8px;border-radius:4px;background:#e4e4e7}
+.c-hero{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;background:none}
+.c-hero .t{display:grid;gap:8px;align-content:center}
+.c-hero .t i{height:14px;border-radius:6px;background:var(--ink)}
+.c-hero .t i:nth-child(2){width:78%}
+.c-hero .t i:nth-child(3){width:56%;height:8px;background:#d4d4d8;margin-top:6px}
+.c-hero .t i:nth-child(4){width:40%;height:24px;border-radius:999px;background:var(--accent);margin-top:8px}
+.c-hero .img{border-radius:12px;min-height:118px;background:
+  radial-gradient(120% 90% at 80% 10%,#dff59c 0,rgba(223,245,156,0) 55%),
+  linear-gradient(160deg,#e9e9e6,#d8d8d4)}
+.c-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;background:none}
+.c-row i{height:46px;border-radius:10px;background:#f1f1ef;border:1px solid var(--line)}
+.c-wide{height:62px}
+.typing{position:absolute;left:22px;right:22px;bottom:20px;height:40px;border-radius:12px;background:var(--night);color:#e4e4e7;display:flex;align-items:center;gap:10px;padding:0 14px;font-size:12.5px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.typing .prompt{color:var(--accent)}
+.caret{display:inline-block;width:7px;height:14px;background:var(--accent);margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.float{position:absolute;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.7);border-radius:16px;padding:12px 14px;box-shadow:0 20px 40px -22px rgba(20,20,22,.35),inset 0 1px 0 rgba(255,255,255,.9);font-size:13px;line-height:1.3}
+.float small{display:block;color:var(--muted);font-size:11.5px}
+.float .ico{width:34px;height:34px;border-radius:10px;background:var(--ink);color:var(--accent);display:grid;place-items:center;flex:none}
+.float .ico svg{width:17px;height:17px}
+.float-a{left:-40px;top:56%;animation:floaty 6s ease-in-out infinite}
+.float-b{right:-22px;bottom:-24px;animation:toast 8s var(--ease-out) infinite 1.6s;opacity:0}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes toast{0%{opacity:0;transform:translateY(14px) scale(.94)}8%{opacity:1;transform:translateY(-3px) scale(1.02)}12%,48%{opacity:1;transform:none}56%,100%{opacity:0;transform:translateY(6px) scale(.97)}}
+.score{display:flex;align-items:center;gap:10px}
+.ring{width:38px;height:38px;flex:none}
+.ring circle{fill:none;stroke-width:3.5}
+.ring .track{stroke:#ececea}
+.ring .val{stroke:#5fae2b;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transform:rotate(-90deg);transform-origin:center;animation:ringfill 8s var(--ease-out) infinite}
+@keyframes ringfill{0%,8%{stroke-dashoffset:100}30%,90%{stroke-dashoffset:3}100%{stroke-dashoffset:100}}
+
+/* ============ MARQUEE (Magic UI: marquee) ============ */
+.strip{border-block:1px solid var(--line);background:var(--surface);padding:22px 0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee{display:flex;width:max-content;gap:56px;animation:marquee 38s linear infinite}
+.strip:hover .marquee{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(calc(-50% - 28px))}}
+.marquee span{display:inline-flex;align-items:center;gap:56px;font-size:clamp(18px,2vw,24px);font-weight:500;letter-spacing:-.03em;color:#52525b;white-space:nowrap}
+.marquee span::after{content:"";width:7px;height:7px;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
+
+/* ============ SECTIONS ============ */
+.section{padding:clamp(88px,11vw,152px) 0;position:relative}
+.label{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.label::before{content:"";width:18px;height:1px;background:currentColor}
+.h2{font-size:clamp(34px,4.6vw,60px);line-height:1.02;letter-spacing:-.05em;font-weight:600;margin-top:18px;max-width:16ch}
+.h2 .soft{color:#a1a1aa;font-weight:500}
+.lead{font-size:17px;color:var(--ink-2);max-width:52ch;line-height:1.6}
+.sec-head{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;margin-bottom:clamp(48px,6vw,80px)}
+
+/* ============ BENTO ============ */
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);row-gap:clamp(36px,4vw,52px)}
+.tile.w2{grid-column:span 2}
+.card{position:relative;border-radius:var(--r-xl);background:var(--surface);border:1px solid rgba(20,20,22,.06);box-shadow:0 20px 40px -24px rgba(20,20,22,.12);overflow:hidden;height:340px;padding:28px;isolation:isolate}
+.card.dark{background:var(--night);border-color:var(--night-line);color:#e4e4e7;box-shadow:0 30px 60px -30px rgba(15,15,17,.55)}
+/* Magic UI: magic-card spotlight */
+.card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity 300ms ease;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(196,236,92,.16),transparent 60%)}
+@media (hover:hover) and (pointer:fine){.card:hover::before{opacity:1}}
+.tile-meta{display:flex;justify-content:space-between;gap:24px;margin-top:20px;padding:0 6px}
+.tile-meta h3{font-size:21px;letter-spacing:-.035em;font-weight:600;line-height:1.2}
+.tile-meta p{color:var(--muted);font-size:15px;margin-top:6px;max-width:44ch}
+.tile-meta .num{font-family:var(--mono);font-size:12px;color:#a1a1aa;padding-top:5px}
+
+/* A — website: layout care se reorganizează (FLIP) */
+.site-demo{position:absolute;inset:28px 28px 0;border-radius:18px 18px 0 0;border:1px solid var(--line);border-bottom:0;background:#fafaf9;overflow:hidden}
+.site-demo .chrome{height:36px;background:#fff}
+.site-demo .dots i{width:8px;height:8px}
+.lay{display:grid;gap:10px;padding:16px;height:calc(100% - 36px);grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(4,1fr)}
+.lay i{border-radius:10px;background:#ececea;border:1px solid var(--line)}
+.lay i.ink{background:var(--ink);border-color:var(--ink)}
+.lay i.acc{background:var(--accent);border-color:transparent}
+.lay[data-l="0"] i:nth-child(1){grid-area:1/1/3/4}.lay[data-l="0"] i:nth-child(2){grid-area:1/4/3/7}.lay[data-l="0"] i:nth-child(3){grid-area:3/1/5/3}.lay[data-l="0"] i:nth-child(4){grid-area:3/3/5/5}.lay[data-l="0"] i:nth-child(5){grid-area:3/5/5/7}
+.lay[data-l="1"] i:nth-child(1){grid-area:1/1/2/7}.lay[data-l="1"] i:nth-child(2){grid-area:2/1/5/4}.lay[data-l="1"] i:nth-child(3){grid-area:2/4/3/7}.lay[data-l="1"] i:nth-child(4){grid-area:3/4/4/7}.lay[data-l="1"] i:nth-child(5){grid-area:4/4/5/7}
+.lay[data-l="2"] i:nth-child(1){grid-area:1/1/5/3}.lay[data-l="2"] i:nth-child(2){grid-area:1/3/3/7}.lay[data-l="2"] i:nth-child(3){grid-area:3/3/5/5}.lay[data-l="2"] i:nth-child(4){grid-area:3/5/4/7}.lay[data-l="2"] i:nth-child(5){grid-area:4/5/5/7}
+.device-chip{position:absolute;right:20px;top:20px;z-index:2;display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(255,255,255,.9);border:1px solid var(--line);backdrop-filter:blur(8px);font-size:11.5px}
+.device-chip span{padding:4px 10px;border-radius:999px;color:var(--muted);transition:background-color 240ms ease,color 240ms ease}
+.device-chip span.on{background:var(--ink);color:#fff}
+
+/* B — software: command input */
+.cmd{position:absolute;left:24px;right:24px;top:28px;border-radius:16px;background:var(--night-2);border:1px solid var(--night-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);padding:14px 16px;font-size:13px;min-height:52px;display:flex;gap:10px;align-items:flex-start}
+.cmd .prompt{color:var(--accent);flex:none}
+.cmd .txt{color:#f4f4f5;word-break:break-word}
+.proc{position:absolute;left:24px;right:24px;top:100px;display:grid;gap:10px}
+.proc i{display:block;height:12px;border-radius:6px;background:linear-gradient(90deg,#232327 0%,#34343a 40%,#232327 80%);background-size:200% 100%;animation:shimmer 1.4s linear infinite;opacity:0;transition:opacity 260ms ease}
+.proc i:nth-child(2){width:82%}.proc i:nth-child(3){width:64%}
+.proc.on i{opacity:1}
+@keyframes shimmer{to{background-position:-200% 0}}
+.out{position:absolute;left:24px;right:24px;bottom:24px;display:grid;gap:8px}
+.out div{display:flex;align-items:center;gap:10px;font-size:12.5px;color:#a1a1aa;opacity:0;transform:translateY(6px);transition:opacity 300ms var(--ease-out),transform 300ms var(--ease-out);transition-delay:calc(var(--i)*70ms)}
+.out.on div{opacity:1;transform:none}
+.out svg{width:15px;height:15px;color:var(--accent);flex:none}
+
+/* C — vizibilitate: clasament care se reordonează */
+.serp{position:absolute;inset:24px;display:flex;flex-direction:column;gap:8px}
+.serp-q{display:flex;align-items:center;gap:10px;height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);font-size:13px;color:var(--ink-2);margin-bottom:6px;background:#fafaf9}
+.serp-q svg{width:14px;height:14px;color:var(--muted)}
+.serp ol{list-style:none;display:flex;flex-direction:column;gap:8px}
+.serp li{display:flex;align-items:center;gap:12px;height:44px;padding:0 14px;border-radius:12px;background:#f6f6f4;border:1px solid transparent;font-size:13.5px;color:var(--ink-2)}
+.serp li .pos{font-family:var(--mono);font-size:11.5px;color:#a1a1aa;width:16px}
+.serp li .bar{flex:1;height:7px;border-radius:4px;background:#e4e4e7}
+.serp li.you{background:var(--ink);color:#fff}
+.serp li.you .bar{background:var(--accent)}
+.serp li.you .pos{color:var(--accent)}
+
+/* D — automatizări: status live + canale */
+.agents{position:absolute;left:28px;right:28px;top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.agent{border-radius:16px;background:var(--night-2);border:1px solid var(--night-line);padding:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.agent .row{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:#a1a1aa}
+.agent b{display:block;margin-top:14px;font-size:14px;font-weight:500;color:#f4f4f5;letter-spacing:-.01em}
+.agent small{font-size:12px;color:#71717a}
+.breath{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:breath 2.4s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes breath{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1)}}
+.notif{position:absolute;right:28px;top:128px;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:var(--accent);color:var(--ink);font-size:12.5px;font-weight:500;opacity:0;transform:translateY(8px) scale(.94);transition:opacity 260ms var(--ease-out),transform 420ms var(--ease-spring)}
+.notif.show{opacity:1;transform:none}
+.notif svg{width:14px;height:14px}
+.channels{position:absolute;left:0;right:0;bottom:30px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.channels .track{display:flex;gap:10px;width:max-content;animation:marquee2 26s linear infinite}
+@keyframes marquee2{to{transform:translateX(calc(-50% - 5px))}}
+.chip{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--night-line);background:#151518;color:#d4d4d8;font-size:13px;white-space:nowrap}
+.chip i{width:6px;height:6px;border-radius:50%;background:#52525b}
+.chip.on i{background:var(--accent)}
+
+/* ============ PROCES (secțiune întunecată) ============ */
+.night{background:var(--night);color:#e4e4e7}
+.night .label{color:#71717a}
+.night .h2{color:#fafafa}
+.night .h2 .soft{color:#52525b}
+.night .lead{color:#a1a1aa}
+.process{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,8vw,120px)}
+.process-aside{position:sticky;top:120px;align-self:start}
+.process-aside .lead{margin-top:24px}
+.steps{position:relative;padding-left:44px}
+.steps>ol{list-style:none}
+.rail{position:absolute;left:11px;top:8px;bottom:8px;width:1px;background:var(--night-line)}
+.rail i{position:absolute;inset:0;background:var(--accent);transform-origin:top;transform:scaleY(var(--p,0));transition:transform 700ms var(--ease-out)}
+.step{position:relative;padding:8px 0 64px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:-38px;top:16px;width:11px;height:11px;border-radius:50%;border:1px solid #3f3f46;background:var(--night);transition:background-color 300ms ease,border-color 300ms ease,transform 400ms var(--ease-spring)}
+.step.on::before{background:var(--accent);border-color:var(--accent);transform:scale(1.15)}
+.step .mono{font-size:12px;color:#52525b;transition:color 300ms ease}
+.step.on .mono{color:var(--accent)}
+.step h3{margin-top:10px;font-size:clamp(24px,2.4vw,32px);letter-spacing:-.04em;font-weight:550;color:#71717a;transition:color 400ms ease;line-height:1.15}
+.step.on h3{color:#fafafa}
+.step p{margin-top:12px;color:#a1a1aa;max-width:48ch}
+.step ul{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.step li{font-size:12.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--night-line);color:#a1a1aa}
+
+/* ============ DE CE NOI (zig-zag) ============ */
+.why{display:grid;gap:clamp(56px,7vw,96px)}
+.why-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.why-row:nth-child(even) .why-vis{order:2}
+.why-vis{position:relative;border-radius:var(--r-xl);aspect-ratio:4/3;overflow:hidden;background:radial-gradient(90% 80% at 85% 10%,#e3f5a6 0,rgba(227,245,166,0) 55%),radial-gradient(rgba(20,20,22,.08) 1px,transparent 1px) 0 0/18px 18px,linear-gradient(160deg,#fafaf9,#e7e7e4);border:1px solid rgba(20,20,22,.06);box-shadow:var(--shadow)}
+.why-vis img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:transform 900ms var(--ease-out),filter 600ms ease}
+@media (hover:hover) and (pointer:fine){.why-row:hover .why-vis img{transform:scale(1.03);filter:grayscale(.6) contrast(1.05)}}
+.why-vis .overlay{position:absolute;left:18px;bottom:18px}
+.why-txt h3{font-size:clamp(26px,2.8vw,38px);letter-spacing:-.045em;line-height:1.08;font-weight:600;max-width:18ch}
+.why-txt p{margin-top:16px;color:var(--ink-2);max-width:46ch}
+.why-txt .points{margin-top:24px;display:grid;gap:12px;list-style:none;border-top:1px solid var(--line);padding-top:20px}
+.why-txt .points li{display:flex;gap:12px;font-size:15px;color:var(--ink-2)}
+.why-txt .points svg{width:18px;height:18px;flex:none;margin-top:3px}
+
+/* ============ FAQ ============ */
+.faq-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,7vw,110px)}
+.faq{border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;text-align:left;font-size:clamp(17px,1.5vw,19px);font-weight:500;letter-spacing:-.02em}
+.qa .pm{position:relative;width:30px;height:30px;border-radius:50%;border:1px solid var(--line-2);flex:none;transition:background-color 200ms ease,border-color 200ms ease}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:1.5px;background:currentColor;transform:translate(-50%,-50%);transition:transform 260ms var(--ease-out)}
+.qa .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
+.qa button[aria-expanded="true"] .pm{background:var(--ink);border-color:var(--ink);color:#fff}
+.qa button[aria-expanded="true"] .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows 320ms var(--ease-out)}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{padding:0 56px 26px 0;color:var(--ink-2);max-width:62ch;opacity:0;transform:translateY(-4px);transition:opacity 260ms ease,transform 320ms var(--ease-out)}
+.qa.open .ans{grid-template-rows:1fr}
+.qa.open .ans p{opacity:1;transform:none}
+
+/* ============ CONTACT ============ */
+.contact{background:var(--night);color:#e4e4e7;border-radius:var(--r-xl);padding:clamp(28px,5vw,72px);display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(40px,6vw,96px);position:relative;overflow:hidden;isolation:isolate}
+.contact .dotbg{position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 15% 20%,#000,transparent 70%);mask-image:radial-gradient(ellipse 60% 70% at 15% 20%,#000,transparent 70%)}
+.contact .h2{color:#fafafa}
+.contact .lead{color:#a1a1aa;margin-top:22px}
+.direct{margin-top:40px;display:grid;gap:4px;border-top:1px solid var(--night-line);padding-top:24px}
+.direct a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;font-size:17px;color:#f4f4f5;border-bottom:1px solid var(--night-line)}
+.direct a span{font-size:12px;color:#71717a;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.direct a svg{width:18px;height:18px;color:#71717a;transition:transform 200ms var(--ease-out),color 200ms ease}
+@media (hover:hover) and (pointer:fine){.direct a:hover svg{transform:translate(2px,-2px);color:var(--accent)}}
+form{display:grid;gap:20px;align-content:start}
+.field{display:grid;gap:8px}
+.field label,.field legend{font-size:13.5px;color:#d4d4d8;font-weight:500}
+.field .opt{color:#71717a;font-weight:400}
+.input{width:100%;height:52px;padding:0 16px;border-radius:14px;background:var(--night-2);border:1px solid var(--night-line);color:#fafafa;outline:none;transition:border-color 180ms ease,background-color 180ms ease;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+textarea.input{height:auto;min-height:128px;padding:14px 16px;resize:vertical;line-height:1.5}
+.input::placeholder{color:#52525b}
+.input:focus{border-color:#71717a;background:#1d1d21}
+.field.err .input{border-color:#f87171}
+.help{font-size:12.5px;color:#71717a}
+.error{font-size:12.5px;color:#fca5a5;display:none;align-items:center;gap:6px}
+.field.err .error{display:flex}
+.field.err .help{display:none}
+fieldset{border:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill span{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--night-line);background:var(--night-2);font-size:14px;color:#d4d4d8;cursor:pointer;transition:background-color 180ms ease,border-color 180ms ease,color 180ms ease,transform 160ms var(--ease-out);user-select:none}
+.pill span:active{transform:scale(.97)}
+.pill span::before{content:"";width:8px;height:8px;border-radius:50%;border:1px solid #52525b;transition:background-color 180ms ease,border-color 180ms ease}
+.pill input:checked+span{background:#f4f4f5;color:var(--ink);border-color:#f4f4f5}
+.pill input:checked+span::before{background:#5fae2b;border-color:#5fae2b}
+.pill input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.submit{width:100%;height:56px;margin-top:6px}
+.submit .lbl{transition:filter 200ms ease,opacity 200ms ease}
+.submit.loading{pointer-events:none}
+.submit.loading .lbl{filter:blur(2px);opacity:.5}
+.submit.loading::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(43,58,7,.18),transparent);background-size:50% 100%;background-repeat:no-repeat;animation:load 1s linear infinite}
+@keyframes load{from{background-position:-50% 0}to{background-position:150% 0}}
+.success{display:none;border-radius:20px;border:1px solid var(--night-line);background:var(--night-2);padding:32px;align-content:start;gap:12px}
+.success.show{display:grid;animation:pop 420ms var(--ease-out)}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.success .ok{width:44px;height:44px;border-radius:14px;background:var(--accent);color:var(--ink);display:grid;place-items:center}
+.success .ok svg{width:22px;height:22px}
+.success h3{font-size:24px;letter-spacing:-.035em;color:#fafafa;font-weight:600;margin-top:8px}
+.success p{color:#a1a1aa}
+.success button{justify-self:start;margin-top:10px;color:#f4f4f5;font-size:14px;text-decoration:underline;text-underline-offset:4px}
+
+/* ============ FOOTER ============ */
+footer{padding:72px 0 40px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid var(--line)}
+.foot p{margin-top:16px;color:var(--muted);max-width:36ch;font-size:15px}
+.foot h4{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.foot ul{list-style:none;margin-top:16px;display:grid;gap:10px}
+.foot ul a{color:var(--ink-2);font-size:15px;transition:color 160ms ease}
+@media (hover:hover) and (pointer:fine){.foot ul a:hover{color:var(--ink)}}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:13px;color:var(--muted)}
+.wordmark-xl{margin-top:56px;font-size:clamp(64px,17vw,250px);font-weight:650;letter-spacing:-.075em;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(20,20,22,.14);user-select:none;white-space:nowrap;overflow:hidden}
+
+/* ============ REVEAL (Magic UI: blur-fade) ============ */
+.reveal{opacity:0;transform:translateY(14px);filter:blur(6px);transition:opacity 700ms var(--ease-out),transform 700ms var(--ease-out),filter 700ms var(--ease-out);transition-delay:calc(var(--i,0)*70ms)}
+.reveal.in{opacity:1;transform:none;filter:none}
+.paused,.paused *,.paused *::before,.paused *::after{animation-play-state:paused!important}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr}
+  .stage{max-width:620px}
+  .float-a{left:-10px}
+  .float-b{right:-6px}
+  .bento{grid-template-columns:1fr 1fr}
+  .tile.w2{grid-column:span 2}
+}
+@media (max-width:900px){
+  .nav-links,.nav-cta .btn{display:none}
+  .menu-btn{display:inline-flex;flex-direction:column}
+  .sec-head,.process,.faq-wrap,.contact,.why-row{grid-template-columns:1fr}
+  .why-row:nth-child(even) .why-vis{order:0}
+  .process-aside{position:static}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot>div:first-child{grid-column:1/-1}
+}
+@media (max-width:767px){
+  body{font-size:15.5px}
+  .hero{padding:112px 0 56px;align-items:flex-start}
+  .hero h1{max-width:none}
+  .hero-actions .btn{flex:1 1 100%}
+  .hero-meta{grid-template-columns:1fr 1fr;gap:20px}
+  .bento{grid-template-columns:1fr}
+  .tile.w2{grid-column:auto}
+  .card{height:320px;padding:20px}
+  .site-demo{inset:20px 20px 0}
+  .agents{grid-template-columns:1fr 1fr;left:20px;right:20px;top:20px}
+  .agents .agent:nth-child(3){display:none}
+  .notif{right:20px;top:116px}
+  .tile-meta{padding:0 2px}
+  .float-a{display:none}
+  .float-b{right:10px;bottom:-18px}
+  .canvas{padding:16px}
+  .typing{left:16px;right:16px;bottom:14px}
+  .row2{grid-template-columns:1fr}
+  .qa .ans p{padding-right:0}
+  .steps{padding-left:36px}
+  .step::before{left:-30px}
+  .rail{left:10px}
+  .step{padding-bottom:48px}
+  .foot{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+  .reveal{transform:none;filter:none;transition:opacity 300ms ease}
+  .blk{opacity:1;transform:none}
+  .float-b{opacity:1}
+  .ring .val{stroke-dashoffset:3}
+  .marquee,.channels .track{animation:none}
+  .grid-bg rect.sq{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Sari la conținut</a>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Simbolul UpTown AI, refolosit în pagină -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 26 32">
+    <g fill="none" stroke="currentColor" stroke-width="4.4" stroke-linecap="butt">
+      <path d="M4.2 11v8.6c0 5.6 3.6 9.4 9.2 9.6"/>
+      <path d="M12.4 6.4V22.6"/>
+      <path d="M20.6 2.2v17.4c0 5.6-3.6 9.4-9.2 9.6"/>
+    </g>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6L13 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15l1.5-2ZM10 21h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5v5.5M12 16.2v.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m4.5 7 7.5 6 7.5-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#top" class="brand" aria-label="UpTown AI, pagina principală">
+        <svg viewBox="0 0 26 32" aria-hidden="true"><use href="#mark"/></svg>
+        <span>UpTown<b>AI</b></span>
+      </a>
+      <nav aria-label="Navigare principală">
+        <ul class="nav-links">
+          <li><a href="#servicii">Servicii</a></li>
+          <li><a href="#proces">Proces</a></li>
+          <li><a href="#de-ce">De ce noi</a></li>
+          <li><a href="#intrebari">Întrebări</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-primary btn-sm magnetic">Hai să vorbim <svg class="arrow"><use href="#i-arrow"/></svg></a>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Deschide meniul"><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#servicii" style="--i:0">Servicii</a>
+  <a href="#proces" style="--i:1">Proces</a>
+  <a href="#de-ce" style="--i:2">De ce noi</a>
+  <a href="#intrebari" style="--i:3">Întrebări</a>
+  <a href="#contact" class="btn btn-primary" style="--i:4">Hai să vorbim <svg class="arrow"><use href="#i-arrow"/></svg></a>
+</div>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="grid-bg" aria-hidden="true"><svg id="gridSvg"></svg></div>
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow reveal" style="--i:0"><span class="pulse"></span><span class="tag mono">NOU</span> Acceptăm proiecte pentru trimestrul următor</div>
+      <h1 class="reveal" style="--i:1">
+        Construim
+        <span class="rotator" id="rotator" aria-live="polite">
+          <span data-state="cur"><span class="hl">site-uri</span></span>
+          <span data-state="next"><span class="hl">software</span></span>
+          <span data-state="next"><span class="hl">vizibilitate</span></span>
+        </span>
+        <span class="soft">care aduc clienți.</span>
+      </h1>
+      <p class="hero-sub reveal" style="--i:2">UpTown AI este agenția care îți face prezența online să muncească: website-uri rapide, software construit pe procesele tale și strategii care te pun în fața oamenilor care te caută.</p>
+      <div class="hero-actions reveal" style="--i:3">
+        <a href="#contact" class="btn btn-primary magnetic">Programează un apel de 30 min <svg class="arrow"><use href="#i-arrow"/></svg></a>
+        <a href="#servicii" class="btn btn-ghost">Vezi ce construim</a>
+      </div>
+      <div class="hero-meta reveal" style="--i:4">
+        <div><strong>Website-uri</strong>Prezentare, magazine, landing page-uri</div>
+        <div><strong>Software</strong>Aplicații, automatizări, integrări</div>
+        <div><strong>Expunere online</strong>SEO, reclame, conținut</div>
+      </div>
+    </div>
+
+    <div class="stage reveal" style="--i:2" aria-hidden="true">
+      <div class="window">
+        <div class="beam"></div>
+        <div class="chrome">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="url mono"><svg><use href="#i-lock"/></svg>afacerea-ta.ro</div>
+        </div>
+        <div class="canvas">
+          <div class="blk c-nav" style="--d:.1s"><b></b><span><i></i><i></i><i></i></span></div>
+          <div class="blk c-hero" style="--d:.5s"><div class="t"><i></i><i></i><i></i><i></i></div><div class="img"></div></div>
+          <div class="blk c-row" style="--d:1s"><i></i><i></i><i></i><i></i></div>
+          <div class="blk c-wide" style="--d:1.4s"></div>
+          <div class="typing mono"><span class="prompt">uptown</span><span id="heroType"></span><span class="caret"></span></div>
+        </div>
+      </div>
+      <div class="float float-a">
+        <div class="score"><svg class="ring" viewBox="0 0 40 40"><circle class="track" cx="20" cy="20" r="16"/><circle class="val" cx="20" cy="20" r="16" pathLength="100"/></svg>
+        <div><b>Performanță</b><small class="mono">Core Web Vitals: bun</small></div></div>
+      </div>
+      <div class="float float-b">
+        <div class="ico"><svg><use href="#i-bell"/></svg></div>
+        <div><b>Cerere nouă de ofertă</b><small>din căutarea Google, acum</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="strip" aria-label="Ce livrăm">
+  <div class="marquee" id="marquee">
+    <span>Website-uri de prezentare</span><span>Magazine online</span><span>Aplicații web</span><span>Automatizări cu AI</span><span>SEO tehnic</span><span>Google Ads</span><span>Meta Ads</span><span>Conținut social media</span><span>Integrări CRM</span><span>Chatbot-uri pentru clienți</span>
+  </div>
+</div>
+
+<!-- SERVICII / BENTO -->
+<section class="section" id="servicii">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="label reveal">Servicii</span>
+        <h2 class="h2 reveal" style="--i:1">Trei lucruri. <span class="soft">Făcute până la capăt.</span></h2>
+      </div>
+      <p class="lead reveal" style="--i:2">Nu vindem pachete generice. Construim exact ce îți lipsește ca să fii găsit, să inspiri încredere și să transformi vizitatorii în clienți, apoi măsurăm rezultatul.</p>
+    </div>
+
+    <div class="bento">
+      <!-- A -->
+      <article class="tile w2 reveal">
+        <div class="card" data-live>
+          <div class="device-chip mono" id="deviceChip"><span class="on">Desktop</span><span>Tabletă</span><span>Mobil</span></div>
+          <div class="site-demo">
+            <div class="chrome"><div class="dots"><i></i><i></i><i></i></div></div>
+            <div class="lay" id="lay" data-l="0"><i class="ink"></i><i></i><i class="acc"></i><i></i><i></i></div>
+          </div>
+        </div>
+        <div class="tile-meta"><div><h3>Creare website-uri</h3><p>Site-uri de prezentare, magazine online și landing page-uri, rapide pe orice ecran și scrise ca să convingă.</p></div><span class="num">01</span></div>
+      </article>
+      <!-- B -->
+      <article class="tile reveal" style="--i:1">
+        <div class="card dark" data-live>
+          <div class="cmd mono"><span class="prompt">&gt;</span><span class="txt" id="cmdTxt"></span><span class="caret"></span></div>
+          <div class="proc" id="proc"><i></i><i></i><i></i></div>
+          <div class="out mono" id="out">
+            <div style="--i:0"><svg><use href="#i-check"/></svg>Bază de date configurată</div>
+            <div style="--i:1"><svg><use href="#i-check"/></svg>Interfață pentru echipă</div>
+            <div style="--i:2"><svg><use href="#i-check"/></svg>Conectat la sistemele tale</div>
+          </div>
+        </div>
+        <div class="tile-meta"><div><h3>Software la comandă</h3><p>Aplicații interne, portaluri pentru clienți și automatizări construite pe felul în care lucrezi deja.</p></div><span class="num">02</span></div>
+      </article>
+      <!-- C -->
+      <article class="tile reveal">
+        <div class="card" data-live>
+          <div class="serp">
+            <div class="serp-q"><svg><use href="#i-search"/></svg>firmă construcții Cluj</div>
+            <ol id="serp">
+              <li data-id="a"><span class="pos">1</span><span>concurent-a.ro</span><span class="bar"></span></li>
+              <li data-id="b"><span class="pos">2</span><span>concurent-b.ro</span><span class="bar"></span></li>
+              <li data-id="c"><span class="pos">3</span><span>director-firme.ro</span><span class="bar"></span></li>
+              <li data-id="y" class="you"><span class="pos">4</span><span>afacerea-ta.ro</span><span class="bar"></span></li>
+            </ol>
+          </div>
+        </div>
+        <div class="tile-meta"><div><h3>Vizibilitate online</h3><p>SEO, Google Business și reclame plătite care te urcă acolo unde clienții chiar se uită.</p></div><span class="num">03</span></div>
+      </article>
+      <!-- D -->
+      <article class="tile w2 reveal" style="--i:1">
+        <div class="card dark" data-live>
+          <div class="agents">
+            <div class="agent"><div class="row mono">Agent 01 <span class="breath"></span></div><b>Răspunde la emailuri</b><small>în sub 2 minute</small></div>
+            <div class="agent"><div class="row mono">Agent 02 <span class="breath" style="--d:.6s"></span></div><b>Califică lead-urile</b><small>scor + notă în CRM</small></div>
+            <div class="agent"><div class="row mono">Agent 03 <span class="breath" style="--d:1.2s"></span></div><b>Programează întâlniri</b><small>direct în calendar</small></div>
+          </div>
+          <div class="notif" id="notif"><svg><use href="#i-bolt"/></svg>Lead calificat trimis echipei</div>
+          <div class="channels"><div class="track" id="chTrack">
+            <span class="chip on"><i></i>Google Search</span><span class="chip"><i></i>Instagram</span><span class="chip on"><i></i>Facebook</span><span class="chip"><i></i>TikTok</span><span class="chip on"><i></i>LinkedIn</span><span class="chip"><i></i>Google Maps</span><span class="chip on"><i></i>Newsletter</span><span class="chip"><i></i>YouTube</span>
+          </div></div>
+        </div>
+        <div class="tile-meta"><div><h3>Automatizări și marketing cu AI</h3><p>Agenți care preiau munca repetitivă și campanii care rulează pe toate canalele unde se află publicul tău.</p></div><span class="num">04</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCES -->
+<section class="section night" id="proces">
+  <div class="container process">
+    <div class="process-aside">
+      <span class="label reveal">Proces</span>
+      <h2 class="h2 reveal" style="--i:1">De la idee la lansare, <span class="soft">fără surprize.</span></h2>
+      <p class="lead reveal" style="--i:2">Știi în fiecare săptămână ce s-a construit, ce urmează și ce decizii trebuie luate. Un singur om de contact, de la prima discuție până după lansare.</p>
+    </div>
+    <div class="steps" id="steps">
+      <div class="rail" aria-hidden="true"><i id="railFill"></i></div>
+      <ol>
+      <li class="step"><span class="mono">01 / DESCOPERIRE</span><h3>Înțelegem afacerea înainte de pixeli</h3><p>Un apel, un audit al prezenței tale actuale și o listă clară cu ce aduce cel mai mult rezultat cel mai repede.</p><ul><li>Audit site și SEO</li><li>Analiză concurență</li><li>Obiective măsurabile</li></ul></li>
+      <li class="step"><span class="mono">02 / DESIGN</span><h3>Prototip pe care îl poți atinge</h3><p>Vezi și testezi structura reală pe telefon și desktop înainte să scriem codul final. Modificările se fac acum, nu după lansare.</p><ul><li>Structură și texte</li><li>Identitate vizuală</li><li>Prototip interactiv</li></ul></li>
+      <li class="step"><span class="mono">03 / CONSTRUCȚIE</span><h3>Dezvoltare cu progres vizibil</h3><p>Primești un link de previzualizare actualizat continuu. Folosim AI pentru viteză, iar fiecare linie e verificată de oameni.</p><ul><li>Cod rapid și curat</li><li>Integrări</li><li>Teste pe dispozitive reale</li></ul></li>
+      <li class="step"><span class="mono">04 / CREȘTERE</span><h3>Lansăm, măsurăm, îmbunătățim</h3><p>După lansare urmărim traficul, pozițiile în Google și cererile primite, apoi optimizăm acolo unde cifrele o cer.</p><ul><li>Analytics și raportare</li><li>SEO continuu</li><li>Campanii plătite</li></ul></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- DE CE NOI -->
+<section class="section" id="de-ce">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="label reveal">De ce UpTown AI</span>
+        <h2 class="h2 reveal" style="--i:1">AI unde ajută. <span class="soft">Oameni unde contează.</span></h2>
+      </div>
+    </div>
+    <div class="why">
+      <div class="why-row">
+        <div class="why-vis reveal"><img src="https://picsum.photos/seed/uptown-studio-desk/1200/900" alt="Spațiu de lucru cu laptop și schițe de interfață" loading="lazy" onerror="this.remove()" width="1200" height="900" /></div>
+        <div class="why-txt reveal" style="--i:1">
+          <h3>Livrăm mai repede, fără să tăiem din calitate.</h3>
+          <p>Folosim instrumente AI pentru cercetare, prototipuri și cod de rutină. Timpul câștigat merge în ce face diferența: strategie, design și detalii.</p>
+          <ul class="points">
+            <li><svg><use href="#i-check"/></svg>Termene stabilite de la început, pe etape</li>
+            <li><svg><use href="#i-check"/></svg>Fiecare livrabil verificat de un om</li>
+          </ul>
+        </div>
+      </div>
+      <div class="why-row">
+        <div class="why-vis reveal"><img src="https://picsum.photos/seed/uptown-city-night/1200/900" alt="Clădiri de birouri luminate seara" loading="lazy" onerror="this.remove()" width="1200" height="900" /></div>
+        <div class="why-txt reveal" style="--i:1">
+          <h3>Totul sub un singur acoperiș.</h3>
+          <p>Site-ul, aplicația și promovarea vorbesc aceeași limbă pentru că le construiește aceeași echipă. Fără pase între trei furnizori.</p>
+          <ul class="points">
+            <li><svg><use href="#i-check"/></svg>Un singur om de contact</li>
+            <li><svg><use href="#i-check"/></svg>Codul și conturile rămân ale tale</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="intrebari" style="padding-top:0">
+  <div class="container faq-wrap">
+    <div>
+      <span class="label reveal">Întrebări</span>
+      <h2 class="h2 reveal" style="--i:1">Ce ne întreabă <span class="soft">toată lumea.</span></h2>
+    </div>
+    <div class="faq reveal" style="--i:2" id="faq">
+      <div class="qa"><button aria-expanded="false">Cât durează un website?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>Depinde de mărime. Un site de prezentare se livrează de obicei în câteva săptămâni, un magazin online sau o aplicație durează mai mult. Primești calendarul exact după discuția inițială.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Cât costă?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>Lucrăm cu oferte clare, pe etape, calculate după ce înțelegem ce îți trebuie. Nu începem nimic fără ca tu să știi exact ce plătești și ce primești.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Cum folosiți AI-ul concret?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>Pentru cercetare, prototipuri rapide, cod de rutină și automatizări pentru clienții noștri. Deciziile de strategie, design și verificarea finală le fac oameni.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Pot modifica singur site-ul după lansare?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>Da. Îți configurăm un panou de administrare simplu pentru texte, imagini și produse, plus o scurtă sesiune de instruire.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Lucrați și cu firme din afara orașului?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>Da, lucrăm la distanță cu clienți din toată țara și din străinătate. Întâlnirile se țin online, iar previzualizarea proiectului e mereu disponibilă.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="padding-top:0">
+  <div class="container">
+    <div class="contact">
+      <div class="dotbg" aria-hidden="true"></div>
+      <div>
+        <span class="label reveal" style="color:#71717a">Contact</span>
+        <h2 class="h2 reveal" style="--i:1">Spune-ne ce construim împreună.</h2>
+        <p class="lead reveal" style="--i:2">Completează formularul și revenim cu o propunere concretă. Dacă preferi, scrie-ne direct.</p>
+        <div class="direct reveal" style="--i:3">
+          <a href="mailto:contact@uptownai.ro" id="mailLink"><div><span>Email</span><br>contact@uptownai.ro</div><svg><use href="#i-arrow-ur"/></svg></a>
+          <a href="#" target="_blank" rel="noopener"><div><span>Instagram</span><br>@uptownai</div><svg><use href="#i-arrow-ur"/></svg></a>
+        </div>
+      </div>
+
+      <div class="reveal" style="--i:2">
+        <form id="form" novalidate>
+          <div class="row2">
+            <div class="field" id="f-name">
+              <label for="name">Nume</label>
+              <input class="input" id="name" name="name" autocomplete="name" placeholder="Numele tău" />
+              <span class="error"><svg width="14" height="14"><use href="#i-warn"/></svg>Spune-ne cum te cheamă.</span>
+            </div>
+            <div class="field" id="f-email">
+              <label for="email">Email</label>
+              <input class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="nume@firma.ro" />
+              <span class="error"><svg width="14" height="14"><use href="#i-warn"/></svg>Verifică adresa de email.</span>
+            </div>
+          </div>
+          <fieldset class="field" id="f-need">
+            <legend>De ce ai nevoie?</legend>
+            <div class="pills">
+              <label class="pill"><input type="checkbox" name="need" value="Website" /><span>Website</span></label>
+              <label class="pill"><input type="checkbox" name="need" value="Software" /><span>Software</span></label>
+              <label class="pill"><input type="checkbox" name="need" value="Vizibilitate online" /><span>Vizibilitate online</span></label>
+              <label class="pill"><input type="checkbox" name="need" value="Automatizări AI" /><span>Automatizări AI</span></label>
+            </div>
+            <span class="error"><svg width="14" height="14"><use href="#i-warn"/></svg>Alege cel puțin o opțiune.</span>
+          </fieldset>
+          <div class="field" id="f-msg">
+            <label for="msg">Despre proiect <span class="opt">(opțional)</span></label>
+            <textarea class="input" id="msg" name="msg" placeholder="Ce face afacerea ta și ce ai vrea să se schimbe?"></textarea>
+            <span class="help">Câteva rânduri sunt suficiente. Detaliile le discutăm la apel.</span>
+          </div>
+          <button type="submit" class="btn btn-accent submit" id="submit"><span class="lbl">Trimite cererea</span></button>
+        </form>
+        <div class="success" id="success" role="status">
+          <div class="ok"><svg><use href="#i-check"/></svg></div>
+          <h3>Mesajul e pregătit.</h3>
+          <p>Am deschis aplicația ta de email cu cererea completată. Apasă Trimite acolo și îți răspundem cât de repede putem.</p>
+          <button type="button" id="again">Completează din nou</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <a href="#top" class="brand"><svg viewBox="0 0 26 32" aria-hidden="true"><use href="#mark"/></svg><span>UpTown<b>AI</b></span></a>
+        <p>Agenție de website-uri, software și vizibilitate online, construite cu ajutorul AI.</p>
+      </div>
+      <div>
+        <h4>Servicii</h4>
+        <ul><li><a href="#servicii">Creare website-uri</a></li><li><a href="#servicii">Software la comandă</a></li><li><a href="#servicii">Vizibilitate online</a></li><li><a href="#servicii">Automatizări AI</a></li></ul>
+      </div>
+      <div>
+        <h4>Agenție</h4>
+        <ul><li><a href="#proces">Proces</a></li><li><a href="#de-ce">De ce noi</a></li><li><a href="#intrebari">Întrebări</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year"></span> UpTown AI. Toate drepturile rezervate.</span><span class="mono">uptownai.ro</span></div>
+    <div class="wordmark-xl" aria-hidden="true">UpTownAI</div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const CONTACT_EMAIL = 'contact@uptownai.ro'; // înlocuiește cu adresa reală
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Bucle care rulează doar când sunt vizibile și tab-ul e activ */
+  const loops = [];
+  function loop(el, fn) {
+    const s = { visible: false, running: false };
+    loops.push(s);
+    const tick = async () => {
+      if (s.running) return;
+      s.running = true;
+      while (s.visible && !document.hidden) await fn();
+      s.running = false;
+    };
+    new IntersectionObserver(([e]) => { s.visible = e.isIntersecting; if (s.visible) tick(); }, { rootMargin: '80px' }).observe(el);
+    s.tick = tick;
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) loops.forEach(s => s.visible && s.tick()); });
+
+  /* Animațiile CSS perpetue se opresc în afara ecranului */
+  const pauseIO = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('paused', !e.isIntersecting)));
+  document.querySelectorAll('[data-live], .stage, .strip, .grid-bg').forEach(el => pauseIO.observe(el));
+
+  /* Reveal (blur-fade) */
+  const revealIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
+
+  /* Nav: fundal după ce pagina se derulează */
+  const nav = document.getElementById('nav');
+  const sentinel = document.createElement('div');
+  sentinel.style.cssText = 'position:absolute;top:24px;height:1px;width:1px';
+  document.body.prepend(sentinel);
+  new IntersectionObserver(([e]) => nav.classList.toggle('scrolled', !e.isIntersecting)).observe(sentinel);
+
+  /* Meniu mobil */
+  const menuBtn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
+  const setMenu = open => {
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Închide meniul' : 'Deschide meniul');
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  /* Animated grid pattern */
+  (function grid() {
+    const svg = document.getElementById('gridSvg'), NS = 'http://www.w3.org/2000/svg', S = 44;
+    svg.innerHTML = `<defs><pattern id="gp" width="${S}" height="${S}" patternUnits="userSpaceOnUse"><path d="M${S} 0H0V${S}" fill="none" stroke="currentColor"/></pattern></defs><rect width="100%" height="100%" fill="url(#gp)"/>`;
+    if (reduce) return;
+    const place = r => {
+      const w = svg.clientWidth || innerWidth, h = svg.clientHeight || innerHeight;
+      r.setAttribute('x', Math.floor(Math.random() * w / S) * S + 1);
+      r.setAttribute('y', Math.floor(Math.random() * h / S) * S + 1);
+    };
+    for (let i = 0; i < 26; i++) {
+      const r = document.createElementNS(NS, 'rect');
+      r.setAttribute('class', 'sq'); r.setAttribute('width', S - 1); r.setAttribute('height', S - 1);
+      r.style.setProperty('--d', (i * .37).toFixed(2) + 's');
+      place(r);
+      r.addEventListener('animationiteration', () => place(r));
+      svg.appendChild(r);
+    }
+  })();
+
+  /* Word rotate */
+  (function rotate() {
+    const words = [...document.querySelectorAll('#rotator > span')];
+    if (reduce) return;
+    let i = 0;
+    setInterval(() => {
+      if (document.hidden) return;
+      const cur = words[i], nxt = words[(i + 1) % words.length];
+      cur.dataset.state = 'prev';
+      nxt.style.transition = 'none'; nxt.dataset.state = 'next'; nxt.offsetHeight; nxt.style.transition = '';
+      nxt.dataset.state = 'cur';
+      i = (i + 1) % words.length;
+    }, 2600);
+  })();
+
+  /* Typewriter pentru mockup-ul din hero */
+  async function type(el, text, speed = 38) {
+    el.textContent = '';
+    for (const ch of text) { el.textContent += ch; await sleep(speed + Math.random() * 30); }
+  }
+  async function erase(el, speed = 14) {
+    while (el.textContent.length) { el.textContent = el.textContent.slice(0, -1); await sleep(speed); }
+  }
+  const heroType = document.getElementById('heroType');
+  const heroLines = [' construiește pagina de start', ' optimizează pentru mobil', ' publică pe afacerea-ta.ro'];
+  if (reduce) heroType.textContent = heroLines[0];
+  else { let k = 0; loop(document.querySelector('.stage'), async () => { await type(heroType, heroLines[k++ % heroLines.length]); await sleep(1800); await erase(heroType); await sleep(300); }); }
+
+  /* FLIP: animă elementele de la poziția veche la cea nouă */
+  function flip(els, mutate, opts = {}) {
+    const first = new Map(els.map(el => [el, el.getBoundingClientRect()]));
+    mutate();
+    els.forEach(el => {
+      const a = first.get(el), b = el.getBoundingClientRect();
+      if (!b.width || !b.height) return;
+      const dx = a.left - b.left, dy = a.top - b.top, sx = a.width / b.width, sy = a.height / b.height;
+      if (!dx && !dy && sx === 1 && sy === 1) return;
+      el.animate([
+        { transformOrigin: 'top left', transform: `translate(${dx}px,${dy}px) scale(${sx},${sy})` },
+        { transformOrigin: 'top left', transform: 'none' }
+      ], { duration: opts.duration || 700, easing: 'cubic-bezier(.77,0,.175,1)' });
+    });
+  }
+
+  /* A: layout care se rearanjează pe dispozitive */
+  const lay = document.getElementById('lay'), chips = [...document.querySelectorAll('#deviceChip span')];
+  if (!reduce) {
+    let l = 0;
+    loop(lay, async () => {
+      await sleep(2600);
+      l = (l + 1) % 3;
+      flip([...lay.children], () => { lay.dataset.l = l; chips.forEach((c, j) => c.classList.toggle('on', j === l)); });
+    });
+  }
+
+  /* B: command input */
+  const cmdTxt = document.getElementById('cmdTxt'), proc = document.getElementById('proc'), out = document.getElementById('out');
+  const prompts = ['portal de programări pentru clinica mea', 'sistem de oferte conectat la stoc', 'dashboard de vânzări pentru echipă'];
+  if (reduce) { cmdTxt.textContent = prompts[0]; out.classList.add('on'); }
+  else {
+    let p = 0;
+    loop(cmdTxt, async () => {
+      await type(cmdTxt, prompts[p++ % prompts.length], 34);
+      await sleep(300); proc.classList.add('on');
+      await sleep(1500); proc.classList.remove('on'); out.classList.add('on');
+      await sleep(2600); out.classList.remove('on');
+      await erase(cmdTxt, 10); await sleep(300);
+    });
+  }
+
+  /* C: clasament — afacerea ta urcă pe locul 1, apoi se resetează */
+  const serp = document.getElementById('serp');
+  const renumber = () => [...serp.children].forEach((li, i) => li.querySelector('.pos').textContent = i + 1);
+  if (!reduce) {
+    loop(serp, async () => {
+      const you = serp.querySelector('.you');
+      for (let k = 0; k < 3; k++) {
+        await sleep(1400);
+        const prev = you.previousElementSibling;
+        if (!prev) break;
+        flip([...serp.children], () => { serp.insertBefore(you, prev); renumber(); }, { duration: 600 });
+      }
+      await sleep(2600);
+      flip([...serp.children], () => { serp.appendChild(you); renumber(); }, { duration: 600 });
+      await sleep(600);
+    });
+  }
+
+  /* D: notificare cu overshoot */
+  const notif = document.getElementById('notif');
+  if (!reduce) loop(notif, async () => { await sleep(1600); notif.classList.add('show'); await sleep(3000); notif.classList.remove('show'); await sleep(1400); });
+
+  /* Marquee-uri: duplică conținutul pentru buclă continuă */
+  ['marquee', 'chTrack'].forEach(id => { const t = document.getElementById(id); t.innerHTML += t.innerHTML; [...t.children].slice(t.children.length / 2).forEach(c => c.setAttribute('aria-hidden', 'true')); });
+
+  /* Spotlight pe carduri */
+  if (fine) document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', e.clientX - r.left + 'px');
+    c.style.setProperty('--my', e.clientY - r.top + 'px');
+  }));
+
+  /* Butoane magnetice (doar mouse) */
+  if (fine && !reduce) document.querySelectorAll('.magnetic').forEach(btn => {
+    let tx = 0, ty = 0, x = 0, y = 0, raf = 0;
+    const step = () => {
+      x += (tx - x) * .18; y += (ty - y) * .18;
+      btn.style.translate = `${x.toFixed(2)}px ${y.toFixed(2)}px`;
+      raf = (Math.abs(tx - x) > .05 || Math.abs(ty - y) > .05) ? requestAnimationFrame(step) : 0;
+    };
+    const go = () => { if (!raf) raf = requestAnimationFrame(step); };
+    btn.addEventListener('pointermove', e => { const r = btn.getBoundingClientRect(); tx = (e.clientX - r.left - r.width / 2) * .22; ty = (e.clientY - r.top - r.height / 2) * .32; go(); });
+    btn.addEventListener('pointerleave', () => { tx = ty = 0; go(); });
+  });
+
+  /* Proces: pașii se activează pe măsură ce sunt citiți */
+  const steps = [...document.querySelectorAll('.step')], rail = document.getElementById('railFill');
+  const stepIO = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+    const last = steps.reduce((m, s, i) => s.classList.contains('on') ? i : m, -1);
+    rail.style.setProperty('--p', steps.length > 1 ? Math.max(0, last) / (steps.length - 1) : 1);
+  }, { rootMargin: '0px 0px -45% 0px' });
+  steps.forEach(s => stepIO.observe(s));
+
+  /* FAQ */
+  document.querySelectorAll('.qa button').forEach(b => b.addEventListener('click', () => {
+    const qa = b.parentElement, open = !qa.classList.contains('open');
+    qa.classList.toggle('open', open); b.setAttribute('aria-expanded', open);
+  }));
+
+  /* Formular: validare inline, stare de încărcare, mailto ca trimitere */
+  document.getElementById('mailLink').href = 'mailto:' + CONTACT_EMAIL;
+  const form = document.getElementById('form'), submit = document.getElementById('submit'), success = document.getElementById('success');
+  const setErr = (id, bad) => { document.getElementById(id).classList.toggle('err', bad); return !bad; };
+  const checks = {
+    'f-name': () => form.name.value.trim().length > 1,
+    'f-email': () => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.value.trim()),
+    'f-need': () => form.querySelectorAll('[name=need]:checked').length > 0
+  };
+  form.addEventListener('input', e => {
+    const f = e.target.closest('.field');
+    if (f && f.classList.contains('err') && checks[f.id]) setErr(f.id, !checks[f.id]());
+  });
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const ok = Object.entries(checks).map(([id, fn]) => setErr(id, !fn())).every(Boolean);
+    if (!ok) { form.querySelector('.err input, .err textarea')?.focus(); return; }
+    submit.classList.add('loading');
+    const needs = [...form.querySelectorAll('[name=need]:checked')].map(i => i.value).join(', ');
+    const body = `Nume: ${form.name.value.trim()}\nEmail: ${form.email.value.trim()}\nAm nevoie de: ${needs}\n\n${form.msg.value.trim()}`;
+    await sleep(700);
+    location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Cerere proiect: ' + needs)}&body=${encodeURIComponent(body)}`;
+    submit.classList.remove('loading');
+    form.style.display = 'none';
+    success.classList.add('show');
+  });
+  document.getElementById('again').addEventListener('click', () => { success.classList.remove('show'); form.reset(); form.style.display = ''; form.name.focus(); });
+})();
+</script>
+</body>
+</html>
