@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>UpTown AI · Website-uri, software și vizibilitate online</title>
-<meta name="description" content="UpTown AI este o agenție care construiește website-uri rapide, software la comandă și strategii de vizibilitate online, folosind AI acolo unde aduce rezultate reale." />
+<title>UpTown Digital · Website-uri, software și vizibilitate online</title>
+<meta name="description" content="UpTown Digital este o agenție care construiește website-uri rapide, software la comandă și strategii de vizibilitate online, folosind AI acolo unde aduce rezultate reale." />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="UpTown AI" />
-<meta property="og:title" content="UpTown AI · Website-uri, software și vizibilitate online" />
+<meta property="og:site_name" content="UpTown Digital" />
+<meta property="og:title" content="UpTown Digital · Website-uri, software și vizibilitate online" />
 <meta property="og:description" content="Construim site-uri, software și prezență online care aduc clienți." />
 <meta property="og:locale" content="ro_RO" />
 <meta name="theme-color" content="#f4f4f2" />
@@ -60,9 +60,9 @@ button{cursor:pointer;background:none;border:0}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ============ BRAND MARK ============ */
-.brand{display:inline-flex;align-items:center;gap:10px;font-weight:650;letter-spacing:-.035em;font-size:21px;line-height:1}
+.brand{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;font-weight:650;letter-spacing:-.035em;font-size:21px;line-height:1}
 .brand svg{height:24px;width:auto}
-.brand b{font-weight:650}
+.brand b{font-weight:400;color:var(--ink-2)}
 
 /* ============ BUTTONS ============ */
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font-weight:500;font-size:15px;letter-spacing:-.01em;white-space:nowrap;
@@ -391,14 +391,14 @@ fieldset{border:0}
 
 /* ============ FOOTER ============ */
 footer{padding:72px 0 40px}
-.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid var(--line)}
 .foot p{margin-top:16px;color:var(--muted);max-width:36ch;font-size:15px}
 .foot h4{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
 .foot ul{list-style:none;margin-top:16px;display:grid;gap:10px}
 .foot ul a{color:var(--ink-2);font-size:15px;transition:color 160ms ease}
 @media (hover:hover) and (pointer:fine){.foot ul a:hover{color:var(--ink)}}
 .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:13px;color:var(--muted)}
-.wordmark-xl{margin-top:56px;font-size:clamp(64px,17vw,250px);font-weight:650;letter-spacing:-.075em;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(20,20,22,.14);user-select:none;white-space:nowrap;overflow:hidden}
+.wordmark-xl{margin-top:56px;font-size:clamp(44px,11.6vw,170px);font-weight:650;letter-spacing:-.075em;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(20,20,22,.14);user-select:none;white-space:nowrap;overflow:hidden}
 
 /* ============ REVEAL (Magic UI: blur-fade) ============ */
 .reveal{opacity:0;transform:translateY(14px);filter:blur(6px);transition:opacity 700ms var(--ease-out),transform 700ms var(--ease-out),filter 700ms var(--ease-out);transition-delay:calc(var(--i,0)*70ms)}
@@ -425,6 +425,9 @@ footer{padding:72px 0 40px}
 }
 @media (max-width:767px){
   body{font-size:15.5px}
+  .nav .brand{font-size:18px;gap:8px}
+  .nav .brand svg{height:21px}
+  .nav-inner{padding:0 6px 0 14px;gap:10px}
   .hero{padding:112px 0 56px;align-items:flex-start}
   .hero h1{max-width:none}
   .hero-actions .btn{flex:1 1 100%}
@@ -465,7 +468,7 @@ footer{padding:72px 0 40px}
 <a class="skip" href="#main">Sari la conținut</a>
 <div class="grain" aria-hidden="true"></div>
 
-<!-- Simbolul UpTown AI, refolosit în pagină -->
+<!-- Simbolul UpTown Digital, refolosit în pagină -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="mark" viewBox="0 0 26 32">
     <g fill="none" stroke="currentColor" stroke-width="4.4" stroke-linecap="butt">
@@ -489,9 +492,9 @@ footer{padding:72px 0 40px}
 <header class="nav" id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="#top" class="brand" aria-label="UpTown AI, pagina principală">
+      <a href="#top" class="brand" aria-label="UpTown Digital, pagina principală">
         <svg viewBox="0 0 26 32" aria-hidden="true"><use href="#mark"/></svg>
-        <span>UpTown<b>AI</b></span>
+        <span>UpTown <b>Digital</b></span>
       </a>
       <nav aria-label="Navigare principală">
         <ul class="nav-links i18n-fade">
@@ -537,7 +540,7 @@ footer{padding:72px 0 40px}
         </span>
         <span class="soft">care aduc clienți.</span>
       </h1>
-      <p class="hero-sub reveal" style="--i:2">UpTown AI este agenția care îți face prezența online să muncească: website-uri rapide, software construit pe procesele tale și strategii care te pun în fața oamenilor care te caută.</p>
+      <p class="hero-sub reveal" style="--i:2">UpTown Digital este agenția care îți face prezența online să muncească: website-uri rapide, software construit pe procesele tale și strategii care te pun în fața oamenilor care te caută.</p>
       <div class="hero-actions reveal" style="--i:3">
         <a href="#contact" class="btn btn-primary magnetic">Programează un apel de 30 min <svg class="arrow"><use href="#i-arrow"/></svg></a>
         <a href="#servicii" class="btn btn-ghost">Vezi ce construim</a>
@@ -678,7 +681,7 @@ footer{padding:72px 0 40px}
   <div class="container">
     <div class="sec-head">
       <div>
-        <span class="label reveal">De ce UpTown AI</span>
+        <span class="label reveal">De ce UpTown Digital</span>
         <h2 class="h2 reveal" style="--i:1">AI unde ajută. <span class="soft">Oameni unde contează.</span></h2>
       </div>
     </div>
@@ -736,7 +739,8 @@ footer{padding:72px 0 40px}
         <h2 class="h2 reveal" style="--i:1">Spune-ne ce construim împreună.</h2>
         <p class="lead reveal" style="--i:2">Completează formularul și revenim cu o propunere concretă. Dacă preferi, scrie-ne direct.</p>
         <div class="direct reveal" style="--i:3">
-          <a href="mailto:contact@uptownai.ro" id="mailLink"><div><span>Email</span><br>contact@uptownai.ro</div><svg><use href="#i-arrow-ur"/></svg></a>
+          <a href="mailto:uptownai.ro@gmail.com" id="mailLink"><div><span>Email</span><br>uptownai.ro@gmail.com</div><svg><use href="#i-arrow-ur"/></svg></a>
+          <a href="https://wa.me/40773834814" target="_blank" rel="noopener"><div><span>WhatsApp</span><br>0773 834 814</div><svg><use href="#i-arrow-ur"/></svg></a>
           <a href="#" target="_blank" rel="noopener"><div><span>Instagram</span><br>@uptownai</div><svg><use href="#i-arrow-ur"/></svg></a>
         </div>
       </div>
@@ -775,7 +779,7 @@ footer{padding:72px 0 40px}
         <div class="success" id="success" role="status">
           <div class="ok"><svg><use href="#i-check"/></svg></div>
           <h3>Mesajul e pregătit.</h3>
-          <p>Am deschis aplicația ta de email cu cererea completată. Apasă Trimite acolo și îți răspundem cât de repede putem.</p>
+          <p>Am deschis aplicația ta de email cu cererea completată. Apasă Trimite acolo și îți răspundem cât de repede putem. Sau scrie-ne pe <a href="https://wa.me/40773834814" target="_blank" rel="noopener" style="color:#f4f4f5;text-decoration:underline;text-underline-offset:3px">WhatsApp</a>.</p>
           <button type="button" id="again">Completează din nou</button>
         </div>
       </div>
@@ -788,7 +792,7 @@ footer{padding:72px 0 40px}
   <div class="container">
     <div class="foot">
       <div>
-        <a href="#top" class="brand"><svg viewBox="0 0 26 32" aria-hidden="true"><use href="#mark"/></svg><span>UpTown<b>AI</b></span></a>
+        <a href="#top" class="brand"><svg viewBox="0 0 26 32" aria-hidden="true"><use href="#mark"/></svg><span>UpTown <b>Digital</b></span></a>
         <p>Agenție de website-uri, software și vizibilitate online, construite cu ajutorul AI.</p>
       </div>
       <div>
@@ -799,15 +803,19 @@ footer{padding:72px 0 40px}
         <h4>Agenție</h4>
         <ul><li><a href="#proces">Proces</a></li><li><a href="#de-ce">De ce noi</a></li><li><a href="#intrebari">Întrebări</a></li><li><a href="#contact">Contact</a></li></ul>
       </div>
+      <div>
+        <h4>Contact</h4>
+        <ul><li><a href="mailto:uptownai.ro@gmail.com">uptownai.ro@gmail.com</a></li><li><a href="https://wa.me/40773834814" target="_blank" rel="noopener">WhatsApp: 0773 834 814</a></li></ul>
+      </div>
     </div>
-    <div class="foot-bottom"><span>© <span id="year"></span> UpTown AI. Toate drepturile rezervate.</span><span class="mono">uptownai.ro</span></div>
-    <div class="wordmark-xl" aria-hidden="true">UpTownAI</div>
+    <div class="foot-bottom"><span>© <span id="year"></span> UpTown Digital. Toate drepturile rezervate.</span><a class="mono" href="mailto:uptownai.ro@gmail.com">uptownai.ro@gmail.com</a></div>
+    <div class="wordmark-xl" aria-hidden="true">UpTown Digital</div>
   </div>
 </footer>
 
 <script>
 (() => {
-  const CONTACT_EMAIL = 'contact@uptownai.ro'; // înlocuiește cu adresa reală
+  const CONTACT_EMAIL = 'uptownai.ro@gmail.com';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -818,7 +826,7 @@ footer{padding:72px 0 40px}
     'Servicii': 'Services', 'Proces': 'Process', 'De ce noi': 'Why us', 'Întrebări': 'FAQ', 'Hai să vorbim': "Let's talk", 'Agenție': 'Agency',
     'NOU': 'NEW', 'Acceptăm proiecte pentru trimestrul următor': 'Now booking projects for next quarter',
     'Construim': 'We build', 'site-uri': 'websites', 'vizibilitate': 'visibility', 'care aduc clienți.': 'that win clients.',
-    'UpTown AI este agenția care îți face prezența online să muncească: website-uri rapide, software construit pe procesele tale și strategii care te pun în fața oamenilor care te caută.': 'UpTown AI is the agency that puts your online presence to work: fast websites, software built around your processes, and strategies that put you in front of the people already looking for you.',
+    'UpTown Digital este agenția care îți face prezența online să muncească: website-uri rapide, software construit pe procesele tale și strategii care te pun în fața oamenilor care te caută.': 'UpTown Digital is the agency that puts your online presence to work: fast websites, software built around your processes, and strategies that put you in front of the people already looking for you.',
     'Programează un apel de 30 min': 'Book a 30-min call', 'Vezi ce construim': 'See what we build',
     'Website-uri': 'Websites', 'Prezentare, magazine, landing page-uri': 'Company sites, online stores, landing pages',
     'Aplicații, automatizări, integrări': 'Apps, automations, integrations', 'Expunere online': 'Online exposure', 'SEO, reclame, conținut': 'SEO, ads, content',
@@ -851,7 +859,7 @@ footer{padding:72px 0 40px}
     '04 / CREȘTERE': '04 / GROWTH', 'Lansăm, măsurăm, îmbunătățim': 'Launch, measure, improve',
     'După lansare urmărim traficul, pozițiile în Google și cererile primite, apoi optimizăm acolo unde cifrele o cer.': 'After launch we track traffic, Google rankings and incoming requests, then optimize wherever the numbers call for it.',
     'Analytics și raportare': 'Analytics and reporting', 'SEO continuu': 'Ongoing SEO', 'Campanii plătite': 'Paid campaigns',
-    'De ce UpTown AI': 'Why UpTown AI', 'AI unde ajută.': 'AI where it helps.', 'Oameni unde contează.': 'People where it matters.',
+    'De ce UpTown Digital': 'Why UpTown Digital', 'AI unde ajută.': 'AI where it helps.', 'Oameni unde contează.': 'People where it matters.',
     'Livrăm mai repede, fără să tăiem din calitate.': 'We ship faster without cutting quality.',
     'Folosim instrumente AI pentru cercetare, prototipuri și cod de rutină. Timpul câștigat merge în ce face diferența: strategie, design și detalii.': 'We use AI tools for research, prototypes and routine code. The time saved goes into what makes the difference: strategy, design and details.',
     'Termene stabilite de la început, pe etape': 'Deadlines set upfront, stage by stage', 'Fiecare livrabil verificat de un om': 'Every deliverable reviewed by a person',
@@ -876,22 +884,22 @@ footer{padding:72px 0 40px}
     'Despre proiect': 'About the project', '(opțional)': '(optional)',
     'Câteva rânduri sunt suficiente. Detaliile le discutăm la apel.': "A few lines are enough. We'll go over the details on the call.",
     'Trimite cererea': 'Send request', 'Mesajul e pregătit.': 'Your message is ready.',
-    'Am deschis aplicația ta de email cu cererea completată. Apasă Trimite acolo și îți răspundem cât de repede putem.': "We opened your email app with the request filled in. Hit Send there and we'll reply as soon as we can.",
+    'Am deschis aplicația ta de email cu cererea completată. Apasă Trimite acolo și îți răspundem cât de repede putem. Sau scrie-ne pe': "We opened your email app with the request filled in. Hit Send there and we'll reply as soon as we can. Or message us on",
     'Completează din nou': 'Fill it in again',
     'Agenție de website-uri, software și vizibilitate online, construite cu ajutorul AI.': 'An agency for websites, software and online visibility, built with the help of AI.',
-    'UpTown AI. Toate drepturile rezervate.': 'UpTown AI. All rights reserved.',
+    'UpTown Digital. Toate drepturile rezervate.': 'UpTown Digital. All rights reserved.',
     /* atribute */
-    'UpTown AI, pagina principală': 'UpTown AI, home', 'Navigare principală': 'Main navigation', 'Deschide meniul': 'Open menu', 'Închide meniul': 'Close menu',
+    'UpTown Digital, pagina principală': 'UpTown Digital, home', 'Navigare principală': 'Main navigation', 'Deschide meniul': 'Open menu', 'Închide meniul': 'Close menu',
     'Ce livrăm': 'What we deliver', 'Sari la conținut': 'Skip to content', 'Numele tău': 'Your name', 'nume@firma.ro': 'name@company.com',
     'Ce face afacerea ta și ce ai vrea să se schimbe?': 'What does your business do, and what would you like to change?',
     'Spațiu de lucru cu laptop și schițe de interfață': 'Workspace with a laptop and interface sketches', 'Clădiri de birouri luminate seara': 'Office buildings lit up in the evening'
   };
   const STR = {
-    ro: { title: 'UpTown AI · Website-uri, software și vizibilitate online', desc: 'UpTown AI este o agenție care construiește website-uri rapide, software la comandă și strategii de vizibilitate online, folosind AI acolo unde aduce rezultate reale.',
+    ro: { title: 'UpTown Digital · Website-uri, software și vizibilitate online', desc: 'UpTown Digital este o agenție care construiește website-uri rapide, software la comandă și strategii de vizibilitate online, folosind AI acolo unde aduce rezultate reale.',
       hero: [' construiește pagina de start', ' optimizează pentru mobil', ' publică pe afacerea-ta.ro'],
       prompts: ['portal de programări pentru clinica mea', 'sistem de oferte conectat la stoc', 'dashboard de vânzări pentru echipă'],
       subject: 'Cerere proiect: ', name: 'Nume', email: 'Email', need: 'Am nevoie de' },
-    en: { title: 'UpTown AI · Websites, software and online visibility', desc: 'UpTown AI is an agency that builds fast websites, custom software and online visibility strategies, using AI where it brings real results.',
+    en: { title: 'UpTown Digital · Websites, software and online visibility', desc: 'UpTown Digital is an agency that builds fast websites, custom software and online visibility strategies, using AI where it brings real results.',
       hero: [' build the homepage', ' optimize for mobile', ' publish to your-business.com'],
       prompts: ['booking portal for my clinic', 'quote system linked to inventory', 'sales dashboard for the team'],
       subject: 'Project request: ', name: 'Name', email: 'Email', need: 'I need' }
