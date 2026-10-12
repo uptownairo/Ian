@@ -415,6 +415,11 @@ fieldset{border:0}
 .submit.loading .lbl{filter:blur(2px);opacity:.5}
 .submit.loading::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(43,58,7,.18),transparent);background-size:50% 100%;background-repeat:no-repeat;animation:load 1s linear infinite}
 @keyframes load{from{background-position:-50% 0}to{background-position:150% 0}}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form-error{display:none;gap:10px;align-items:flex-start;padding:14px 16px;border-radius:14px;border:1px solid rgba(248,113,113,.35);background:rgba(248,113,113,.08);color:#fecaca;font-size:14px;line-height:1.5}
+.form-error.show{display:flex;animation:pop 320ms var(--ease-out)}
+.form-error svg{width:16px;height:16px;flex:none;margin-top:3px}
+.form-error a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .success{display:none;border-radius:20px;border:1px solid var(--night-line);background:var(--night-2);padding:32px;align-content:start;gap:12px}
 .success.show{display:grid;animation:pop 420ms var(--ease-out)}
 @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
@@ -827,13 +832,15 @@ footer{padding:72px 0 40px}
             <textarea class="input" id="msg" name="msg" placeholder="Ce face afacerea ta și ce ai vrea să se schimbe?"></textarea>
             <span class="help">Câteva rânduri sunt suficiente. Detaliile le discutăm la apel.</span>
           </div>
+          <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="form-error" id="formError" role="alert"><svg><use href="#i-warn"/></svg><span>Mesajul nu a putut fi trimis. Încearcă din nou sau scrie-ne direct pe <a href="mailto:uptownai.ro@gmail.com">email</a> ori pe <a href="https://wa.me/40773834814" target="_blank" rel="noopener">WhatsApp</a>.</span></div>
           <button type="submit" class="btn btn-accent submit" id="submit"><span class="lbl">Trimite cererea</span></button>
         </form>
         <div class="success" id="success" role="status">
           <div class="ok"><svg><use href="#i-check"/></svg></div>
-          <h3>Mesajul e pregătit.</h3>
-          <p>Am deschis aplicația ta de email cu cererea completată. Apasă Trimite acolo și îți răspundem cât de repede putem. Sau scrie-ne pe <a href="https://wa.me/40773834814" target="_blank" rel="noopener" style="color:#f4f4f5;text-decoration:underline;text-underline-offset:3px">WhatsApp</a>.</p>
-          <button type="button" id="again">Completează din nou</button>
+          <h3>Mulțumim, am primit cererea.</h3>
+          <p>Îți răspundem pe email cât de repede putem. Pentru ceva urgent, scrie-ne pe <a href="https://wa.me/40773834814" target="_blank" rel="noopener" style="color:#f4f4f5;text-decoration:underline;text-underline-offset:3px">WhatsApp</a>.</p>
+          <button type="button" id="again">Trimite o altă cerere</button>
         </div>
       </div>
     </div>
@@ -936,9 +943,11 @@ footer{padding:72px 0 40px}
     'De ce ai nevoie?': 'What do you need?', 'Automatizări AI': 'AI automations', 'Alege cel puțin o opțiune.': 'Pick at least one option.',
     'Despre proiect': 'About the project', '(opțional)': '(optional)',
     'Câteva rânduri sunt suficiente. Detaliile le discutăm la apel.': "A few lines are enough. We'll go over the details on the call.",
-    'Trimite cererea': 'Send request', 'Mesajul e pregătit.': 'Your message is ready.',
-    'Am deschis aplicația ta de email cu cererea completată. Apasă Trimite acolo și îți răspundem cât de repede putem. Sau scrie-ne pe': "We opened your email app with the request filled in. Hit Send there and we'll reply as soon as we can. Or message us on",
-    'Completează din nou': 'Fill it in again',
+    'Trimite cererea': 'Send request', 'Mulțumim, am primit cererea.': 'Thank you, we got your request.',
+    'Îți răspundem pe email cât de repede putem. Pentru ceva urgent, scrie-ne pe': "We'll reply by email as soon as we can. For anything urgent, message us on",
+    'Mesajul nu a putut fi trimis. Încearcă din nou sau scrie-ne direct pe': "Your message couldn't be sent. Please try again or write to us directly by",
+    'ori pe': 'or on', 'Trimite o altă cerere': 'Send another request',
+
     'Agenție de website-uri, software și vizibilitate online, construite cu ajutorul AI.': 'An agency for websites, software and online visibility, built with the help of AI.',
     'UpTown Digital. Toate drepturile rezervate.': 'UpTown Digital. All rights reserved.',
     /* atribute */
@@ -951,12 +960,10 @@ footer{padding:72px 0 40px}
   const STR = {
     ro: { title: 'UpTown Digital · Website-uri, software și vizibilitate online', desc: 'UpTown Digital este o agenție care construiește website-uri rapide, software la comandă și strategii de vizibilitate online, folosind AI acolo unde aduce rezultate reale.',
       hero: [' construiește pagina de start', ' optimizează pentru mobil', ' publică pe afacerea-ta.ro'],
-      prompts: ['portal de programări pentru clinica mea', 'sistem de oferte conectat la stoc', 'dashboard de vânzări pentru echipă'],
-      subject: 'Cerere proiect: ', name: 'Nume', email: 'Email', need: 'Am nevoie de' },
+      prompts: ['portal de programări pentru clinica mea', 'sistem de oferte conectat la stoc', 'dashboard de vânzări pentru echipă'] },
     en: { title: 'UpTown Digital · Websites, software and online visibility', desc: 'UpTown Digital is an agency that builds fast websites, custom software and online visibility strategies, using AI where it brings real results.',
       hero: [' build the homepage', ' optimize for mobile', ' publish to your-business.com'],
-      prompts: ['booking portal for my clinic', 'quote system linked to inventory', 'sales dashboard for the team'],
-      subject: 'Project request: ', name: 'Name', email: 'Email', need: 'I need' }
+      prompts: ['booking portal for my clinic', 'quote system linked to inventory', 'sales dashboard for the team'] }
   };
   let lang = 'ro', langGen = 0;
   const T = () => STR[lang];
@@ -1213,9 +1220,10 @@ footer{padding:72px 0 40px}
     qa.classList.toggle('open', open); b.setAttribute('aria-expanded', open);
   }));
 
-  /* Formular: validare inline, stare de încărcare, mailto ca trimitere */
+  /* Formular: validare inline, apoi trimitere prin FormSubmit direct pe CONTACT_EMAIL */
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + CONTACT_EMAIL;
   document.getElementById('mailLink').href = 'mailto:' + CONTACT_EMAIL;
-  const form = document.getElementById('form'), submit = document.getElementById('submit'), success = document.getElementById('success');
+  const form = document.getElementById('form'), submit = document.getElementById('submit'), success = document.getElementById('success'), formError = document.getElementById('formError');
   const setErr = (id, bad) => { document.getElementById(id).classList.toggle('err', bad); return !bad; };
   const checks = {
     'f-name': () => form.name.value.trim().length > 1,
@@ -1226,18 +1234,44 @@ footer{padding:72px 0 40px}
     const f = e.target.closest('.field');
     if (f && f.classList.contains('err') && checks[f.id]) setErr(f.id, !checks[f.id]());
   });
+  const showSuccess = () => { form.style.display = 'none'; success.classList.add('show'); };
   form.addEventListener('submit', async e => {
     e.preventDefault();
+    formError.classList.remove('show');
     const ok = Object.entries(checks).map(([id, fn]) => setErr(id, !fn())).every(Boolean);
     if (!ok) { form.querySelector('.err input, .err textarea')?.focus(); return; }
+    if (form._honey.value) { showSuccess(); return; }   // completat doar de roboți
     submit.classList.add('loading');
-    const needs = [...form.querySelectorAll('[name=need]:checked')].map(i => i.nextElementSibling.textContent.trim()).join(', ');
-    const body = `${T().name}: ${form.name.value.trim()}\n${T().email}: ${form.email.value.trim()}\n${T().need}: ${needs}\n\n${form.msg.value.trim()}`;
-    await sleep(700);
-    location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(T().subject + needs)}&body=${encodeURIComponent(body)}`;
-    submit.classList.remove('loading');
-    form.style.display = 'none';
-    success.classList.add('show');
+    submit.setAttribute('aria-busy', 'true');
+    const needs = [...form.querySelectorAll('[name=need]:checked')].map(i => i.value).join(', ');
+    const ctrl = new AbortController(), timer = setTimeout(() => ctrl.abort(), 15000);
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          Nume: form.name.value.trim(),
+          Email: form.email.value.trim(),
+          'Are nevoie de': needs,
+          Mesaj: form.msg.value.trim() || '-',
+          'Limba site-ului': lang.toUpperCase(),
+          _replyto: form.email.value.trim(),
+          _subject: 'Cerere nouă de pe site: ' + needs,
+          _template: 'table',
+          _captcha: 'false'
+        }),
+        signal: ctrl.signal
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || res.status);
+      showSuccess();
+    } catch (err) {
+      formError.classList.add('show');
+    } finally {
+      clearTimeout(timer);
+      submit.classList.remove('loading');
+      submit.removeAttribute('aria-busy');
+    }
   });
   document.getElementById('again').addEventListener('click', () => { success.classList.remove('show'); form.reset(); form.style.display = ''; form.name.focus(); });
 
