@@ -14,6 +14,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script>
+document.documentElement.classList.add('js');
+window.__revealFallback = setTimeout(function () { document.documentElement.classList.remove('js'); }, 2500);
+</script>
 <style>
 /* ============ TOKENS ============ */
 :root{
@@ -445,8 +449,12 @@ footer{padding:72px 0 calc(40px + env(safe-area-inset-bottom, 0px))}
 .wordmark-xl{margin-top:56px;font-size:clamp(44px,11.6vw,170px);font-weight:650;letter-spacing:-.075em;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(20,20,22,.14);user-select:none;white-space:nowrap;overflow:hidden}
 
 /* ============ REVEAL (Magic UI: blur-fade) ============ */
-.reveal{opacity:0;transform:translateY(14px);filter:blur(6px);transition:opacity 700ms var(--ease-out),transform 700ms var(--ease-out),filter 700ms var(--ease-out);transition-delay:calc(var(--i,0)*70ms)}
-.reveal.in{opacity:1;transform:none;filter:none}
+.js .reveal{opacity:0;transform:translateY(14px);filter:blur(6px);transition:opacity 700ms var(--ease-out),transform 700ms var(--ease-out),filter 700ms var(--ease-out);transition-delay:calc(var(--i,0)*70ms)}
+.js .reveal.in{opacity:1;transform:none;filter:none}
+/* Fără JavaScript: animațiile care depind de script arată starea finală */
+html:not(.js) .stages .bar-track i{transform:scaleX(1);background:var(--ink)}
+html:not(.js) .stages .ok{opacity:1;transform:none}
+html:not(.js) .out div{opacity:1;transform:none}
 .paused,.paused *,.paused *::before,.paused *::after{animation-play-state:paused!important}
 
 /* ============ RESPONSIVE ============ */
@@ -510,7 +518,7 @@ footer{padding:72px 0 calc(40px + env(safe-area-inset-bottom, 0px))}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
-  .reveal{transform:none;filter:none;transition:opacity 300ms ease}
+  .js .reveal{transform:none;filter:none;transition:opacity 300ms ease}
   .blk{opacity:1;transform:none}
   .float-b{opacity:1}
   .ring .val{stroke-dashoffset:3}
@@ -887,6 +895,7 @@ footer{padding:72px 0 calc(40px + env(safe-area-inset-bottom, 0px))}
 <script>
 (() => {
   const CONTACT_EMAIL = 'uptownai.ro@gmail.com';
+  clearTimeout(window.__revealFallback);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
