@@ -106,6 +106,18 @@ button{cursor:pointer;background:none;border:0}
 .mobile-menu.open a{opacity:1;transform:none}
 .mobile-menu .btn{margin-top:28px;align-self:flex-start}
 
+/* ============ LANG SWITCH (RO/EN) ============ */
+.lang{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;height:38px;padding:3px;border-radius:999px;background:rgba(20,20,22,.05);border:1px solid var(--line);box-shadow:inset 0 1px 2px rgba(20,20,22,.05)}
+.lang button{position:relative;z-index:1;width:42px;border-radius:999px;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--muted);transition:color 220ms ease;-webkit-tap-highlight-color:transparent}
+.lang button[aria-pressed="true"]{color:#fff}
+.lang .thumb{position:absolute;top:3px;bottom:3px;left:3px;width:42px;border-radius:999px;background:var(--ink);box-shadow:0 2px 6px -2px rgba(20,20,22,.4),inset 0 1px 0 rgba(255,255,255,.14);transition:transform 300ms var(--ease-out)}
+.lang[data-lang="en"] .thumb{transform:translateX(42px)}
+.lang:active .thumb{transform:scale(.96)}
+.lang[data-lang="en"]:active .thumb{transform:translateX(42px) scale(.96)}
+@media (hover:hover) and (pointer:fine){.lang button[aria-pressed="false"]:hover{color:var(--ink)}}
+.i18n-fade{transition:opacity 160ms ease,filter 160ms ease}
+body.lang-swap .i18n-fade{opacity:0;filter:blur(2px)}
+
 /* ============ HERO ============ */
 .hero{position:relative;min-height:100dvh;display:flex;align-items:center;padding:132px 0 72px;overflow:hidden;isolation:isolate}
 /* Magic UI: animated-grid-pattern */
@@ -482,7 +494,7 @@ footer{padding:72px 0 40px}
         <span>UpTown<b>AI</b></span>
       </a>
       <nav aria-label="Navigare principală">
-        <ul class="nav-links">
+        <ul class="nav-links i18n-fade">
           <li><a href="#servicii">Servicii</a></li>
           <li><a href="#proces">Proces</a></li>
           <li><a href="#de-ce">De ce noi</a></li>
@@ -490,6 +502,11 @@ footer{padding:72px 0 40px}
         </ul>
       </nav>
       <div class="nav-cta">
+        <div class="lang" id="lang" data-lang="ro" role="group" aria-label="Limba / Language">
+          <span class="thumb" aria-hidden="true"></span>
+          <button type="button" data-set="ro" aria-pressed="true" lang="ro">RO</button>
+          <button type="button" data-set="en" aria-pressed="false" lang="en">EN</button>
+        </div>
         <a href="#contact" class="btn btn-primary btn-sm magnetic">Hai să vorbim <svg class="arrow"><use href="#i-arrow"/></svg></a>
         <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Deschide meniul"><span></span><span></span></button>
       </div>
@@ -504,7 +521,7 @@ footer{padding:72px 0 40px}
   <a href="#contact" class="btn btn-primary" style="--i:4">Hai să vorbim <svg class="arrow"><use href="#i-arrow"/></svg></a>
 </div>
 
-<main id="main">
+<main id="main" class="i18n-fade">
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="grid-bg" aria-hidden="true"><svg id="gridSvg"></svg></div>
@@ -767,7 +784,7 @@ footer{padding:72px 0 40px}
 </section>
 </main>
 
-<footer>
+<footer class="i18n-fade">
   <div class="container">
     <div class="foot">
       <div>
@@ -795,6 +812,131 @@ footer{padding:72px 0 40px}
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ===== Traducere RO/EN: textul românesc rămâne în HTML, aici e doar engleza ===== */
+  const EN = {
+    'Servicii': 'Services', 'Proces': 'Process', 'De ce noi': 'Why us', 'Întrebări': 'FAQ', 'Hai să vorbim': "Let's talk", 'Agenție': 'Agency',
+    'NOU': 'NEW', 'Acceptăm proiecte pentru trimestrul următor': 'Now booking projects for next quarter',
+    'Construim': 'We build', 'site-uri': 'websites', 'vizibilitate': 'visibility', 'care aduc clienți.': 'that win clients.',
+    'UpTown AI este agenția care îți face prezența online să muncească: website-uri rapide, software construit pe procesele tale și strategii care te pun în fața oamenilor care te caută.': 'UpTown AI is the agency that puts your online presence to work: fast websites, software built around your processes, and strategies that put you in front of the people already looking for you.',
+    'Programează un apel de 30 min': 'Book a 30-min call', 'Vezi ce construim': 'See what we build',
+    'Website-uri': 'Websites', 'Prezentare, magazine, landing page-uri': 'Company sites, online stores, landing pages',
+    'Aplicații, automatizări, integrări': 'Apps, automations, integrations', 'Expunere online': 'Online exposure', 'SEO, reclame, conținut': 'SEO, ads, content',
+    'afacerea-ta.ro': 'your-business.com', 'Performanță': 'Performance', 'Core Web Vitals: bun': 'Core Web Vitals: good',
+    'Cerere nouă de ofertă': 'New quote request', 'din căutarea Google, acum': 'from Google Search, just now',
+    'Website-uri de prezentare': 'Company websites', 'Magazine online': 'Online stores', 'Aplicații web': 'Web apps', 'Automatizări cu AI': 'AI automations',
+    'SEO tehnic': 'Technical SEO', 'Conținut social media': 'Social media content', 'Integrări CRM': 'CRM integrations', 'Chatbot-uri pentru clienți': 'Customer chatbots',
+    'Trei lucruri.': 'Three things.', 'Făcute până la capăt.': 'Done all the way.',
+    'Nu vindem pachete generice. Construim exact ce îți lipsește ca să fii găsit, să inspiri încredere și să transformi vizitatorii în clienți, apoi măsurăm rezultatul.': "We don't sell generic packages. We build exactly what you're missing to get found, earn trust and turn visitors into clients, then we measure the result.",
+    'Tabletă': 'Tablet', 'Mobil': 'Mobile', 'Creare website-uri': 'Website creation',
+    'Site-uri de prezentare, magazine online și landing page-uri, rapide pe orice ecran și scrise ca să convingă.': 'Company sites, online stores and landing pages that are fast on any screen and written to convince.',
+    'Bază de date configurată': 'Database configured', 'Interfață pentru echipă': 'Interface for your team', 'Conectat la sistemele tale': 'Connected to your systems',
+    'Software la comandă': 'Custom software', 'Aplicații interne, portaluri pentru clienți și automatizări construite pe felul în care lucrezi deja.': 'Internal tools, client portals and automations built around the way you already work.',
+    'firmă construcții Cluj': 'construction company Cluj', 'concurent-a.ro': 'competitor-a.com', 'concurent-b.ro': 'competitor-b.com', 'director-firme.ro': 'business-directory.com',
+    'Vizibilitate online': 'Online visibility', 'SEO, Google Business și reclame plătite care te urcă acolo unde clienții chiar se uită.': 'SEO, Google Business and paid ads that move you up to where clients actually look.',
+    'Răspunde la emailuri': 'Answers emails', 'în sub 2 minute': 'in under 2 minutes', 'Califică lead-urile': 'Qualifies leads', 'scor + notă în CRM': 'score + note in your CRM',
+    'Programează întâlniri': 'Books meetings', 'direct în calendar': 'straight into your calendar', 'Lead calificat trimis echipei': 'Qualified lead sent to your team',
+    'Automatizări și marketing cu AI': 'AI automation and marketing', 'Agenți care preiau munca repetitivă și campanii care rulează pe toate canalele unde se află publicul tău.': 'Agents that take over repetitive work, and campaigns that run on every channel your audience uses.',
+    'De la idee la lansare,': 'From idea to launch,', 'fără surprize.': 'no surprises.',
+    'Știi în fiecare săptămână ce s-a construit, ce urmează și ce decizii trebuie luate. Un singur om de contact, de la prima discuție până după lansare.': 'Every week you know what was built, what comes next and which decisions need to be made. One point of contact, from the first call until after launch.',
+    '01 / DESCOPERIRE': '01 / DISCOVERY', 'Înțelegem afacerea înainte de pixeli': 'We understand the business before the pixels',
+    'Un apel, un audit al prezenței tale actuale și o listă clară cu ce aduce cel mai mult rezultat cel mai repede.': 'A call, an audit of your current presence and a clear list of what will bring the most results the fastest.',
+    'Audit site și SEO': 'Site and SEO audit', 'Analiză concurență': 'Competitor analysis', 'Obiective măsurabile': 'Measurable goals',
+    'Prototip pe care îl poți atinge': 'A prototype you can touch',
+    'Vezi și testezi structura reală pe telefon și desktop înainte să scriem codul final. Modificările se fac acum, nu după lansare.': 'You see and test the real structure on phone and desktop before we write the final code. Changes happen now, not after launch.',
+    'Structură și texte': 'Structure and copy', 'Identitate vizuală': 'Visual identity', 'Prototip interactiv': 'Interactive prototype',
+    '03 / CONSTRUCȚIE': '03 / BUILD', 'Dezvoltare cu progres vizibil': 'Development you can watch',
+    'Primești un link de previzualizare actualizat continuu. Folosim AI pentru viteză, iar fiecare linie e verificată de oameni.': 'You get a preview link that updates continuously. We use AI for speed, and every line is reviewed by people.',
+    'Cod rapid și curat': 'Fast, clean code', 'Integrări': 'Integrations', 'Teste pe dispozitive reale': 'Testing on real devices',
+    '04 / CREȘTERE': '04 / GROWTH', 'Lansăm, măsurăm, îmbunătățim': 'Launch, measure, improve',
+    'După lansare urmărim traficul, pozițiile în Google și cererile primite, apoi optimizăm acolo unde cifrele o cer.': 'After launch we track traffic, Google rankings and incoming requests, then optimize wherever the numbers call for it.',
+    'Analytics și raportare': 'Analytics and reporting', 'SEO continuu': 'Ongoing SEO', 'Campanii plătite': 'Paid campaigns',
+    'De ce UpTown AI': 'Why UpTown AI', 'AI unde ajută.': 'AI where it helps.', 'Oameni unde contează.': 'People where it matters.',
+    'Livrăm mai repede, fără să tăiem din calitate.': 'We ship faster without cutting quality.',
+    'Folosim instrumente AI pentru cercetare, prototipuri și cod de rutină. Timpul câștigat merge în ce face diferența: strategie, design și detalii.': 'We use AI tools for research, prototypes and routine code. The time saved goes into what makes the difference: strategy, design and details.',
+    'Termene stabilite de la început, pe etape': 'Deadlines set upfront, stage by stage', 'Fiecare livrabil verificat de un om': 'Every deliverable reviewed by a person',
+    'Totul sub un singur acoperiș.': 'Everything under one roof.',
+    'Site-ul, aplicația și promovarea vorbesc aceeași limbă pentru că le construiește aceeași echipă. Fără pase între trei furnizori.': 'Your site, app and marketing speak the same language because the same team builds them. No hand-offs between three vendors.',
+    'Un singur om de contact': 'One point of contact', 'Codul și conturile rămân ale tale': 'The code and accounts stay yours',
+    'Ce ne întreabă': 'What everyone', 'toată lumea.': 'asks us.',
+    'Cât durează un website?': 'How long does a website take?',
+    'Depinde de mărime. Un site de prezentare se livrează de obicei în câteva săptămâni, un magazin online sau o aplicație durează mai mult. Primești calendarul exact după discuția inițială.': 'It depends on the size. A company site usually ships in a few weeks; an online store or an app takes longer. You get the exact timeline after the first call.',
+    'Cât costă?': 'How much does it cost?',
+    'Lucrăm cu oferte clare, pe etape, calculate după ce înțelegem ce îți trebuie. Nu începem nimic fără ca tu să știi exact ce plătești și ce primești.': 'We work with clear, staged quotes, put together once we understand what you need. Nothing starts until you know exactly what you pay and what you get.',
+    'Cum folosiți AI-ul concret?': 'How exactly do you use AI?',
+    'Pentru cercetare, prototipuri rapide, cod de rutină și automatizări pentru clienții noștri. Deciziile de strategie, design și verificarea finală le fac oameni.': 'For research, fast prototypes, routine code and automations for our clients. Strategy, design decisions and the final review are done by people.',
+    'Pot modifica singur site-ul după lansare?': 'Can I edit the site myself after launch?',
+    'Da. Îți configurăm un panou de administrare simplu pentru texte, imagini și produse, plus o scurtă sesiune de instruire.': 'Yes. We set up a simple admin panel for text, images and products, plus a short training session.',
+    'Lucrați și cu firme din afara orașului?': 'Do you work with companies outside the city?',
+    'Da, lucrăm la distanță cu clienți din toată țara și din străinătate. Întâlnirile se țin online, iar previzualizarea proiectului e mereu disponibilă.': 'Yes, we work remotely with clients across the country and abroad. Meetings happen online, and the project preview is always available.',
+    'Spune-ne ce construim împreună.': "Tell us what we're building together.",
+    'Completează formularul și revenim cu o propunere concretă. Dacă preferi, scrie-ne direct.': "Fill in the form and we'll get back to you with a concrete proposal. If you prefer, write to us directly.",
+    'Nume': 'Name', 'Spune-ne cum te cheamă.': 'Tell us your name.', 'Verifică adresa de email.': 'Check your email address.',
+    'De ce ai nevoie?': 'What do you need?', 'Automatizări AI': 'AI automations', 'Alege cel puțin o opțiune.': 'Pick at least one option.',
+    'Despre proiect': 'About the project', '(opțional)': '(optional)',
+    'Câteva rânduri sunt suficiente. Detaliile le discutăm la apel.': "A few lines are enough. We'll go over the details on the call.",
+    'Trimite cererea': 'Send request', 'Mesajul e pregătit.': 'Your message is ready.',
+    'Am deschis aplicația ta de email cu cererea completată. Apasă Trimite acolo și îți răspundem cât de repede putem.': "We opened your email app with the request filled in. Hit Send there and we'll reply as soon as we can.",
+    'Completează din nou': 'Fill it in again',
+    'Agenție de website-uri, software și vizibilitate online, construite cu ajutorul AI.': 'An agency for websites, software and online visibility, built with the help of AI.',
+    'UpTown AI. Toate drepturile rezervate.': 'UpTown AI. All rights reserved.',
+    /* atribute */
+    'UpTown AI, pagina principală': 'UpTown AI, home', 'Navigare principală': 'Main navigation', 'Deschide meniul': 'Open menu', 'Închide meniul': 'Close menu',
+    'Ce livrăm': 'What we deliver', 'Sari la conținut': 'Skip to content', 'Numele tău': 'Your name', 'nume@firma.ro': 'name@company.com',
+    'Ce face afacerea ta și ce ai vrea să se schimbe?': 'What does your business do, and what would you like to change?',
+    'Spațiu de lucru cu laptop și schițe de interfață': 'Workspace with a laptop and interface sketches', 'Clădiri de birouri luminate seara': 'Office buildings lit up in the evening'
+  };
+  const STR = {
+    ro: { title: 'UpTown AI · Website-uri, software și vizibilitate online', desc: 'UpTown AI este o agenție care construiește website-uri rapide, software la comandă și strategii de vizibilitate online, folosind AI acolo unde aduce rezultate reale.',
+      hero: [' construiește pagina de start', ' optimizează pentru mobil', ' publică pe afacerea-ta.ro'],
+      prompts: ['portal de programări pentru clinica mea', 'sistem de oferte conectat la stoc', 'dashboard de vânzări pentru echipă'],
+      subject: 'Cerere proiect: ', name: 'Nume', email: 'Email', need: 'Am nevoie de' },
+    en: { title: 'UpTown AI · Websites, software and online visibility', desc: 'UpTown AI is an agency that builds fast websites, custom software and online visibility strategies, using AI where it brings real results.',
+      hero: [' build the homepage', ' optimize for mobile', ' publish to your-business.com'],
+      prompts: ['booking portal for my clinic', 'quote system linked to inventory', 'sales dashboard for the team'],
+      subject: 'Project request: ', name: 'Name', email: 'Email', need: 'I need' }
+  };
+  let lang = 'ro', langGen = 0;
+  const T = () => STR[lang];
+  const tr = ro => (lang === 'en' && EN[ro]) || ro;
+  const SKIP = new Set(['SCRIPT', 'STYLE', 'svg', 'SVG']);
+  const DYNAMIC = ['heroType', 'cmdTxt'];
+  function translatePage() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: n => (!n.parentElement || SKIP.has(n.parentElement.tagName) || n.parentElement.closest('svg') || DYNAMIC.includes(n.parentElement.id) || !n.nodeValue.trim()) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+    });
+    for (let n; (n = walker.nextNode());) {
+      if (n.__ro === undefined) n.__ro = n.nodeValue;
+      const key = n.__ro.trim();
+      if (EN[key]) n.nodeValue = n.__ro.replace(key, tr(key));
+    }
+    document.querySelectorAll('[placeholder],[aria-label],img[alt]').forEach(el => {
+      ['placeholder', 'aria-label', 'alt'].forEach(a => {
+        if (!el.hasAttribute(a)) return;
+        const k = '__ro_' + a;
+        if (el[k] === undefined) el[k] = el.getAttribute(a);
+        if (EN[el[k]]) el.setAttribute(a, tr(el[k]));
+      });
+    });
+    document.documentElement.lang = lang;
+    document.title = T().title;
+    document.querySelector('meta[name="description"]').content = T().desc;
+    document.querySelector('meta[property="og:locale"]').content = lang === 'en' ? 'en_US' : 'ro_RO';
+  }
+  const langEl = document.getElementById('lang');
+  async function setLang(next, animate) {
+    if (next === lang && animate) return;
+    lang = next; langGen++;
+    langEl.dataset.lang = lang;
+    langEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.set === lang));
+    try { localStorage.setItem('uptown-lang', lang); } catch (e) {}
+    if (animate && !reduce) { document.body.classList.add('lang-swap'); await sleep(160); }
+    translatePage();
+    if (animate && !reduce) DYNAMIC.forEach(id => document.getElementById(id).textContent = '');
+    if (reduce) { document.getElementById('heroType').textContent = T().hero[0]; document.getElementById('cmdTxt').textContent = T().prompts[0]; }
+    document.body.classList.remove('lang-swap');
+  }
+  langEl.addEventListener('click', e => { const b = e.target.closest('button[data-set]'); if (b) setLang(b.dataset.set, true); });
 
   /* Bucle care rulează doar când sunt vizibile și tab-ul e activ */
   const loops = [];
@@ -833,7 +975,7 @@ footer{padding:72px 0 40px}
   const menuBtn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
   const setMenu = open => {
     menuBtn.setAttribute('aria-expanded', open);
-    menuBtn.setAttribute('aria-label', open ? 'Închide meniul' : 'Deschide meniul');
+    menuBtn['__ro_aria-label'] = open ? 'Închide meniul' : 'Deschide meniul'; menuBtn.setAttribute('aria-label', tr(open ? 'Închide meniul' : 'Deschide meniul'));
     menu.classList.toggle('open', open);
     menu.setAttribute('aria-hidden', !open);
     document.body.style.overflow = open ? 'hidden' : '';
@@ -880,15 +1022,16 @@ footer{padding:72px 0 40px}
   /* Typewriter pentru mockup-ul din hero */
   async function type(el, text, speed = 38) {
     el.textContent = '';
-    for (const ch of text) { el.textContent += ch; await sleep(speed + Math.random() * 30); }
+    const g = langGen;
+    for (const ch of text) { if (g !== langGen) { el.textContent = ''; return; } el.textContent += ch; await sleep(speed + Math.random() * 30); }
   }
   async function erase(el, speed = 14) {
-    while (el.textContent.length) { el.textContent = el.textContent.slice(0, -1); await sleep(speed); }
+    const g = langGen;
+    while (el.textContent.length) { if (g !== langGen) { el.textContent = ''; return; } el.textContent = el.textContent.slice(0, -1); await sleep(speed); }
   }
   const heroType = document.getElementById('heroType');
-  const heroLines = [' construiește pagina de start', ' optimizează pentru mobil', ' publică pe afacerea-ta.ro'];
-  if (reduce) heroType.textContent = heroLines[0];
-  else { let k = 0; loop(document.querySelector('.stage'), async () => { await type(heroType, heroLines[k++ % heroLines.length]); await sleep(1800); await erase(heroType); await sleep(300); }); }
+  if (reduce) heroType.textContent = T().hero[0];
+  else { let k = 0; loop(document.querySelector('.stage'), async () => { const l = T().hero; await type(heroType, l[k++ % l.length]); await sleep(1800); await erase(heroType); await sleep(300); }); }
 
   /* FLIP: animă elementele de la poziția veche la cea nouă */
   function flip(els, mutate, opts = {}) {
@@ -919,12 +1062,11 @@ footer{padding:72px 0 40px}
 
   /* B: command input */
   const cmdTxt = document.getElementById('cmdTxt'), proc = document.getElementById('proc'), out = document.getElementById('out');
-  const prompts = ['portal de programări pentru clinica mea', 'sistem de oferte conectat la stoc', 'dashboard de vânzări pentru echipă'];
-  if (reduce) { cmdTxt.textContent = prompts[0]; out.classList.add('on'); }
+  if (reduce) { cmdTxt.textContent = T().prompts[0]; out.classList.add('on'); }
   else {
     let p = 0;
     loop(cmdTxt, async () => {
-      await type(cmdTxt, prompts[p++ % prompts.length], 34);
+      await type(cmdTxt, T().prompts[p++ % T().prompts.length], 34);
       await sleep(300); proc.classList.add('on');
       await sleep(1500); proc.classList.remove('on'); out.classList.add('on');
       await sleep(2600); out.classList.remove('on');
@@ -1010,15 +1152,20 @@ footer{padding:72px 0 40px}
     const ok = Object.entries(checks).map(([id, fn]) => setErr(id, !fn())).every(Boolean);
     if (!ok) { form.querySelector('.err input, .err textarea')?.focus(); return; }
     submit.classList.add('loading');
-    const needs = [...form.querySelectorAll('[name=need]:checked')].map(i => i.value).join(', ');
-    const body = `Nume: ${form.name.value.trim()}\nEmail: ${form.email.value.trim()}\nAm nevoie de: ${needs}\n\n${form.msg.value.trim()}`;
+    const needs = [...form.querySelectorAll('[name=need]:checked')].map(i => i.nextElementSibling.textContent.trim()).join(', ');
+    const body = `${T().name}: ${form.name.value.trim()}\n${T().email}: ${form.email.value.trim()}\n${T().need}: ${needs}\n\n${form.msg.value.trim()}`;
     await sleep(700);
-    location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Cerere proiect: ' + needs)}&body=${encodeURIComponent(body)}`;
+    location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(T().subject + needs)}&body=${encodeURIComponent(body)}`;
     submit.classList.remove('loading');
     form.style.display = 'none';
     success.classList.add('show');
   });
   document.getElementById('again').addEventListener('click', () => { success.classList.remove('show'); form.reset(); form.style.display = ''; form.name.focus(); });
+
+  /* Limba salvată se aplică la final, după ce marquee-urile și-au duplicat conținutul */
+  let saved = null;
+  try { saved = localStorage.getItem('uptown-lang'); } catch (e) {}
+  if (saved === 'en') setLang('en', false);
 })();
 </script>
 </body>
