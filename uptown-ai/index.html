@@ -325,6 +325,41 @@ body.lang-swap .i18n-fade{opacity:0;filter:blur(2px)}
 .why-txt .points li{display:flex;gap:12px;font-size:15px;color:var(--ink-2)}
 .why-txt .points svg{width:18px;height:18px;flex:none;margin-top:3px}
 
+/* Animații în locul pozelor (De ce noi) */
+.why-vis.anim{aspect-ratio:auto;min-height:clamp(340px,34vw,440px);display:flex;background:var(--surface)}
+/* A: etape de proiect, AI accelerează, omul verifică */
+.pipe{flex:1;display:flex;flex-direction:column;padding:clamp(22px,3vw,34px)}
+.pipe-head{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12.5px;color:var(--muted)}
+.pill-live{display:inline-flex;align-items:center;gap:8px;padding:5px 11px;border-radius:999px;background:#f6f6f4;border:1px solid var(--line);color:var(--ink-2);font-family:var(--sans)}
+.stages{list-style:none;margin:auto 0;padding:24px 0;display:grid;gap:18px}
+.stages .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.stages b{font-weight:550;font-size:15.5px;letter-spacing:-.015em}
+.ok{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:var(--ink);color:#fff;font-size:11.5px;opacity:0;transform:scale(.9);transition:opacity 180ms ease,transform 420ms var(--ease-spring)}
+.ok svg{width:12px;height:12px;color:var(--accent)}
+.track{margin-top:9px;height:8px;border-radius:4px;background:#efefed;overflow:hidden}
+.track i{display:block;height:100%;border-radius:inherit;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 900ms var(--ease-in-out),background-color 320ms ease}
+.stages li.run .track i{transform:scaleX(1)}
+.stages li.rev .track i{background:var(--ink)}
+.stages li.rev .ok{opacity:1;transform:none}
+.stages.resetting .track i,.stages.resetting .ok{transition:opacity 260ms ease,transform 260ms var(--ease-out),background-color 260ms ease}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:10px;height:10px;border-radius:3px}
+.legend .ai{background:var(--accent)}.legend .hu{background:var(--ink)}
+/* B: o echipă în centru, toate serviciile conectate */
+.why-vis.hub{background:var(--night);border-color:var(--night-line)}
+.hub-lines{position:absolute;inset:0;width:100%;height:100%}
+.hub-lines path{fill:none;stroke:rgba(255,255,255,.09);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.hub-lines path.flow{stroke:var(--accent);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:18 2000;stroke-dashoffset:18;opacity:0;animation:flow 3.6s var(--ease-in-out) infinite;animation-delay:var(--d)}
+@keyframes flow{0%{stroke-dashoffset:18;opacity:0}10%{opacity:1}60%{opacity:1}75%,100%{stroke-dashoffset:-240;opacity:0}}
+.node{position:absolute;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:999px;background:var(--night-2);border:1px solid var(--night-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05);color:#e4e4e7;font-size:13px;white-space:nowrap}
+.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:12px}
+.orb{position:relative;width:78px;height:78px;border-radius:50%;background:var(--accent);color:var(--ink);display:grid;place-items:center;box-shadow:0 0 0 8px rgba(196,236,92,.07)}
+.orb::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid var(--accent);animation:ring 2.8s var(--ease-out) infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.9);opacity:0}}
+.orb svg{height:30px;width:auto}
+.core small{font-family:var(--mono);font-size:11.5px;color:#a1a1aa;background:var(--night);padding:2px 8px;border-radius:6px}
+
 /* ============ FAQ ============ */
 .faq-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,7vw,110px)}
 .faq{border-top:1px solid var(--line)}
@@ -441,6 +476,9 @@ footer{padding:72px 0 40px}
   .notif{right:20px;top:116px}
   .tile-meta{padding:0 2px}
   .float-a{display:none}
+  .node{height:32px;padding:0 11px;font-size:12px}
+  .orb{width:64px;height:64px}
+  .orb svg{height:24px}
   .float-b{right:10px;bottom:-18px}
   .canvas{padding:16px}
   .typing{left:16px;right:16px;bottom:14px}
@@ -687,7 +725,18 @@ footer{padding:72px 0 40px}
     </div>
     <div class="why">
       <div class="why-row">
-        <div class="why-vis reveal"><img src="https://picsum.photos/seed/uptown-studio-desk/1200/900" alt="Spațiu de lucru cu laptop și schițe de interfață" loading="lazy" onerror="this.remove()" width="1200" height="900" /></div>
+        <div class="why-vis anim reveal" data-live aria-hidden="true">
+          <div class="pipe">
+            <div class="pipe-head"><span class="mono">afacerea-ta.ro</span><span class="pill-live"><span class="pulse"></span>În lucru</span></div>
+            <ol class="stages" id="stages">
+              <li><div class="row"><b>Strategie</b><span class="ok"><svg><use href="#i-check"/></svg>Verificat</span></div><div class="track"><i></i></div></li>
+              <li><div class="row"><b>Design</b><span class="ok"><svg><use href="#i-check"/></svg>Verificat</span></div><div class="track"><i></i></div></li>
+              <li><div class="row"><b>Dezvoltare</b><span class="ok"><svg><use href="#i-check"/></svg>Verificat</span></div><div class="track"><i></i></div></li>
+              <li><div class="row"><b>Lansare</b><span class="ok"><svg><use href="#i-check"/></svg>Verificat</span></div><div class="track"><i></i></div></li>
+            </ol>
+            <div class="legend mono"><span><i class="ai"></i>AI accelerează</span><span><i class="hu"></i>Un om verifică</span></div>
+          </div>
+        </div>
         <div class="why-txt reveal" style="--i:1">
           <h3>Livrăm mai repede, fără să tăiem din calitate.</h3>
           <p>Folosim instrumente AI pentru cercetare, prototipuri și cod de rutină. Timpul câștigat merge în ce face diferența: strategie, design și detalii.</p>
@@ -698,7 +747,11 @@ footer{padding:72px 0 40px}
         </div>
       </div>
       <div class="why-row">
-        <div class="why-vis reveal"><img src="https://picsum.photos/seed/uptown-city-night/1200/900" alt="Clădiri de birouri luminate seara" loading="lazy" onerror="this.remove()" width="1200" height="900" /></div>
+        <div class="why-vis anim hub reveal" data-live aria-hidden="true">
+          <svg class="hub-lines" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M22 18 L50 50"/><path d="M78 18 L50 50"/><path d="M84 66 L50 50"/><path d="M50 88 L50 50"/><path d="M18 72 L50 50"/><path class="flow" style="--d:0s" d="M22 18 L50 50"/><path class="flow" style="--d:0.7s" d="M78 18 L50 50"/><path class="flow" style="--d:1.4s" d="M84 66 L50 50"/><path class="flow" style="--d:2.1s" d="M50 88 L50 50"/><path class="flow" style="--d:2.8s" d="M18 72 L50 50"/></svg>
+          <span class="node" style="left:22%;top:18%"><span class="breath" style="--d:0s"></span>Website</span><span class="node" style="left:78%;top:18%"><span class="breath" style="--d:0.7s"></span>Aplicație</span><span class="node" style="left:84%;top:66%"><span class="breath" style="--d:1.4s"></span>SEO</span><span class="node" style="left:50%;top:88%"><span class="breath" style="--d:2.1s"></span>Reclame</span><span class="node" style="left:18%;top:72%"><span class="breath" style="--d:2.8s"></span>Social media</span>
+          <div class="core"><span class="orb"><svg viewBox="0 0 26 32"><use href="#mark"/></svg></span><small>O singură echipă</small></div>
+        </div>
         <div class="why-txt reveal" style="--i:1">
           <h3>Totul sub un singur acoperiș.</h3>
           <p>Site-ul, aplicația și promovarea vorbesc aceeași limbă pentru că le construiește aceeași echipă. Fără pase între trei furnizori.</p>
@@ -892,7 +945,8 @@ footer{padding:72px 0 40px}
     'UpTown Digital, pagina principală': 'UpTown Digital, home', 'Navigare principală': 'Main navigation', 'Deschide meniul': 'Open menu', 'Închide meniul': 'Close menu',
     'Ce livrăm': 'What we deliver', 'Sari la conținut': 'Skip to content', 'Numele tău': 'Your name', 'nume@firma.ro': 'name@company.com',
     'Ce face afacerea ta și ce ai vrea să se schimbe?': 'What does your business do, and what would you like to change?',
-    'Spațiu de lucru cu laptop și schițe de interfață': 'Workspace with a laptop and interface sketches', 'Clădiri de birouri luminate seara': 'Office buildings lit up in the evening'
+    'În lucru': 'In progress', 'Strategie': 'Strategy', 'Dezvoltare': 'Development', 'Lansare': 'Launch', 'Verificat': 'Reviewed',
+    'AI accelerează': 'AI speeds it up', 'Un om verifică': 'A person reviews', 'Aplicație': 'App', 'Reclame': 'Ads', 'O singură echipă': 'One team'
   };
   const STR = {
     ro: { title: 'UpTown Digital · Website-uri, software și vizibilitate online', desc: 'UpTown Digital este o agenție care construiește website-uri rapide, software la comandă și strategii de vizibilitate online, folosind AI acolo unde aduce rezultate reale.',
@@ -1099,6 +1153,23 @@ footer{padding:72px 0 40px}
       await sleep(600);
     });
   }
+
+  /* De ce noi A: etapele se umplu (AI), apoi primesc „Verificat" (om) */
+  const stages = document.getElementById('stages');
+  const stageItems = [...stages.children];
+  if (reduce) stageItems.forEach(li => li.classList.add('run', 'rev'));
+  else loop(stages, async () => {
+    for (const li of stageItems) {
+      li.classList.add('run'); await sleep(1000);
+      li.classList.add('rev'); await sleep(450);
+    }
+    await sleep(2600);
+    stages.classList.add('resetting');
+    stageItems.forEach(li => li.classList.remove('run', 'rev'));
+    await sleep(500);
+    stages.classList.remove('resetting');
+    await sleep(300);
+  });
 
   /* D: notificare cu overshoot */
   const notif = document.getElementById('notif');
