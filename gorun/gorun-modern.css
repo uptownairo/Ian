@@ -135,6 +135,7 @@ input,select,textarea{font-size:16px!important}
 .main ul:not(.gform_fields):not(.guide):not(.nav):not([class*="list-"])>li::before{content:"";position:absolute;left:.25rem;top:.72em;width:7px;height:7px;border-radius:2px;background:var(--g-gold)}
 .main a:not(.btn){color:var(--g-navy);text-decoration:underline;text-decoration-color:rgba(211,172,43,.6);text-underline-offset:3px;text-decoration-thickness:1.5px}
 @media (hover:hover) and (pointer:fine){.main a:not(.btn):hover{color:var(--g-gold-d)}}
+.main{overflow-wrap:break-word}.main a{overflow-wrap:anywhere}
 .main p:empty,.main p:has(> br:only-child){display:none}
 
 /* acordeoane (tarife, joburi, întrebări) */
@@ -146,8 +147,8 @@ input,select,textarea{font-size:16px!important}
 .accordion .card .card-header h5{margin:0;font-family:var(--g-sans)!important}
 .accordion .card .card-header a{display:flex!important;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.4rem!important;font-family:var(--g-sans)!important;font-size:1.0625rem!important;font-weight:500!important;color:var(--g-navy)!important;text-decoration:none!important}
 .accordion .card .card-header a:before{display:none!important}
-.accordion .card .card-header a::after{content:"";flex:none;width:10px;height:10px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .3s var(--g-ease)}
-.accordion .card .card-header a[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-2px)}
+.accordion .card .card-header a::after,.accordion .card .card-header a[aria-expanded=false]::after,.accordion .card .card-header a.collapsed::after{content:""!important;position:static!important;flex:none;width:9px!important;height:9px!important;background:none!important;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-3px)!important;transition:transform .3s var(--g-ease)}
+.accordion .card .card-header a[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-2px)!important}
 .accordion .card .card-header a img,.accordion .card .card-header a svg{display:none}
 .accordion .card .card-body{padding:0 1.4rem 1.3rem!important;color:var(--g-ink-2)}
 .accordion .card .card-body p{margin-bottom:.45rem}
@@ -199,7 +200,7 @@ footer.footer .footer-social img{width:16px;height:16px}
 @media (hover:hover) and (pointer:fine){footer.footer .footer-social a:hover{background:rgba(255,255,255,.14)}}
 
 /* ---------- cookie + WhatsApp ---------- */
-#cookie-notice{left:auto!important;right:auto!important;bottom:16px!important;width:auto!important;max-width:min(560px,calc(100% - 32px));margin-left:16px;border-radius:16px!important;overflow:hidden;background:var(--g-navy)!important;box-shadow:0 20px 50px -20px rgba(35,42,56,.6)!important;font-family:var(--g-sans)!important}
+#cookie-notice{left:16px!important;right:auto!important;bottom:16px!important;width:auto!important;min-width:0!important;max-width:min(560px,calc(100% - 32px))!important;margin:0!important;border-radius:16px!important;overflow:hidden;background:var(--g-navy)!important;box-shadow:0 20px 50px -20px rgba(35,42,56,.6)!important;font-family:var(--g-sans)!important}
 #cookie-notice .cookie-notice-container{padding:14px 18px!important;text-align:left!important;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
 #cookie-notice #cn-notice-text{color:#dfe3ea!important;font-size:13.5px!important;line-height:1.5}
 #cookie-notice .cn-button{border-radius:10px!important;padding:.45rem 1rem!important;background:var(--g-gold)!important;color:var(--g-navy-d)!important;border:0!important;font-weight:500!important;margin:0!important}
@@ -219,6 +220,6 @@ footer.footer .footer-social img{width:16px;height:16px}
   .section-three-column-content-with-icons .col-12.mb-4{margin-bottom:.75rem!important}
   .section-with-multiple-call-to-actions .btn-white{display:flex!important;justify-content:space-between;align-items:center;width:100%;margin:.35rem 0!important;text-align:left;white-space:normal}
   footer.footer{border-radius:22px 22px 0 0}
-  #cookie-notice{bottom:72px!important;margin:0 12px!important;max-width:calc(100% - 24px)}
+  #cookie-notice{bottom:72px!important;left:12px!important;right:12px!important;margin:0!important;max-width:none!important}
   .section.section-full-width-with-cta.bg-gorun-blue>.container{border-radius:22px}
 }

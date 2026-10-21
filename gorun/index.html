@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="ro-RO" prefix="og: https://ogp.me/ns#">
 <head>
-<base href="https://gorunsiasociatii.com/">
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +17,7 @@
 <title>Gorun &amp; Asociații - Notar Cluj, Notariat Cluj Napoca</title>
 <meta name="description" content="Cauți notariat sau notar în Cluj? Gorun si Asociații, notariat cu experință, îți stă la dispoziție inclusiv cu servicii notariale online. Programare online"/>
 <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
-<link rel="canonical" href="https://gorunsiasociatii.com/" />
+<link rel="canonical" href="index.html" />
 <meta property="og:locale" content="ro_RO" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Gorun &amp; Asociații - Notar Cluj, Notariat Cluj Napoca" />
@@ -107,7 +106,9 @@ var BooklyCustomerProfileL10n = {"csrf_token":"6158d8cf9d","show_more":"Arat\u01
         </style>
   <!-- Global site tag (gtag.js) - Google Ads: 10866075195 -->  
 
-<style id="gorun-modern">
+<!-- Google Tag Manager -->
+
+<!-- End Google Tag Manager --><style id="gorun-modern">
 /* =====================================================================
    Gorun & Asociații · strat vizual modern (mic redesign)
    Se adaugă peste tema existentă: WordPress → Aspect → Personalizare →
@@ -245,6 +246,7 @@ input,select,textarea{font-size:16px!important}
 .main ul:not(.gform_fields):not(.guide):not(.nav):not([class*="list-"])>li::before{content:"";position:absolute;left:.25rem;top:.72em;width:7px;height:7px;border-radius:2px;background:var(--g-gold)}
 .main a:not(.btn){color:var(--g-navy);text-decoration:underline;text-decoration-color:rgba(211,172,43,.6);text-underline-offset:3px;text-decoration-thickness:1.5px}
 @media (hover:hover) and (pointer:fine){.main a:not(.btn):hover{color:var(--g-gold-d)}}
+.main{overflow-wrap:break-word}.main a{overflow-wrap:anywhere}
 .main p:empty,.main p:has(> br:only-child){display:none}
 
 /* acordeoane (tarife, joburi, întrebări) */
@@ -256,8 +258,8 @@ input,select,textarea{font-size:16px!important}
 .accordion .card .card-header h5{margin:0;font-family:var(--g-sans)!important}
 .accordion .card .card-header a{display:flex!important;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.4rem!important;font-family:var(--g-sans)!important;font-size:1.0625rem!important;font-weight:500!important;color:var(--g-navy)!important;text-decoration:none!important}
 .accordion .card .card-header a:before{display:none!important}
-.accordion .card .card-header a::after{content:"";flex:none;width:10px;height:10px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .3s var(--g-ease)}
-.accordion .card .card-header a[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-2px)}
+.accordion .card .card-header a::after,.accordion .card .card-header a[aria-expanded=false]::after,.accordion .card .card-header a.collapsed::after{content:""!important;position:static!important;flex:none;width:9px!important;height:9px!important;background:none!important;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-3px)!important;transition:transform .3s var(--g-ease)}
+.accordion .card .card-header a[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-2px)!important}
 .accordion .card .card-header a img,.accordion .card .card-header a svg{display:none}
 .accordion .card .card-body{padding:0 1.4rem 1.3rem!important;color:var(--g-ink-2)}
 .accordion .card .card-body p{margin-bottom:.45rem}
@@ -309,7 +311,7 @@ footer.footer .footer-social img{width:16px;height:16px}
 @media (hover:hover) and (pointer:fine){footer.footer .footer-social a:hover{background:rgba(255,255,255,.14)}}
 
 /* ---------- cookie + WhatsApp ---------- */
-#cookie-notice{left:auto!important;right:auto!important;bottom:16px!important;width:auto!important;max-width:min(560px,calc(100% - 32px));margin-left:16px;border-radius:16px!important;overflow:hidden;background:var(--g-navy)!important;box-shadow:0 20px 50px -20px rgba(35,42,56,.6)!important;font-family:var(--g-sans)!important}
+#cookie-notice{left:16px!important;right:auto!important;bottom:16px!important;width:auto!important;min-width:0!important;max-width:min(560px,calc(100% - 32px))!important;margin:0!important;border-radius:16px!important;overflow:hidden;background:var(--g-navy)!important;box-shadow:0 20px 50px -20px rgba(35,42,56,.6)!important;font-family:var(--g-sans)!important}
 #cookie-notice .cookie-notice-container{padding:14px 18px!important;text-align:left!important;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
 #cookie-notice #cn-notice-text{color:#dfe3ea!important;font-size:13.5px!important;line-height:1.5}
 #cookie-notice .cn-button{border-radius:10px!important;padding:.45rem 1rem!important;background:var(--g-gold)!important;color:var(--g-navy-d)!important;border:0!important;font-weight:500!important;margin:0!important}
@@ -329,7 +331,7 @@ footer.footer .footer-social img{width:16px;height:16px}
   .section-three-column-content-with-icons .col-12.mb-4{margin-bottom:.75rem!important}
   .section-with-multiple-call-to-actions .btn-white{display:flex!important;justify-content:space-between;align-items:center;width:100%;margin:.35rem 0!important;text-align:left;white-space:normal}
   footer.footer{border-radius:22px 22px 0 0}
-  #cookie-notice{bottom:72px!important;margin:0 12px!important;max-width:calc(100% - 24px)}
+  #cookie-notice{bottom:72px!important;left:12px!important;right:12px!important;margin:0!important;max-width:none!important}
   .section.section-full-width-with-cta.bg-gorun-blue>.container{border-radius:22px}
 }
 
@@ -337,19 +339,21 @@ footer.footer .footer-social img{width:16px;height:16px}
 </head>
 
 <body class="home wp-singular page-template page-template-template-home-v2 page-template-template-home-v2-php page page-id-15 wp-theme-gorun cookies-not-set">
-  
+  <!-- Google Tag Manager (noscript) -->
+
+<!-- End Google Tag Manager (noscript) -->
   <!--[if IE]>
       <div class="alert alert-warning">
         You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.      </div>
     <![endif]-->
   
 <div class="navbar navbar-dark fixed-top navbar-expand-lg bg-primary navbar-toggleable-md">
-    <a class="navbar-brand" href="https://gorunsiasociatii.com/"><img src="https://gorunsiasociatii.com/wp-content/themes/gorun/dist/images/logo_gorun.svg" class="d-inline-block align-top" alt="Gorun &amp; Asociații" /></a>
+    <a class="navbar-brand" href="index.html"><img src="https://gorunsiasociatii.com/wp-content/themes/gorun/dist/images/logo_gorun.svg" class="d-inline-block align-top" alt="Gorun &amp; Asociații" /></a>
 
     <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#bs4navbar" aria-controls="bs4navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div id="bs4navbar" class="navbar-collapse collapse"><ul id="menu-main-menu" class="navbar-nav ml-auto"><li id="menu-item-14" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-14 nav-item active"><a href="/" class="nav-link active">Home</a><li id="menu-item-567" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-567 nav-item"><a href="https://gorunsiasociatii.com/consultanta-online-cu-notarul-public/" class="nav-link">Consultanță online cu notarul public</a><li id="menu-item-86" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-86 nav-item"><a href="https://gorunsiasociatii.com/acte/" class="nav-link">Acte</a><li id="menu-item-89" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-89 nav-item"><a href="https://gorunsiasociatii.com/joburi/" class="nav-link">Joburi</a><li id="menu-item-74" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-74 nav-item"><a href="https://gorunsiasociatii.com/blog/" class="nav-link">Blog</a><li id="menu-item-88" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-88 nav-item"><a href="https://gorunsiasociatii.com/contact/" class="nav-link">Contact</a></ul></div>    <!-- /.navbar-collapse -->
+    <div id="bs4navbar" class="navbar-collapse collapse"><ul id="menu-main-menu" class="navbar-nav ml-auto"><li id="menu-item-14" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-14 nav-item active"><a href="index.html" class="nav-link active">Home</a><li id="menu-item-567" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-567 nav-item"><a href="consultanta-online-cu-notarul-public.html" class="nav-link">Consultanță online cu notarul public</a><li id="menu-item-86" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-86 nav-item"><a href="acte.html" class="nav-link">Acte</a><li id="menu-item-89" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-89 nav-item"><a href="joburi.html" class="nav-link">Joburi</a><li id="menu-item-74" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-74 nav-item"><a href="blog.html" class="nav-link">Blog</a><li id="menu-item-88" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-88 nav-item"><a href="contact.html" class="nav-link">Contact</a></ul></div>    <!-- /.navbar-collapse -->
 </div>
 <!-- /.navbar -->
   
@@ -360,7 +364,7 @@ footer.footer .footer-social img{width:16px;height:16px}
     <div class="positioner">
               <h1>Gorun & Asociații</h1>
                     <h2>Societate Profesională Notarială</h2>
-            <p class="text-center" style="margin-top:30px; margin-bottom: 20px;"><a href="/programari/" class="btn btn-secondary btn-lg">Programare online</a></p>
+            <p class="text-center" style="margin-top:30px; margin-bottom: 20px;"><a href="https://gorunsiasociatii.com/programari/" class="btn btn-secondary btn-lg">Programare online</a></p>
               <div class="call-us-cta">
           sau suna la <a href="tel:+40 372 763 760" class="call-us">+40 372 763 760</a>
         </div>
@@ -381,7 +385,7 @@ footer.footer .footer-social img{width:16px;height:16px}
               </div>
       <!-- /.col-12 col-md-10 mx-md-auto text-center -->
                         <div class="col-12 col-md-6 col-lg-4 mb-4">
-                          <a href="https://gorunsiasociatii.com/declaratii-si-procuri-la-notar/" target="">
+                          <a href="declaratii-si-procuri-la-notar.html" target="">
                 <div class="gorun-column bg-gorun-light-yellow text-center">
                                       <div class="column-image">
                       <img class="img-fluid" src="https://gorunsiasociatii.com/wp-content/uploads/2022/02/icon_declaratii.svg" alt="">
@@ -393,7 +397,7 @@ footer.footer .footer-social img{width:16px;height:16px}
           </div>
           <!-- /.col-12 col-md-6 col-lg-4 mb-4 -->
                                 <div class="col-12 col-md-6 col-lg-4 mb-4">
-                          <a href="https://gorunsiasociatii.com/contracte-la-notar/" target="">
+                          <a href="contracte-la-notar.html" target="">
                 <div class="gorun-column bg-gorun-light-yellow text-center">
                                       <div class="column-image">
                       <img class="img-fluid" src="https://gorunsiasociatii.com/wp-content/uploads/2022/02/icon_contracte.svg" alt="">
@@ -405,7 +409,7 @@ footer.footer .footer-social img{width:16px;height:16px}
           </div>
           <!-- /.col-12 col-md-6 col-lg-4 mb-4 -->
                                 <div class="col-12 col-md-6 col-lg-4 mb-4">
-                          <a href="https://gorunsiasociatii.com/succesiuni-si-mosteniri/" target="_blank">
+                          <a href="succesiuni-si-mosteniri.html" target="_blank">
                 <div class="gorun-column bg-gorun-light-yellow text-center">
                                       <div class="column-image">
                       <img class="img-fluid" src="https://gorunsiasociatii.com/wp-content/uploads/2022/02/icon_succesiuni.svg" alt="">
@@ -417,7 +421,7 @@ footer.footer .footer-social img{width:16px;height:16px}
           </div>
           <!-- /.col-12 col-md-6 col-lg-4 mb-4 -->
                                 <div class="col-12 col-md-6 col-lg-4 mb-4">
-                          <a href="https://gorunsiasociatii.com/divort-la-notar/" target="">
+                          <a href="divort-la-notar.html" target="">
                 <div class="gorun-column bg-gorun-light-yellow text-center">
                                       <div class="column-image">
                       <img class="img-fluid" src="https://gorunsiasociatii.com/wp-content/uploads/2022/02/icon_divort.svg" alt="">
@@ -429,7 +433,7 @@ footer.footer .footer-social img{width:16px;height:16px}
           </div>
           <!-- /.col-12 col-md-6 col-lg-4 mb-4 -->
                                 <div class="col-12 col-md-6 col-lg-4 mb-4">
-                          <a href="https://gorunsiasociatii.com/conventii-matrimoniale/" target="">
+                          <a href="conventii-matrimoniale.html" target="">
                 <div class="gorun-column bg-gorun-light-yellow text-center">
                                       <div class="column-image">
                       <img class="img-fluid" src="https://gorunsiasociatii.com/wp-content/uploads/2022/02/icon_conventii.svg" alt="">
@@ -441,7 +445,7 @@ footer.footer .footer-social img{width:16px;height:16px}
           </div>
           <!-- /.col-12 col-md-6 col-lg-4 mb-4 -->
                                 <div class="col-12 col-md-6 col-lg-4 mb-4">
-                          <a href="https://gorunsiasociatii.com/alte-servicii-notariale/" target="">
+                          <a href="alte-servicii-notariale.html" target="">
                 <div class="gorun-column bg-gorun-light-yellow text-center">
                                       <div class="column-image">
                       <img class="img-fluid" src="https://gorunsiasociatii.com/wp-content/uploads/2022/02/icon_servicii_notariale.svg" alt="">
@@ -494,32 +498,32 @@ footer.footer .footer-social img{width:16px;height:16px}
     <!-- /.row -->
     <div class="row justify-content-center">
       <div class="col-12 col-md-11 mx-md-auto text-center">
-                  <a class="btn btn-white" href="https://gorunsiasociatii.com/acte-necesare-contract-vanzare-imobil/" target="">
+                  <a class="btn btn-white" href="acte-necesare-contract-vanzare-imobil.html" target="">
             Acte necesare contract de vanzare imobil            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6.74 11.1875H11.09V11.3395L9.67 12.679C9.45313 12.8821 9.31752 13.1507 9.2865 13.4385C9.25547 13.7263 9.33097 14.0153 9.5 14.256C9.60432 14.3961 9.73962 14.5129 9.89643 14.5982C10.0532 14.6834 10.2278 14.7351 10.4078 14.7496C10.5878 14.7641 10.769 14.741 10.9387 14.682C11.1083 14.623 11.2624 14.5295 11.39 14.408L15.15 10.798C15.3681 10.5832 15.493 10.2983 15.5 10C15.5011 9.68428 15.3718 9.38073 15.14 9.1545L11.39 5.592C11.2747 5.48171 11.1376 5.39417 10.9866 5.33443C10.8356 5.27469 10.6736 5.24394 10.51 5.24394C10.3464 5.24394 10.1844 5.27469 10.0334 5.33443C9.88235 5.39417 9.74526 5.48171 9.63 5.592C9.39969 5.81719 9.27086 6.11879 9.27086 6.43275C9.27086 6.74672 9.39969 7.04832 9.63 7.2735L11.28 8.8125H6.74C6.57594 8.81122 6.41326 8.84112 6.26155 8.90046C6.10984 8.9598 5.97215 9.04738 5.85661 9.15803C5.74106 9.26869 5.64999 9.40019 5.58874 9.54478C5.5275 9.68938 5.49732 9.84416 5.5 10C5.49867 10.1551 5.52983 10.3088 5.59167 10.4523C5.65352 10.5958 5.7448 10.7262 5.86022 10.8358C5.97563 10.9454 6.11285 11.0322 6.2639 11.0909C6.41494 11.1497 6.57679 11.1793 6.74 11.178V11.1875ZM10.5 19.5C12.4778 19.5 14.4112 18.9428 16.0557 17.899C17.7002 16.8551 18.9819 15.3714 19.7388 13.6355C20.4957 11.8996 20.6937 9.98947 20.3078 8.14665C19.922 6.30383 18.9696 4.61109 17.5711 3.28249C16.1725 1.95389 14.3907 1.0491 12.4509 0.682544C10.5111 0.315985 8.50042 0.504116 6.67316 1.22315C4.8459 1.94218 3.28412 3.15982 2.1853 4.72209C1.08649 6.28435 0.5 8.12108 0.5 10C0.5 12.5196 1.55357 14.9359 3.42893 16.7175C5.30429 18.4991 7.84783 19.5 10.5 19.5ZM10.5 2.875C11.9834 2.875 13.4334 3.29288 14.6668 4.07578C15.9001 4.85869 16.8614 5.97146 17.4291 7.27338C17.9967 8.57531 18.1453 10.0079 17.8559 11.39C17.5665 12.7721 16.8522 14.0417 15.8033 15.0381C14.7544 16.0346 13.418 16.7132 11.9632 16.9881C10.5083 17.263 9.00032 17.1219 7.62987 16.5826C6.25943 16.0434 5.08809 15.1301 4.26398 13.9584C3.43987 12.7867 3 11.4092 3 10C3.00528 8.11188 3.79715 6.30252 5.20253 4.96741C6.60791 3.6323 8.5125 2.88002 10.5 2.875Z" fill="#CBD0D8" />
             </svg>
           </a>
-                  <a class="btn btn-white" href="https://gorunsiasociatii.com/acte-necesare-procura-imputernicire/" target="">
+                  <a class="btn btn-white" href="acte-necesare-procura-imputernicire.html" target="">
             Acte necesare procura            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6.74 11.1875H11.09V11.3395L9.67 12.679C9.45313 12.8821 9.31752 13.1507 9.2865 13.4385C9.25547 13.7263 9.33097 14.0153 9.5 14.256C9.60432 14.3961 9.73962 14.5129 9.89643 14.5982C10.0532 14.6834 10.2278 14.7351 10.4078 14.7496C10.5878 14.7641 10.769 14.741 10.9387 14.682C11.1083 14.623 11.2624 14.5295 11.39 14.408L15.15 10.798C15.3681 10.5832 15.493 10.2983 15.5 10C15.5011 9.68428 15.3718 9.38073 15.14 9.1545L11.39 5.592C11.2747 5.48171 11.1376 5.39417 10.9866 5.33443C10.8356 5.27469 10.6736 5.24394 10.51 5.24394C10.3464 5.24394 10.1844 5.27469 10.0334 5.33443C9.88235 5.39417 9.74526 5.48171 9.63 5.592C9.39969 5.81719 9.27086 6.11879 9.27086 6.43275C9.27086 6.74672 9.39969 7.04832 9.63 7.2735L11.28 8.8125H6.74C6.57594 8.81122 6.41326 8.84112 6.26155 8.90046C6.10984 8.9598 5.97215 9.04738 5.85661 9.15803C5.74106 9.26869 5.64999 9.40019 5.58874 9.54478C5.5275 9.68938 5.49732 9.84416 5.5 10C5.49867 10.1551 5.52983 10.3088 5.59167 10.4523C5.65352 10.5958 5.7448 10.7262 5.86022 10.8358C5.97563 10.9454 6.11285 11.0322 6.2639 11.0909C6.41494 11.1497 6.57679 11.1793 6.74 11.178V11.1875ZM10.5 19.5C12.4778 19.5 14.4112 18.9428 16.0557 17.899C17.7002 16.8551 18.9819 15.3714 19.7388 13.6355C20.4957 11.8996 20.6937 9.98947 20.3078 8.14665C19.922 6.30383 18.9696 4.61109 17.5711 3.28249C16.1725 1.95389 14.3907 1.0491 12.4509 0.682544C10.5111 0.315985 8.50042 0.504116 6.67316 1.22315C4.8459 1.94218 3.28412 3.15982 2.1853 4.72209C1.08649 6.28435 0.5 8.12108 0.5 10C0.5 12.5196 1.55357 14.9359 3.42893 16.7175C5.30429 18.4991 7.84783 19.5 10.5 19.5ZM10.5 2.875C11.9834 2.875 13.4334 3.29288 14.6668 4.07578C15.9001 4.85869 16.8614 5.97146 17.4291 7.27338C17.9967 8.57531 18.1453 10.0079 17.8559 11.39C17.5665 12.7721 16.8522 14.0417 15.8033 15.0381C14.7544 16.0346 13.418 16.7132 11.9632 16.9881C10.5083 17.263 9.00032 17.1219 7.62987 16.5826C6.25943 16.0434 5.08809 15.1301 4.26398 13.9584C3.43987 12.7867 3 11.4092 3 10C3.00528 8.11188 3.79715 6.30252 5.20253 4.96741C6.60791 3.6323 8.5125 2.88002 10.5 2.875Z" fill="#CBD0D8" />
             </svg>
           </a>
-                  <a class="btn btn-white" href="https://gorunsiasociatii.com/acte-necesare-divort-la-notar/" target="">
+                  <a class="btn btn-white" href="acte-necesare-divort-la-notar.html" target="">
             Acte necesare divort la notar            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6.74 11.1875H11.09V11.3395L9.67 12.679C9.45313 12.8821 9.31752 13.1507 9.2865 13.4385C9.25547 13.7263 9.33097 14.0153 9.5 14.256C9.60432 14.3961 9.73962 14.5129 9.89643 14.5982C10.0532 14.6834 10.2278 14.7351 10.4078 14.7496C10.5878 14.7641 10.769 14.741 10.9387 14.682C11.1083 14.623 11.2624 14.5295 11.39 14.408L15.15 10.798C15.3681 10.5832 15.493 10.2983 15.5 10C15.5011 9.68428 15.3718 9.38073 15.14 9.1545L11.39 5.592C11.2747 5.48171 11.1376 5.39417 10.9866 5.33443C10.8356 5.27469 10.6736 5.24394 10.51 5.24394C10.3464 5.24394 10.1844 5.27469 10.0334 5.33443C9.88235 5.39417 9.74526 5.48171 9.63 5.592C9.39969 5.81719 9.27086 6.11879 9.27086 6.43275C9.27086 6.74672 9.39969 7.04832 9.63 7.2735L11.28 8.8125H6.74C6.57594 8.81122 6.41326 8.84112 6.26155 8.90046C6.10984 8.9598 5.97215 9.04738 5.85661 9.15803C5.74106 9.26869 5.64999 9.40019 5.58874 9.54478C5.5275 9.68938 5.49732 9.84416 5.5 10C5.49867 10.1551 5.52983 10.3088 5.59167 10.4523C5.65352 10.5958 5.7448 10.7262 5.86022 10.8358C5.97563 10.9454 6.11285 11.0322 6.2639 11.0909C6.41494 11.1497 6.57679 11.1793 6.74 11.178V11.1875ZM10.5 19.5C12.4778 19.5 14.4112 18.9428 16.0557 17.899C17.7002 16.8551 18.9819 15.3714 19.7388 13.6355C20.4957 11.8996 20.6937 9.98947 20.3078 8.14665C19.922 6.30383 18.9696 4.61109 17.5711 3.28249C16.1725 1.95389 14.3907 1.0491 12.4509 0.682544C10.5111 0.315985 8.50042 0.504116 6.67316 1.22315C4.8459 1.94218 3.28412 3.15982 2.1853 4.72209C1.08649 6.28435 0.5 8.12108 0.5 10C0.5 12.5196 1.55357 14.9359 3.42893 16.7175C5.30429 18.4991 7.84783 19.5 10.5 19.5ZM10.5 2.875C11.9834 2.875 13.4334 3.29288 14.6668 4.07578C15.9001 4.85869 16.8614 5.97146 17.4291 7.27338C17.9967 8.57531 18.1453 10.0079 17.8559 11.39C17.5665 12.7721 16.8522 14.0417 15.8033 15.0381C14.7544 16.0346 13.418 16.7132 11.9632 16.9881C10.5083 17.263 9.00032 17.1219 7.62987 16.5826C6.25943 16.0434 5.08809 15.1301 4.26398 13.9584C3.43987 12.7867 3 11.4092 3 10C3.00528 8.11188 3.79715 6.30252 5.20253 4.96741C6.60791 3.6323 8.5125 2.88002 10.5 2.875Z" fill="#CBD0D8" />
             </svg>
           </a>
-                  <a class="btn btn-white" href="https://gorunsiasociatii.com/acte-necesare-burse-erasmus/" target="">
+                  <a class="btn btn-white" href="acte-necesare-burse-erasmus.html" target="">
             Acte necesare burse ERASMUS            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6.74 11.1875H11.09V11.3395L9.67 12.679C9.45313 12.8821 9.31752 13.1507 9.2865 13.4385C9.25547 13.7263 9.33097 14.0153 9.5 14.256C9.60432 14.3961 9.73962 14.5129 9.89643 14.5982C10.0532 14.6834 10.2278 14.7351 10.4078 14.7496C10.5878 14.7641 10.769 14.741 10.9387 14.682C11.1083 14.623 11.2624 14.5295 11.39 14.408L15.15 10.798C15.3681 10.5832 15.493 10.2983 15.5 10C15.5011 9.68428 15.3718 9.38073 15.14 9.1545L11.39 5.592C11.2747 5.48171 11.1376 5.39417 10.9866 5.33443C10.8356 5.27469 10.6736 5.24394 10.51 5.24394C10.3464 5.24394 10.1844 5.27469 10.0334 5.33443C9.88235 5.39417 9.74526 5.48171 9.63 5.592C9.39969 5.81719 9.27086 6.11879 9.27086 6.43275C9.27086 6.74672 9.39969 7.04832 9.63 7.2735L11.28 8.8125H6.74C6.57594 8.81122 6.41326 8.84112 6.26155 8.90046C6.10984 8.9598 5.97215 9.04738 5.85661 9.15803C5.74106 9.26869 5.64999 9.40019 5.58874 9.54478C5.5275 9.68938 5.49732 9.84416 5.5 10C5.49867 10.1551 5.52983 10.3088 5.59167 10.4523C5.65352 10.5958 5.7448 10.7262 5.86022 10.8358C5.97563 10.9454 6.11285 11.0322 6.2639 11.0909C6.41494 11.1497 6.57679 11.1793 6.74 11.178V11.1875ZM10.5 19.5C12.4778 19.5 14.4112 18.9428 16.0557 17.899C17.7002 16.8551 18.9819 15.3714 19.7388 13.6355C20.4957 11.8996 20.6937 9.98947 20.3078 8.14665C19.922 6.30383 18.9696 4.61109 17.5711 3.28249C16.1725 1.95389 14.3907 1.0491 12.4509 0.682544C10.5111 0.315985 8.50042 0.504116 6.67316 1.22315C4.8459 1.94218 3.28412 3.15982 2.1853 4.72209C1.08649 6.28435 0.5 8.12108 0.5 10C0.5 12.5196 1.55357 14.9359 3.42893 16.7175C5.30429 18.4991 7.84783 19.5 10.5 19.5ZM10.5 2.875C11.9834 2.875 13.4334 3.29288 14.6668 4.07578C15.9001 4.85869 16.8614 5.97146 17.4291 7.27338C17.9967 8.57531 18.1453 10.0079 17.8559 11.39C17.5665 12.7721 16.8522 14.0417 15.8033 15.0381C14.7544 16.0346 13.418 16.7132 11.9632 16.9881C10.5083 17.263 9.00032 17.1219 7.62987 16.5826C6.25943 16.0434 5.08809 15.1301 4.26398 13.9584C3.43987 12.7867 3 11.4092 3 10C3.00528 8.11188 3.79715 6.30252 5.20253 4.96741C6.60791 3.6323 8.5125 2.88002 10.5 2.875Z" fill="#CBD0D8" />
             </svg>
           </a>
-                  <a class="btn btn-white" href="https://gorunsiasociatii.com/acte-necesare-contract-comodat/" target="">
+                  <a class="btn btn-white" href="acte-necesare-contract-comodat.html" target="">
             Acte necesare contract comodat            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6.74 11.1875H11.09V11.3395L9.67 12.679C9.45313 12.8821 9.31752 13.1507 9.2865 13.4385C9.25547 13.7263 9.33097 14.0153 9.5 14.256C9.60432 14.3961 9.73962 14.5129 9.89643 14.5982C10.0532 14.6834 10.2278 14.7351 10.4078 14.7496C10.5878 14.7641 10.769 14.741 10.9387 14.682C11.1083 14.623 11.2624 14.5295 11.39 14.408L15.15 10.798C15.3681 10.5832 15.493 10.2983 15.5 10C15.5011 9.68428 15.3718 9.38073 15.14 9.1545L11.39 5.592C11.2747 5.48171 11.1376 5.39417 10.9866 5.33443C10.8356 5.27469 10.6736 5.24394 10.51 5.24394C10.3464 5.24394 10.1844 5.27469 10.0334 5.33443C9.88235 5.39417 9.74526 5.48171 9.63 5.592C9.39969 5.81719 9.27086 6.11879 9.27086 6.43275C9.27086 6.74672 9.39969 7.04832 9.63 7.2735L11.28 8.8125H6.74C6.57594 8.81122 6.41326 8.84112 6.26155 8.90046C6.10984 8.9598 5.97215 9.04738 5.85661 9.15803C5.74106 9.26869 5.64999 9.40019 5.58874 9.54478C5.5275 9.68938 5.49732 9.84416 5.5 10C5.49867 10.1551 5.52983 10.3088 5.59167 10.4523C5.65352 10.5958 5.7448 10.7262 5.86022 10.8358C5.97563 10.9454 6.11285 11.0322 6.2639 11.0909C6.41494 11.1497 6.57679 11.1793 6.74 11.178V11.1875ZM10.5 19.5C12.4778 19.5 14.4112 18.9428 16.0557 17.899C17.7002 16.8551 18.9819 15.3714 19.7388 13.6355C20.4957 11.8996 20.6937 9.98947 20.3078 8.14665C19.922 6.30383 18.9696 4.61109 17.5711 3.28249C16.1725 1.95389 14.3907 1.0491 12.4509 0.682544C10.5111 0.315985 8.50042 0.504116 6.67316 1.22315C4.8459 1.94218 3.28412 3.15982 2.1853 4.72209C1.08649 6.28435 0.5 8.12108 0.5 10C0.5 12.5196 1.55357 14.9359 3.42893 16.7175C5.30429 18.4991 7.84783 19.5 10.5 19.5ZM10.5 2.875C11.9834 2.875 13.4334 3.29288 14.6668 4.07578C15.9001 4.85869 16.8614 5.97146 17.4291 7.27338C17.9967 8.57531 18.1453 10.0079 17.8559 11.39C17.5665 12.7721 16.8522 14.0417 15.8033 15.0381C14.7544 16.0346 13.418 16.7132 11.9632 16.9881C10.5083 17.263 9.00032 17.1219 7.62987 16.5826C6.25943 16.0434 5.08809 15.1301 4.26398 13.9584C3.43987 12.7867 3 11.4092 3 10C3.00528 8.11188 3.79715 6.30252 5.20253 4.96741C6.60791 3.6323 8.5125 2.88002 10.5 2.875Z" fill="#CBD0D8" />
             </svg>
           </a>
-                  <a class="btn btn-white" href="https://gorunsiasociatii.com/acte-necesare-succesiune/" target="">
+                  <a class="btn btn-white" href="acte-necesare-succesiune.html" target="">
             Acte necesare succesiune            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6.74 11.1875H11.09V11.3395L9.67 12.679C9.45313 12.8821 9.31752 13.1507 9.2865 13.4385C9.25547 13.7263 9.33097 14.0153 9.5 14.256C9.60432 14.3961 9.73962 14.5129 9.89643 14.5982C10.0532 14.6834 10.2278 14.7351 10.4078 14.7496C10.5878 14.7641 10.769 14.741 10.9387 14.682C11.1083 14.623 11.2624 14.5295 11.39 14.408L15.15 10.798C15.3681 10.5832 15.493 10.2983 15.5 10C15.5011 9.68428 15.3718 9.38073 15.14 9.1545L11.39 5.592C11.2747 5.48171 11.1376 5.39417 10.9866 5.33443C10.8356 5.27469 10.6736 5.24394 10.51 5.24394C10.3464 5.24394 10.1844 5.27469 10.0334 5.33443C9.88235 5.39417 9.74526 5.48171 9.63 5.592C9.39969 5.81719 9.27086 6.11879 9.27086 6.43275C9.27086 6.74672 9.39969 7.04832 9.63 7.2735L11.28 8.8125H6.74C6.57594 8.81122 6.41326 8.84112 6.26155 8.90046C6.10984 8.9598 5.97215 9.04738 5.85661 9.15803C5.74106 9.26869 5.64999 9.40019 5.58874 9.54478C5.5275 9.68938 5.49732 9.84416 5.5 10C5.49867 10.1551 5.52983 10.3088 5.59167 10.4523C5.65352 10.5958 5.7448 10.7262 5.86022 10.8358C5.97563 10.9454 6.11285 11.0322 6.2639 11.0909C6.41494 11.1497 6.57679 11.1793 6.74 11.178V11.1875ZM10.5 19.5C12.4778 19.5 14.4112 18.9428 16.0557 17.899C17.7002 16.8551 18.9819 15.3714 19.7388 13.6355C20.4957 11.8996 20.6937 9.98947 20.3078 8.14665C19.922 6.30383 18.9696 4.61109 17.5711 3.28249C16.1725 1.95389 14.3907 1.0491 12.4509 0.682544C10.5111 0.315985 8.50042 0.504116 6.67316 1.22315C4.8459 1.94218 3.28412 3.15982 2.1853 4.72209C1.08649 6.28435 0.5 8.12108 0.5 10C0.5 12.5196 1.55357 14.9359 3.42893 16.7175C5.30429 18.4991 7.84783 19.5 10.5 19.5ZM10.5 2.875C11.9834 2.875 13.4334 3.29288 14.6668 4.07578C15.9001 4.85869 16.8614 5.97146 17.4291 7.27338C17.9967 8.57531 18.1453 10.0079 17.8559 11.39C17.5665 12.7721 16.8522 14.0417 15.8033 15.0381C14.7544 16.0346 13.418 16.7132 11.9632 16.9881C10.5083 17.263 9.00032 17.1219 7.62987 16.5826C6.25943 16.0434 5.08809 15.1301 4.26398 13.9584C3.43987 12.7867 3 11.4092 3 10C3.00528 8.11188 3.79715 6.30252 5.20253 4.96741C6.60791 3.6323 8.5125 2.88002 10.5 2.875Z" fill="#CBD0D8" />
             </svg>
@@ -539,12 +543,12 @@ footer.footer .footer-social img{width:16px;height:16px}
     <!-- /.row -->
     <div class="row justify-content-center">
       <div class="col-12 col-md-11 mx-md-auto text-center">
-                  <a class="btn btn-white" href="https://gorunsiasociatii.com/intrebari-frecvente-notariat/" target="">
+                  <a class="btn btn-white" href="intrebari-frecvente-notariat.html" target="">
             Intrebari frecvente              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6.74 11.1875H11.09V11.3395L9.67 12.679C9.45313 12.8821 9.31752 13.1507 9.2865 13.4385C9.25547 13.7263 9.33097 14.0153 9.5 14.256C9.60432 14.3961 9.73962 14.5129 9.89643 14.5982C10.0532 14.6834 10.2278 14.7351 10.4078 14.7496C10.5878 14.7641 10.769 14.741 10.9387 14.682C11.1083 14.623 11.2624 14.5295 11.39 14.408L15.15 10.798C15.3681 10.5832 15.493 10.2983 15.5 10C15.5011 9.68428 15.3718 9.38073 15.14 9.1545L11.39 5.592C11.2747 5.48171 11.1376 5.39417 10.9866 5.33443C10.8356 5.27469 10.6736 5.24394 10.51 5.24394C10.3464 5.24394 10.1844 5.27469 10.0334 5.33443C9.88235 5.39417 9.74526 5.48171 9.63 5.592C9.39969 5.81719 9.27086 6.11879 9.27086 6.43275C9.27086 6.74672 9.39969 7.04832 9.63 7.2735L11.28 8.8125H6.74C6.57594 8.81122 6.41326 8.84112 6.26155 8.90046C6.10984 8.9598 5.97215 9.04738 5.85661 9.15803C5.74106 9.26869 5.64999 9.40019 5.58874 9.54478C5.5275 9.68938 5.49732 9.84416 5.5 10C5.49867 10.1551 5.52983 10.3088 5.59167 10.4523C5.65352 10.5958 5.7448 10.7262 5.86022 10.8358C5.97563 10.9454 6.11285 11.0322 6.2639 11.0909C6.41494 11.1497 6.57679 11.1793 6.74 11.178V11.1875ZM10.5 19.5C12.4778 19.5 14.4112 18.9428 16.0557 17.899C17.7002 16.8551 18.9819 15.3714 19.7388 13.6355C20.4957 11.8996 20.6937 9.98947 20.3078 8.14665C19.922 6.30383 18.9696 4.61109 17.5711 3.28249C16.1725 1.95389 14.3907 1.0491 12.4509 0.682544C10.5111 0.315985 8.50042 0.504116 6.67316 1.22315C4.8459 1.94218 3.28412 3.15982 2.1853 4.72209C1.08649 6.28435 0.5 8.12108 0.5 10C0.5 12.5196 1.55357 14.9359 3.42893 16.7175C5.30429 18.4991 7.84783 19.5 10.5 19.5ZM10.5 2.875C11.9834 2.875 13.4334 3.29288 14.6668 4.07578C15.9001 4.85869 16.8614 5.97146 17.4291 7.27338C17.9967 8.57531 18.1453 10.0079 17.8559 11.39C17.5665 12.7721 16.8522 14.0417 15.8033 15.0381C14.7544 16.0346 13.418 16.7132 11.9632 16.9881C10.5083 17.263 9.00032 17.1219 7.62987 16.5826C6.25943 16.0434 5.08809 15.1301 4.26398 13.9584C3.43987 12.7867 3 11.4092 3 10C3.00528 8.11188 3.79715 6.30252 5.20253 4.96741C6.60791 3.6323 8.5125 2.88002 10.5 2.875Z" fill="#CBD0D8" />
             </svg>
           </a>
-                  <a class="btn btn-white" href="https://gorunsiasociatii.com/tarife-notariale-informative/" target="">
+                  <a class="btn btn-white" href="tarife-notariale-informative.html" target="">
             Tarife notariale informative            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6.74 11.1875H11.09V11.3395L9.67 12.679C9.45313 12.8821 9.31752 13.1507 9.2865 13.4385C9.25547 13.7263 9.33097 14.0153 9.5 14.256C9.60432 14.3961 9.73962 14.5129 9.89643 14.5982C10.0532 14.6834 10.2278 14.7351 10.4078 14.7496C10.5878 14.7641 10.769 14.741 10.9387 14.682C11.1083 14.623 11.2624 14.5295 11.39 14.408L15.15 10.798C15.3681 10.5832 15.493 10.2983 15.5 10C15.5011 9.68428 15.3718 9.38073 15.14 9.1545L11.39 5.592C11.2747 5.48171 11.1376 5.39417 10.9866 5.33443C10.8356 5.27469 10.6736 5.24394 10.51 5.24394C10.3464 5.24394 10.1844 5.27469 10.0334 5.33443C9.88235 5.39417 9.74526 5.48171 9.63 5.592C9.39969 5.81719 9.27086 6.11879 9.27086 6.43275C9.27086 6.74672 9.39969 7.04832 9.63 7.2735L11.28 8.8125H6.74C6.57594 8.81122 6.41326 8.84112 6.26155 8.90046C6.10984 8.9598 5.97215 9.04738 5.85661 9.15803C5.74106 9.26869 5.64999 9.40019 5.58874 9.54478C5.5275 9.68938 5.49732 9.84416 5.5 10C5.49867 10.1551 5.52983 10.3088 5.59167 10.4523C5.65352 10.5958 5.7448 10.7262 5.86022 10.8358C5.97563 10.9454 6.11285 11.0322 6.2639 11.0909C6.41494 11.1497 6.57679 11.1793 6.74 11.178V11.1875ZM10.5 19.5C12.4778 19.5 14.4112 18.9428 16.0557 17.899C17.7002 16.8551 18.9819 15.3714 19.7388 13.6355C20.4957 11.8996 20.6937 9.98947 20.3078 8.14665C19.922 6.30383 18.9696 4.61109 17.5711 3.28249C16.1725 1.95389 14.3907 1.0491 12.4509 0.682544C10.5111 0.315985 8.50042 0.504116 6.67316 1.22315C4.8459 1.94218 3.28412 3.15982 2.1853 4.72209C1.08649 6.28435 0.5 8.12108 0.5 10C0.5 12.5196 1.55357 14.9359 3.42893 16.7175C5.30429 18.4991 7.84783 19.5 10.5 19.5ZM10.5 2.875C11.9834 2.875 13.4334 3.29288 14.6668 4.07578C15.9001 4.85869 16.8614 5.97146 17.4291 7.27338C17.9967 8.57531 18.1453 10.0079 17.8559 11.39C17.5665 12.7721 16.8522 14.0417 15.8033 15.0381C14.7544 16.0346 13.418 16.7132 11.9632 16.9881C10.5083 17.263 9.00032 17.1219 7.62987 16.5826C6.25943 16.0434 5.08809 15.1301 4.26398 13.9584C3.43987 12.7867 3 11.4092 3 10C3.00528 8.11188 3.79715 6.30252 5.20253 4.96741C6.60791 3.6323 8.5125 2.88002 10.5 2.875Z" fill="#CBD0D8" />
             </svg>
@@ -577,13 +581,13 @@ footer.footer .footer-social img{width:16px;height:16px}
 </time>
             </div>
             <!-- /.entry-meta -->
-            <a href="https://gorunsiasociatii.com/blog/contractul-de-donatie-tot-ce-trebuie-sa-stii/" class="text-decoration-none">
+            <a href="blog--contractul-de-donatie-tot-ce-trebuie-sa-stii.html" class="text-decoration-none">
               <h2 class="the_title">
                 Contractul de donație. Tot ce trebuie să știi              </h2>
             </a>
             <div class="the_excerpt">
               <p>Contractul de donație Conform art. 985 din Codul civil este un act juridic prin care o persoană, numită donator, transmite cu titlu gratuit un bun sau un drept din patrimoniul său unei alte persoane, numită donatar, care acceptă această donație. În dreptul civil român, contractul de donație are reguli și condiții specifice, pe care le</p>
-<p><a class="btn btn-arrow-right-light" href="https://gorunsiasociatii.com/blog/contractul-de-donatie-tot-ce-trebuie-sa-stii/">Citește mai mult</a></p>
+<p><a class="btn btn-arrow-right-light" href="blog--contractul-de-donatie-tot-ce-trebuie-sa-stii.html">Citește mai mult</a></p>
             </div>
             <!-- /.the_excerpt -->
           </div>
@@ -596,13 +600,13 @@ footer.footer .footer-social img{width:16px;height:16px}
 </time>
             </div>
             <!-- /.entry-meta -->
-            <a href="https://gorunsiasociatii.com/blog/uzufruct-viager-dreptul-de-uzufruct-viager-acte-notariale-legate-de-uzufructul-viager/" class="text-decoration-none">
+            <a href="blog--uzufruct-viager-dreptul-de-uzufruct-viager-acte-notariale-legate-de-uzufructul-viager.html" class="text-decoration-none">
               <h2 class="the_title">
                 Uzufruct viager. Dreptul de uzufruct viager. Acte notariale legate de uzufructul viager              </h2>
             </a>
             <div class="the_excerpt">
               <p>Un termen des întâlnit în actele întocmite de un notar sau avocat este uzufructul viager. Pentru specialiștii în drept, notari, avocați, consilieri juridici, termenul este cunoscut și la îndemana în timp ce pentru clienții unui notariat sau cabinet de avocatură poate fi un termen tehnic mai greu de înțeles. În articolul urmator vom încerca să</p>
-<p><a class="btn btn-arrow-right-light" href="https://gorunsiasociatii.com/blog/uzufruct-viager-dreptul-de-uzufruct-viager-acte-notariale-legate-de-uzufructul-viager/">Citește mai mult</a></p>
+<p><a class="btn btn-arrow-right-light" href="blog--uzufruct-viager-dreptul-de-uzufruct-viager-acte-notariale-legate-de-uzufructul-viager.html">Citește mai mult</a></p>
             </div>
             <!-- /.the_excerpt -->
           </div>
@@ -615,13 +619,13 @@ footer.footer .footer-social img{width:16px;height:16px}
 </time>
             </div>
             <!-- /.entry-meta -->
-            <a href="https://gorunsiasociatii.com/blog/pensia-de-intretinere-sau-pensia-alimentara/" class="text-decoration-none">
+            <a href="blog--pensia-de-intretinere-sau-pensia-alimentara.html" class="text-decoration-none">
               <h2 class="the_title">
                 Pensia de întreținere sau pensia alimentara, tot ce trebuie să știi              </h2>
             </a>
             <div class="the_excerpt">
               <p>Pensia de întreținere sau pensia alimentară de întreținere a unui minor, așa cum este ea mai cunoscută publicului larg este un subiect des întâlnit în practica cabinetelor notariale și de avocatură. Avand în vedere experiența îndelungată de peste 30 de ani la cabinetul notarial Gorun și Asociații vom încerca să răspundem celor mai frecvente întrebari</p>
-<p><a class="btn btn-arrow-right-light" href="https://gorunsiasociatii.com/blog/pensia-de-intretinere-sau-pensia-alimentara/">Citește mai mult</a></p>
+<p><a class="btn btn-arrow-right-light" href="blog--pensia-de-intretinere-sau-pensia-alimentara.html">Citește mai mult</a></p>
             </div>
             <!-- /.the_excerpt -->
           </div>
@@ -630,7 +634,7 @@ footer.footer .footer-social img{width:16px;height:16px}
     <!-- /.row -->
     <div class="row mt-4">
       <div class="col-12 text-center">
-        <a class="btn btn-secondary" href="https://gorunsiasociatii.com/blog">Vezi toate Articolele</a>
+        <a class="btn btn-secondary" href="blog.html">Vezi toate Articolele</a>
       </div>
       <!-- /.col-12 text-center -->
     </div>
@@ -646,7 +650,7 @@ footer.footer .footer-social img{width:16px;height:16px}
     <div class="row align-items-center">
       <div class="col-12 col-lg-3 pb-4 pb-lg-0">
         <div class="logo_footer">
-          <a href="https://gorunsiasociatii.com/">
+          <a href="index.html">
             <img src="https://gorunsiasociatii.com/wp-content/themes/gorun/dist/images/logo_gorun_footer.svg" width="202" height="58" alt="Gorun &amp; Asociații" />
           </a>
         </div>
@@ -655,10 +659,10 @@ footer.footer .footer-social img{width:16px;height:16px}
       <!-- /.col-12 col-lg-3 pb-4 pb-lg-0 -->
       <div class="col-12 col-lg-9 text-lg-right">
         <div class="footer_menu">
-          <div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="footer-nav list-inline"><li id="menu-item-61" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-15 current_page_item menu-item-61"><a href="https://gorunsiasociatii.com/" aria-current="page">Home</a></li>
-<li id="menu-item-479" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-479"><a href="https://gorunsiasociatii.com/contact/">Contact</a></li>
-<li id="menu-item-480" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-480"><a href="https://gorunsiasociatii.com/politica-de-confidentialitate/">Politica de confidențialitate</a></li>
-<li id="menu-item-481" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-481"><a href="https://gorunsiasociatii.com/termeni-si-conditii/">Termeni și condiții</a></li>
+          <div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="footer-nav list-inline"><li id="menu-item-61" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-15 current_page_item menu-item-61"><a href="index.html" aria-current="page">Home</a></li>
+<li id="menu-item-479" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-479"><a href="contact.html">Contact</a></li>
+<li id="menu-item-480" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-480"><a href="politica-de-confidentialitate.html">Politica de confidențialitate</a></li>
+<li id="menu-item-481" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-481"><a href="termeni-si-conditii.html">Termeni și condiții</a></li>
 </ul></div>        </div>
         <!-- /.footer_menu -->
       </div>
@@ -689,7 +693,7 @@ footer.footer .footer-social img{width:16px;height:16px}
         </div>
         <!-- /.col-12 col-lg-6 pb-4 pb-lg-0 -->
         <div class="col-12 col-lg-3 offset-lg-3 text-center text-lg-right">
-                      <a href="https://gorunsiasociatii.com/consultanta-online-cu-notarul-public/" target="" class="btn btn-gorun-light">Consultanță online</a>
+                      <a href="consultanta-online-cu-notarul-public.html" target="" class="btn btn-gorun-light">Consultanță online</a>
           
                       <div class="call-us-cta text-lg-right">
               sau suna la <a href="tel:++40 (0) 372 763 760" class="call-us">+40 (0) 372 763 760</a>
