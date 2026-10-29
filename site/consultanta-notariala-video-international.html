@@ -310,7 +310,7 @@
   .book { background: linear-gradient(180deg, var(--paper) 0%, var(--paper) 40%, var(--navy) 40%, var(--navy) 100%); }
   .book-card {
     background: var(--white); border-radius: 24px; box-shadow: 0 30px 70px -30px rgba(31,37,51,.35);
-    display: grid; grid-template-columns: .85fr 1.15fr; overflow: hidden;
+    display: grid; grid-template-columns: .72fr 1.28fr; overflow: hidden;
   }
   .book-side { background: var(--navy-800); color: var(--white); padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; gap: 20px; }
   .book-side h2 { font-size: clamp(30px, 3.4vw, 40px); }
@@ -324,12 +324,83 @@
   .field label { font-size: 14px; font-weight: 500; color: var(--navy); }
   .field .hint { font-size: 12.5px; color: var(--ink-soft); }
   .check { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--ink-soft); }
+  .field.check { flex-direction: row; }
   .check input { width: 20px; height: 20px; min-height: 0; margin-top: 2px; accent-color: var(--navy); flex: none; }
   .form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
   .form-foot .btn { background: var(--navy); color: var(--white); }
   @media (hover: hover) { .form-foot .btn:hover { background: var(--navy-900); } }
   .form-msg { grid-column: 1 / -1; display: none; padding: 14px 16px; border-radius: var(--radius-sm); background: var(--gold-100); color: var(--navy); font-size: 15px; }
   .form-msg.show { display: block; }
+  .form-msg.err { background: #fbe9e7; color: #8a2c22; }
+  .form-msg.ok { background: #e7f3ea; color: #1f5130; }
+  .form-step { grid-column: 1 / -1; font: 600 13px/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-600); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  /* Tabel de programări */
+  .sched { gap: 14px; }
+  .sched-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .seg { display: inline-flex; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 4px; }
+  .seg button {
+    border: 0; background: transparent; cursor: pointer; min-height: 36px; padding: 0 14px; border-radius: 999px;
+    font: 500 13px/1 var(--sans); color: var(--ink-soft);
+    transition: background-color .2s var(--ease), color .2s var(--ease);
+  }
+  .seg button[aria-pressed="true"] { background: var(--navy); color: var(--white); }
+  .sched-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .sched-nav strong { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--navy); text-align: center; }
+  .nav-btn {
+    width: 44px; height: 44px; flex: none; border-radius: 50%; cursor: pointer;
+    border: 1px solid var(--line); background: var(--white); color: var(--navy);
+    display: grid; place-items: center; transition: background-color .2s var(--ease), transform .16s var(--ease);
+  }
+  .nav-btn svg { width: 18px; height: 18px; }
+  .nav-btn.prev svg { transform: rotate(180deg); }
+  .nav-btn:active:not(:disabled) { transform: scale(.94); }
+  .nav-btn:disabled { opacity: .35; cursor: default; }
+  @media (hover: hover) { .nav-btn:hover:not(:disabled) { background: var(--paper); } }
+  .sched-wrap { border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+  .sched-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .sched-table th {
+    padding: 12px 4px; background: var(--paper); border-bottom: 1px solid var(--line);
+    font: 500 11.5px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .sched-table th b { display: block; margin-top: 4px; font: 600 21px/1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--navy); }
+  .sched-table th.today b { color: var(--gold-600); }
+  .sched-table td { padding: 4px; text-align: center; }
+  .sched-table tbody tr:first-child td { padding-top: 10px; }
+  .sched-table tbody tr:last-child td { padding-bottom: 10px; }
+  .slot {
+    width: 100%; min-height: 42px; border-radius: 10px; cursor: pointer;
+    border: 1px solid rgba(211,172,43,.5); background: var(--gold-100); color: var(--navy);
+    font: 500 14px/1 var(--sans); font-variant-numeric: tabular-nums;
+    transition: background-color .15s var(--ease), color .15s var(--ease), border-color .15s var(--ease), transform .12s var(--ease);
+  }
+  .slot sup { font-size: 9.5px; color: var(--gold-600); margin-left: 1px; }
+  .slot:active { transform: scale(.95); }
+  @media (hover: hover) { .slot:hover { background: var(--gold); border-color: var(--gold); } }
+  .slot[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .slot[aria-pressed="true"] sup { color: var(--gold); }
+  .slot-off {
+    display: flex; align-items: center; justify-content: center; min-height: 42px; border-radius: 10px;
+    font-size: 13px; color: #aab0bb; font-variant-numeric: tabular-nums;
+    background: repeating-linear-gradient(135deg, transparent 0 6px, rgba(51,61,81,.045) 6px 12px);
+  }
+  .slot-off s { text-decoration-color: rgba(51,61,81,.3); }
+  .skel { height: 42px; border-radius: 10px; background: linear-gradient(90deg, #eef0f3 25%, #f7f8fa 50%, #eef0f3 75%); background-size: 200% 100%; animation: shimmer 1.2s linear infinite; }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+  .sched-msg td { padding: 34px 18px !important; color: var(--ink-soft); font-size: 15px; }
+  .sched-msg button { margin-top: 12px; background: none; border: 0; color: var(--navy); font: 500 14px var(--sans); text-decoration: underline; cursor: pointer; }
+  .sched-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--ink-soft); }
+  .sched-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 6px; vertical-align: -1px; }
+  .sched-legend .lg-free { background: var(--gold-100); border: 1px solid rgba(211,172,43,.6); }
+  .sched-legend .lg-busy { background: #eceef2; }
+  .sched-legend .demo { margin-left: auto; color: var(--gold-600); }
+  .sched-pick {
+    display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: var(--radius-sm);
+    background: var(--navy); color: var(--white); font-size: 15px; line-height: 1.45;
+  }
+  .sched-pick svg { width: 22px; height: 22px; color: var(--gold); flex: none; }
+  .sched-pick small { display: block; color: var(--mist); font-size: 13px; }
 
   /* FAQ */
   .faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(28px, 6vw, 80px); align-items: start; }
@@ -407,6 +478,14 @@
     .form-foot .btn { width: 100%; }
     .book { background: linear-gradient(180deg, var(--paper) 0%, var(--paper) 20%, var(--navy) 20%, var(--navy) 100%); }
     footer.site .cols { grid-template-columns: 1fr; }
+    .sched-top { flex-direction: column-reverse; align-items: stretch; }
+    .seg { align-self: center; }
+    .sched-nav strong { font-size: 17px; }
+    .sched-table th { padding: 10px 2px; font-size: 10.5px; letter-spacing: .04em; }
+    .sched-table th b { font-size: 18px; }
+    .sched-table td { padding: 3px 2px; }
+    .slot, .slot-off, .skel { min-height: 44px; font-size: 13px; border-radius: 8px; }
+    .sched-legend .demo { margin-left: 0; }
   }
 </style>
 </head>
@@ -641,7 +720,7 @@
         <div class="book-side on-dark">
           <span class="eyebrow">Programare</span>
           <h2 id="book-title">Rezervați o consultanță video</h2>
-          <p>Completați câteva detalii și vă contactăm în cel mult o zi lucrătoare pentru confirmare. Tariful consultanței vă este comunicat înainte de apel.</p>
+          <p>Alegeți o oră liberă din calendarul notarului, completați câteva detalii și primiți invitația pe email. Tariful consultanței vă este comunicat înainte de apel.</p>
           <div class="contact">
             <a href="tel:+40372763760"><svg><use href="#i-phone"/></svg> +40 (0) 372 763 760</a>
             <a href="mailto:contact@gorunsiasociatii.com"><svg><use href="#i-mail"/></svg> contact@gorunsiasociatii.com</a>
@@ -649,9 +728,42 @@
           </div>
         </div>
 
-        <!-- TODO la integrarea în WordPress: conectați formularul la Bookly / Contact Form 7.
-             Până atunci, trimiterea deschide clientul de email cu datele completate. -->
+        <!-- Programările se citesc din / se scriu în Google Calendar-ul notarului prin Google Apps Script.
+             Setați URL-ul aplicației web în BOOKING_CONFIG.scriptUrl (în scriptul de la finalul paginii).
+             Cât timp URL-ul e gol, tabelul rulează în mod demonstrativ. -->
         <form class="booking" id="booking" novalidate>
+          <span class="form-step">1 · Alegeți data și ora</span>
+          <div class="field full sched" id="sched">
+            <div class="sched-top">
+              <div class="sched-nav" style="flex:1">
+                <button type="button" class="nav-btn prev" id="sched-prev" aria-label="Săptămâna anterioară"><svg><use href="#i-arrow"/></svg></button>
+                <strong id="sched-range" aria-live="polite">—</strong>
+                <button type="button" class="nav-btn" id="sched-next" aria-label="Săptămâna următoare"><svg><use href="#i-arrow"/></svg></button>
+              </div>
+              <div class="seg" id="sched-tz" role="group" aria-label="Fusul orar afișat">
+                <button type="button" data-mode="local" aria-pressed="true">Ora mea</button>
+                <button type="button" data-mode="ro" aria-pressed="false">Ora României</button>
+              </div>
+            </div>
+            <div class="sched-wrap">
+              <table class="sched-table" id="sched-table">
+                <caption class="hp">Intervale disponibile pentru consultanța video</caption>
+                <thead><tr id="sched-head"></tr></thead>
+                <tbody id="sched-body"></tbody>
+              </table>
+            </div>
+            <div class="sched-legend">
+              <span><i class="lg-free"></i>Liber</span>
+              <span><i class="lg-busy"></i>Ocupat</span>
+              <span id="sched-tzname"></span>
+              <span class="demo" id="sched-demo" hidden>Mod demonstrativ — disponibilitate simulată</span>
+            </div>
+            <div class="sched-pick" id="sched-pick" hidden aria-live="polite"></div>
+            <input type="hidden" name="start" id="f-start" />
+            <input type="hidden" name="end" id="f-end" />
+          </div>
+
+          <span class="form-step">2 · Datele dvs.</span>
           <div class="field">
             <label for="f-name">Nume și prenume</label>
             <input id="f-name" name="nume" autocomplete="name" required />
@@ -689,21 +801,17 @@
             </select>
           </div>
           <div class="field full">
-            <label for="f-when">Când vă este comod?</label>
-            <input id="f-when" name="interval" placeholder="ex. marți sau joi, după ora 14:00 ora mea" />
-            <span class="hint">Scrieți în ora dvs. locală — noi facem conversia.</span>
-          </div>
-          <div class="field full">
             <label for="f-msg">Descrieți pe scurt situația</label>
             <textarea id="f-msg" name="mesaj" placeholder="ex. Locuiesc în Italia și vreau să vând apartamentul părinților din Cluj…"></textarea>
           </div>
           <label class="check field full">
-            <input type="checkbox" id="f-gdpr" required />
+            <input type="checkbox" id="f-gdpr" name="gdpr" value="da" required />
             <span>Sunt de acord cu prelucrarea datelor conform <a href="https://gorunsiasociatii.com/politica-de-confidentialitate/">Politicii de confidențialitate</a>.</span>
           </label>
+          <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off" /></label>
           <div class="form-msg" id="form-msg" role="status" aria-live="polite"></div>
           <div class="form-foot">
-            <span class="hint" style="font-size:13px;color:var(--ink-soft)">Răspundem în cel mult o zi lucrătoare.</span>
+            <span class="hint" style="font-size:13px;color:var(--ink-soft)">Invitația ajunge automat pe email.</span>
             <button class="btn" type="submit">Trimite cererea <svg><use href="#i-arrow"/></svg></button>
           </div>
         </form>
@@ -809,12 +917,16 @@
   tick(); setInterval(tick, 15000);
 
   // Conversie program 09:00–17:00 ora României -> fusul ales
-  function offsetMinutes(tz) {
-    var d = new Date();
-    var p = new Intl.DateTimeFormat('en-US', { timeZone: tz, hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
-      .formatToParts(d).reduce(function (a, x) { a[x.type] = x.value; return a; }, {});
+  function tzParts(ms, tz) {
+    return new Intl.DateTimeFormat('en-US', { timeZone: tz, hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
+      .formatToParts(new Date(ms)).reduce(function (a, x) { a[x.type] = x.value; return a; }, {});
+  }
+  // Diferența (minute) dintre fusul orar dat și UTC, la momentul `ms` (implicit: acum)
+  function offsetMinutes(tz, ms) {
+    if (ms == null) ms = Date.now();
+    var p = tzParts(ms, tz);
     var asUTC = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute);
-    return Math.round((asUTC - d.getTime()) / 60000);
+    return Math.round((asUTC - ms) / 60000);
   }
   function hhmm(min) {
     var dayShift = Math.floor(min / 1440);
@@ -839,36 +951,249 @@
   sel.addEventListener('change', updateTz);
   updateTz();
 
-  // Formular -> email (temporar, până la integrarea în WordPress)
+  /* ================= Tabel de programări (Google Apps Script + Google Calendar) ================= */
+  var BOOKING_CONFIG = {
+    // URL-ul aplicației web Google Apps Script (se termină în /exec). Gol = mod demonstrativ.
+    scriptUrl: '',
+    timezone: 'Europe/Bucharest',
+    workDays: [1, 2, 3, 4, 5],   // 1 = luni … 5 = vineri (coloanele tabelului)
+    maxWeeksAhead: 6,            // câte săptămâni înainte se pot rezerva
+    minNoticeHours: 24,          // intervalele mai apropiate de acum apar ocupate
+    // Folosite doar în modul demonstrativ (în producție programul vine din Apps Script):
+    demo: { startHour: 9, endHour: 17, slotMinutes: 60 }
+  };
+
+  var RO = BOOKING_CONFIG.timezone;
+  var LOCAL = Intl.DateTimeFormat().resolvedOptions().timeZone || RO;
+  var DEMO = !BOOKING_CONFIG.scriptUrl;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function dayKey(ms, tz) { var p = tzParts(ms, tz); return p.year + '-' + p.month + '-' + p.day; }
+  function timeOf(ms, tz) { var p = tzParts(ms, tz); return pad(+p.hour % 24) + ':' + p.minute; }
+  function keyToUTC(key) { var a = key.split('-'); return Date.UTC(+a[0], +a[1] - 1, +a[2]); }
+  function addDays(key, n) { return new Date(keyToUTC(key) + n * 864e5).toISOString().slice(0, 10); }
+  function weekday(key) { return new Date(keyToUTC(key)).getUTCDay(); }
+  function mondayOf(key) { return addDays(key, -((weekday(key) + 6) % 7)); }
+  // Ora locală (data + minute de la miezul nopții) într-un fus orar -> moment UTC (ms)
+  function zonedToUTC(key, minutes, tz) {
+    var guess = keyToUTC(key) + minutes * 6e4;
+    var first = guess - offsetMinutes(tz, guess) * 6e4;
+    return guess - offsetMinutes(tz, first) * 6e4;
+  }
+  function fmtKey(key, opts) { return new Intl.DateTimeFormat('ro-RO', Object.assign({ timeZone: 'UTC' }, opts)).format(new Date(keyToUTC(key))); }
+
+  var els = {
+    head: document.getElementById('sched-head'),
+    body: document.getElementById('sched-body'),
+    range: document.getElementById('sched-range'),
+    prev: document.getElementById('sched-prev'),
+    next: document.getElementById('sched-next'),
+    seg: document.getElementById('sched-tz'),
+    tzname: document.getElementById('sched-tzname'),
+    pick: document.getElementById('sched-pick'),
+    start: document.getElementById('f-start'),
+    end: document.getElementById('f-end')
+  };
+
+  var todayKey = dayKey(Date.now(), RO);
+  var firstMonday = mondayOf(todayKey);
+  if (weekday(todayKey) === 6 || weekday(todayKey) === 0) firstMonday = addDays(firstMonday, 7);
+  var weekIdx = 0, cache = {}, selected = null, current = null;
+  var tzMode = offsetMinutes(LOCAL) === offsetMinutes(RO) ? 'ro' : 'local';
+
+  if (tzMode === 'ro') els.seg.hidden = true;
+  document.getElementById('sched-demo').hidden = !DEMO;
+
+  function weekDays() {
+    var mon = addDays(firstMonday, weekIdx * 7);
+    return BOOKING_CONFIG.workDays.map(function (d) { return addDays(mon, (d + 6) % 7); });
+  }
+
+  // Mod demonstrativ: generează intervale cu ~30% ocupate (determinist, ca să nu „sară” la reîncărcare)
+  function demoSlots(days) {
+    var c = BOOKING_CONFIG.demo, out = [];
+    days.forEach(function (key) {
+      for (var m = c.startHour * 60; m + c.slotMinutes <= c.endHour * 60; m += c.slotMinutes) {
+        var s = zonedToUTC(key, m, RO), h = 0, seed = key + m;
+        for (var i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+        out.push({ start: new Date(s).toISOString(), end: new Date(s + c.slotMinutes * 6e4).toISOString(), status: h % 10 < 3 ? 'busy' : 'free' });
+      }
+    });
+    return out;
+  }
+
+  function fetchWeek(days) {
+    var k = days[0];
+    if (cache[k]) return Promise.resolve(cache[k]);
+    var p = DEMO
+      ? new Promise(function (r) { setTimeout(function () { r(demoSlots(days)); }, 350); })
+      : fetch(BOOKING_CONFIG.scriptUrl + '?action=availability&from=' + days[0] + '&to=' + days[days.length - 1])
+          .then(function (r) { return r.json(); })
+          .then(function (j) { if (!j.ok) throw new Error(j.error || 'error'); return j.slots; });
+    return p.then(function (slots) { cache[k] = slots; return slots; });
+  }
+
+  function slotLabel(ms, key) {
+    if (tzMode === 'ro') return timeOf(ms, RO);
+    var lk = dayKey(ms, LOCAL), shift = lk > key ? '+1' : lk < key ? '−1' : '';
+    return timeOf(ms, LOCAL) + (shift ? '<sup>' + shift + '</sup>' : '');
+  }
+  function longLabel(ms) {
+    return new Intl.DateTimeFormat('ro-RO', { timeZone: RO, weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(ms));
+  }
+
+  function renderHead(days) {
+    els.head.innerHTML = days.map(function (k) {
+      return '<th scope="col"' + (k === todayKey ? ' class="today"' : '') + '>' +
+        fmtKey(k, { weekday: 'short' }).replace('.', '') + '<b>' + fmtKey(k, { day: 'numeric' }) + '</b></th>';
+    }).join('');
+    var a = days[0], b = days[days.length - 1];
+    els.range.textContent = fmtKey(a, { day: 'numeric', month: a.slice(5, 7) === b.slice(5, 7) ? undefined : 'short' }) +
+      ' – ' + fmtKey(b, { day: 'numeric', month: 'long', year: 'numeric' });
+    els.prev.disabled = weekIdx === 0;
+    els.next.disabled = weekIdx >= BOOKING_CONFIG.maxWeeksAhead - 1;
+    els.tzname.textContent = tzMode === 'ro' ? 'Ore afișate: ora României' : 'Ore afișate: ora dvs. (' + LOCAL.split('/').pop().replace(/_/g, ' ') + ')';
+  }
+
+  function renderMessage(html) {
+    els.body.innerHTML = '<tr class="sched-msg"><td colspan="' + weekDays().length + '">' + html + '</td></tr>';
+  }
+
+  function renderBody(days, slots) {
+    var map = {}, times = {};
+    var limit = Date.now() + BOOKING_CONFIG.minNoticeHours * 36e5;
+    slots.forEach(function (s) {
+      var ms = Date.parse(s.start), k = dayKey(ms, RO), t = timeOf(ms, RO);
+      if (days.indexOf(k) === -1) return;
+      map[k + '|' + t] = s; times[t] = 1;
+    });
+    var rows = Object.keys(times).sort();
+    if (!rows.length) return renderMessage('Nu sunt intervale în această săptămână. Încercați săptămâna următoare.');
+    var anyFree = false;
+    els.body.innerHTML = rows.map(function (t) {
+      return '<tr>' + days.map(function (k) {
+        var s = map[k + '|' + t];
+        if (!s) return '<td><span class="slot-off" aria-hidden="true">–</span></td>';
+        var ms = Date.parse(s.start), label = slotLabel(ms, k);
+        if (s.status !== 'free' || ms < limit) {
+          return '<td><span class="slot-off"><s>' + label + '</s><span class="hp"> ocupat</span></span></td>';
+        }
+        anyFree = true;
+        var on = selected && selected.start === s.start;
+        return '<td><button type="button" class="slot" data-start="' + s.start + '" data-end="' + s.end + '" aria-pressed="' + on +
+          '" aria-label="' + longLabel(ms) + ', ' + timeOf(ms, RO) + ' ora României">' + label + '</button></td>';
+      }).join('') + '</tr>';
+    }).join('');
+    if (!anyFree && !els.next.disabled) {
+      els.body.insertAdjacentHTML('beforeend', '<tr class="sched-msg"><td colspan="' + days.length + '">Săptămâna este complet ocupată. <br><button type="button" data-go-next>Vezi săptămâna următoare →</button></td></tr>');
+    }
+  }
+
+  function load() {
+    var days = weekDays(), token = days[0];
+    current = token;
+    renderHead(days);
+    els.body.innerHTML = [0, 1, 2, 3].map(function () {
+      return '<tr>' + days.map(function () { return '<td><div class="skel"></div></td>'; }).join('') + '</tr>';
+    }).join('');
+    fetchWeek(days).then(function (slots) {
+      if (current === token) renderBody(days, slots);
+    }).catch(function () {
+      if (current === token) renderMessage('Nu am putut încărca programul notarului.<br>Sunați-ne la <a href="tel:+40372763760">+40 372 763 760</a> sau <button type="button" data-retry>reîncercați</button>.');
+    });
+  }
+
+  function select(btn) {
+    selected = { start: btn.dataset.start, end: btn.dataset.end };
+    els.start.value = selected.start; els.end.value = selected.end;
+    els.body.querySelectorAll('.slot').forEach(function (b) { b.setAttribute('aria-pressed', b === btn); });
+    var ms = Date.parse(selected.start);
+    var local = tzMode === 'local' || offsetMinutes(LOCAL, ms) !== offsetMinutes(RO, ms)
+      ? '<small>Ora dvs.: ' + new Intl.DateTimeFormat('ro-RO', { timeZone: LOCAL, weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }).format(new Date(ms)) + '</small>'
+      : '';
+    els.pick.innerHTML = '<svg><use href="#i-video"/></svg><span>Ați ales <b>' + longLabel(ms) + ', ora ' + timeOf(ms, RO) + '</b> (ora României)' + local + '</span>';
+    els.pick.hidden = false;
+  }
+  function clearSelection() {
+    selected = null; els.start.value = ''; els.end.value = ''; els.pick.hidden = true;
+  }
+
+  els.body.addEventListener('click', function (e) {
+    var b = e.target.closest('.slot');
+    if (b) return select(b);
+    if (e.target.closest('[data-retry]')) { delete cache[weekDays()[0]]; load(); }
+    if (e.target.closest('[data-go-next]')) { weekIdx++; load(); }
+  });
+  els.prev.addEventListener('click', function () { if (weekIdx > 0) { weekIdx--; load(); } });
+  els.next.addEventListener('click', function () { weekIdx++; load(); });
+  els.seg.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b || b.dataset.mode === tzMode) return;
+    tzMode = b.dataset.mode;
+    els.seg.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+    load();
+  });
+  load();
+
+  // Trimiterea programării
   var form = document.getElementById('booking');
   var msg = document.getElementById('form-msg');
+  var submitBtn = form.querySelector('button[type="submit"]');
+  function say(text, kind) { msg.innerHTML = text; msg.className = 'form-msg show ' + (kind || ''); }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    if (!selected) {
+      say('Alegeți mai întâi un interval liber din tabelul de programări.', 'err');
+      document.getElementById('sched').scrollIntoView({ block: 'center' });
+      return;
+    }
     if (!form.checkValidity()) {
-      msg.textContent = 'Vă rugăm completați câmpurile obligatorii: nume, email, țară, subiect și acordul GDPR.';
-      msg.classList.add('show');
+      say('Vă rugăm completați câmpurile obligatorii: nume, email, țară, subiect și acordul GDPR.', 'err');
       var bad = form.querySelector(':invalid'); if (bad) bad.focus();
       return;
     }
-    var d = new FormData(form), body = '';
-    d.forEach(function (v, k) { body += k.charAt(0).toUpperCase() + k.slice(1) + ': ' + v + '\n'; });
-    body += 'Fus orar: ' + (Intl.DateTimeFormat().resolvedOptions().timeZone || '-') + '\n';
-    window.location.href = 'mailto:contact@gorunsiasociatii.com'
-      + '?subject=' + encodeURIComponent('Consultanță VIDEO Internațional — ' + d.get('nume'))
-      + '&body=' + encodeURIComponent(body);
-    msg.textContent = 'Mulțumim! Se deschide aplicația de email cu cererea completată — apăsați „Trimite” pentru a o expedia.';
-    msg.classList.add('show');
+    var data = Object.fromEntries(new FormData(form));
+    data.action = 'book';
+    data.timezone = LOCAL;
+    var when = longLabel(Date.parse(selected.start)) + ', ora ' + timeOf(Date.parse(selected.start), RO) + ' (ora României)';
+
+    submitBtn.disabled = true;
+    var label = submitBtn.innerHTML;
+    submitBtn.textContent = 'Se trimite…';
+
+    var req = DEMO
+      ? new Promise(function (r) { setTimeout(function () { r({ ok: true }); }, 700); })
+      // text/plain evită cererea preflight CORS, pe care Apps Script nu o acceptă
+      : fetch(BOOKING_CONFIG.scriptUrl, { method: 'POST', body: JSON.stringify(data) }).then(function (r) { return r.json(); });
+
+    req.then(function (j) {
+      if (j.ok) {
+        say('<b>Programarea a fost înregistrată:</b> ' + when + '. Veți primi pe email invitația și detaliile apelului video.', 'ok');
+        if (DEMO) { var w = cache[weekDays()[0]]; if (w) w.forEach(function (s) { if (s.start === selected.start) s.status = 'busy'; }); }
+        else delete cache[weekDays()[0]];
+        form.reset(); clearSelection(); load();
+      } else if (j.error === 'slot_taken' || j.error === 'invalid_slot') {
+        say('Ne pare rău, intervalul ales tocmai a fost ocupat. Vă rugăm alegeți altă oră.', 'err');
+        delete cache[weekDays()[0]]; clearSelection(); load();
+      } else {
+        throw new Error(j.error);
+      }
+    }).catch(function () {
+      say('Programarea nu a putut fi trimisă. Încercați din nou sau scrieți-ne la <a href="mailto:contact@gorunsiasociatii.com">contact@gorunsiasociatii.com</a>.', 'err');
+    }).then(function () {
+      submitBtn.disabled = false; submitBtn.innerHTML = label;
+    });
   });
 
   // Reveal la scroll
-  var els = document.querySelectorAll('.reveal');
+  var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
-    els.forEach(function (el) { io.observe(el); });
+    revealEls.forEach(function (el) { io.observe(el); });
   } else {
-    els.forEach(function (el) { el.classList.add('in'); });
+    revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
